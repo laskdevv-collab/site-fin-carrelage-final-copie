@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow crawling of internal Next.js directories
+Disallow: /_next/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://mp-carrelage.com/sitemap.xml
