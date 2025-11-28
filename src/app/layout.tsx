@@ -64,9 +64,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/images/logo.png',
-    shortcut: '/images/logo.png',
-    apple: '/images/logo.png',
+    icon: '/images/favicon.png',
+    shortcut: '/images/favicon.png',
+    apple: '/images/favicon.png',
   },
 };
 
@@ -82,7 +82,7 @@ export default function RootLayout({
     name: 'MP Carrelage',
     description: "Expert en pose de carrelage à Mulhouse et dans toute l'Alsace. 20 ans d'expérience.",
     url: 'https://mp-carrelage.com',
-    logo: 'https://mp-carrelage.com/logo.png',
+    logo: 'https://mp-carrelage.com/images/favicon.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+33-6-52-18-84-07',

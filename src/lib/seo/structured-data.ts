@@ -14,7 +14,7 @@ export function generateOrganizationSchema(lang: Language = 'fr') {
         name: 'MP Carrelage',
         description: descriptions[lang],
         url: 'https://mp-carrelage.com',
-        logo: 'https://mp-carrelage.com/logo.png',
+        logo: 'https://mp-carrelage.com/images/favicon.png',
         contactPoint: {
             '@type': 'ContactPoint',
             telephone: '+33-6-52-18-84-07',

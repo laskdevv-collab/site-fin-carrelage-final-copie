@@ -49,7 +49,7 @@ export function Navbar() {
                     <Link href="/" className="flex items-center gap-3">
                         <div className="relative h-10 w-10 md:h-12 md:w-12">
                             <Image
-                                src="/images/logo.png"
+                                src="/images/favicon.png"
                                 alt="MP Carrelage"
                                 fill
                                 className="object-contain"
