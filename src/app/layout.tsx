@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: 'MP Carrelage',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/favicon.ico',
         width: 1200,
         height: 630,
         alt: 'MP Carrelage - Expert Carreleur Mulhouse',
@@ -99,9 +99,9 @@ export default function RootLayout({
     '@id': 'https://mp-carrelage.com',
     name: 'MP Carrelage - Carreleur Mulhouse',
     description: "Expert en carrelage intérieur et extérieur à Mulhouse. Salles de bain, cuisines, terrasses.",
-    image: 'https://mp-carrelage.com/og-image.jpg',
+    image: 'https://mp-carrelage.com/images/favicon1.ico',
     telephone: '+33-6-52-18-84-07',
-    email: 'contact@mpcarrelage.fr',
+    email: 'mpcarrelage68@gmail.com',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Mulhouse',
