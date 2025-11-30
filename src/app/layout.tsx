@@ -23,7 +23,8 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://mp-carrelage.com'),
   title: "MP Carrelage | Artisan Carreleur Mulhouse & Alsace",
-  description: "Carrelage d'exception, pose millimétrée et finitions premium. Votre expert carreleur à Mulhouse et dans toute l'Alsace. Devis gratuit.",
+  description: "MP Carrelage : Artisan carreleur expert à Mulhouse et en Alsace. Spécialiste de la pose de carrelage intérieur, extérieur, salle de bain et terrasse. Finitions haut de gamme et devis gratuit.",
+  applicationName: 'MP Carrelage',
   keywords: "carrelage Mulhouse, carreleur Alsace, pose carrelage, salle de bain, terrasse, carrelage intérieur, carrelage extérieur, mosaïque, pierre naturelle, rénovation carrelage",
   authors: [{ name: "MP Carrelage" }],
   robots: {
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    apple: '/images/logo.png',
   },
 };
 
@@ -132,6 +133,14 @@ export default function RootLayout({
     ]
   };
 
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'MP Carrelage',
+    alternateName: ['MPCarrelage', 'MP Carrelage Mulhouse'],
+    url: 'https://mp-carrelage.com'
+  };
+
   return (
     <html lang="fr">
       <head>
@@ -165,6 +174,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body
