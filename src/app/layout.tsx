@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import { Suspense } from "react";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -54,15 +55,6 @@ export const metadata: Metadata = {
         alt: 'MP Carrelage - Expert Carreleur Mulhouse',
       },
     ],
-  },
-  alternates: {
-    canonical: 'https://mp-carrelage.com',
-    languages: {
-      'fr': 'https://mp-carrelage.com',
-      'en': 'https://mp-carrelage.com?lang=en',
-      'de': 'https://mp-carrelage.com?lang=de',
-      'tr': 'https://mp-carrelage.com?lang=tr',
-    },
   },
   icons: {
     icon: '/favicon.ico',
@@ -184,9 +176,11 @@ export default function RootLayout({
         </noscript>
         {/* End Google Tag Manager (noscript) */}
 
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <Suspense fallback={null}>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </Suspense>
 
         {/* Structured Data */}
         <Script
