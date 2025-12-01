@@ -35,7 +35,7 @@ export function Reviews() {
         }
 
         fetchReviews();
-    }, []);
+    }, [t.reviews.loading]);
 
     return (
         <Section id="avis" className="bg-bg-dark border-t border-white/5">
@@ -116,7 +116,7 @@ export function Reviews() {
                                     </div>
 
                                     <p className="text-white/70 text-sm leading-relaxed mb-4">
-                                        "{review.text}"
+                                        &quot;{review.text}&quot;
                                     </p>
 
                                     <div className="pt-4 border-t border-white/10">

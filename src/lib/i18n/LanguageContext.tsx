@@ -18,19 +18,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const pathname = usePathname();
 
     // Initialize from URL or default to 'fr'
-    const [language, setLanguageState] = useState<Language>('fr');
-
-    useEffect(() => {
-        const langParam = searchParams.get('lang');
-        if (langParam && (langParam === 'fr' || langParam === 'en' || langParam === 'de' || langParam === 'tr')) {
-            setLanguageState(langParam as Language);
-        } else {
-            setLanguageState('fr');
-        }
-    }, [searchParams]);
+    const langParam = searchParams.get('lang');
+    const language: Language = (langParam && (langParam === 'fr' || langParam === 'en' || langParam === 'de' || langParam === 'tr'))
+        ? (langParam as Language)
+        : 'fr';
 
     const setLanguage = (lang: Language) => {
-        setLanguageState(lang);
         const params = new URLSearchParams(searchParams.toString());
         if (lang === 'fr') {
             params.delete('lang');
