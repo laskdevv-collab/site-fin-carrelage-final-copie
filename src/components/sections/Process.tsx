@@ -6,7 +6,32 @@ import { Card } from '@/components/ui/Card';
 import { Ruler, FileText, Hammer, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-
+const steps = [
+    {
+        number: '01',
+        title: 'Visite & Prise de mesures',
+        description: 'Déplacement gratuit pour évaluer votre projet et prendre les mesures précises.',
+        icon: Ruler,
+    },
+    {
+        number: '02',
+        title: 'Devis détaillé',
+        description: 'Proposition transparente avec détail des matériaux et du temps de réalisation.',
+        icon: FileText,
+    },
+    {
+        number: '03',
+        title: 'Pose professionnelle',
+        description: 'Réalisation soignée avec respect des normes et techniques de pose adaptées.',
+        icon: Hammer,
+    },
+    {
+        number: '04',
+        title: 'Finition & Contrôle qualité',
+        description: 'Vérification minutieuse, nettoyage complet et garantie sur les travaux réalisés.',
+        icon: CheckCircle,
+    },
+];
 
 export function Process() {
     const { t } = useLanguage();

@@ -6,7 +6,32 @@ import { Card } from '@/components/ui/Card';
 import { Home, Droplets, Sun, Layers, Check } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-
+const services = [
+    {
+        title: 'Poses Intérieures',
+        icon: Home,
+        description: 'Un savoir-faire complet alliant élégance et précision pour tous vos espaces de vie.',
+        items: ['Tous types de carreaux', 'Toutes dimensions (XXL)', 'Finitions soignées', 'Sols et murs'],
+    },
+    {
+        title: 'Salles de Bains',
+        icon: Droplets,
+        description: 'Création de salles de bains modernes et fonctionnelles, du sol au plafond.',
+        items: ['Douches italiennes', 'Mosaïques', 'Niches et caissons', 'Étanchéité complète'],
+    },
+    {
+        title: 'Extérieurs',
+        icon: Sun,
+        description: 'Aménagement de vos espaces extérieurs avec des matériaux résistants et esthétiques.',
+        items: ['Terrasses (dalles, pavés)', 'Piscines (int/ext)', 'Cuisines extérieures', 'Habillages spécifiques'],
+    },
+    {
+        title: 'Techniques & Autres',
+        icon: Layers,
+        description: 'Solutions techniques avancées pour des projets complexes et durables.',
+        items: ['Résine époxy', 'Poses décoratives', 'Habillage cheminée', 'Surfaces chauffantes'],
+    },
+];
 
 export function Services() {
     const { t } = useLanguage();

@@ -8,37 +8,6 @@ import { BeforeAfter } from '@/components/sections/BeforeAfter';
 import { Process } from '@/components/sections/Process';
 import { Reviews } from '@/components/sections/Reviews';
 import { ContactForm } from '@/components/sections/ContactForm';
-import { Metadata } from 'next';
-
-type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}
-
-export async function generateMetadata(
-  { searchParams }: Props
-): Promise<Metadata> {
-  const resolvedSearchParams = await searchParams;
-  const lang = resolvedSearchParams.lang || 'fr';
-  const baseUrl = 'https://mp-carrelage.com';
-
-  // Construct canonical URL
-  let canonical = baseUrl;
-  if (lang !== 'fr') {
-    canonical = `${baseUrl}?lang=${lang}`;
-  }
-
-  return {
-    alternates: {
-      canonical: canonical,
-      languages: {
-        'fr': baseUrl,
-        'en': `${baseUrl}?lang=en`,
-        'de': `${baseUrl}?lang=de`,
-        'tr': `${baseUrl}?lang=tr`,
-      },
-    },
-  }
-}
 
 export default function Home() {
   return (

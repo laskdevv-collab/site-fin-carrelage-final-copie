@@ -182,7 +182,7 @@ export function generateServiceSchema(lang: Language = 'fr') {
         hasOfferCatalog: {
             '@type': 'OfferCatalog',
             name: 'Tile Services',
-            itemListElement: services[lang].map((service) => ({
+            itemListElement: services[lang].map((service, index) => ({
                 '@type': 'Offer',
                 itemOffered: {
                     '@type': 'Service',

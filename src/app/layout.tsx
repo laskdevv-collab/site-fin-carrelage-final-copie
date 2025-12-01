@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Montserrat, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
-import { Suspense } from "react";
-
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -25,8 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://mp-carrelage.com'),
   title: "MP Carrelage | Artisan Carreleur Mulhouse & Alsace",
-  description: "MP Carrelage : Artisan carreleur expert à Mulhouse et en Alsace. Spécialiste de la pose de carrelage intérieur, extérieur, salle de bain et terrasse. Finitions haut de gamme et devis gratuit.",
-  applicationName: 'MP Carrelage',
+  description: "Carrelage d'exception, pose millimétrée et finitions premium. Votre expert carreleur à Mulhouse et dans toute l'Alsace. Devis gratuit.",
   keywords: "carrelage Mulhouse, carreleur Alsace, pose carrelage, salle de bain, terrasse, carrelage intérieur, carrelage extérieur, mosaïque, pierre naturelle, rénovation carrelage",
   authors: [{ name: "MP Carrelage" }],
   robots: {
@@ -50,21 +47,28 @@ export const metadata: Metadata = {
     siteName: 'MP Carrelage',
     images: [
       {
-        url: '/favicon.ico',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'MP Carrelage - Expert Carreleur Mulhouse',
       },
     ],
   },
+  alternates: {
+    canonical: 'https://mp-carrelage.com',
+    languages: {
+      'fr': 'https://mp-carrelage.com',
+      'en': 'https://mp-carrelage.com?lang=en',
+      'de': 'https://mp-carrelage.com?lang=de',
+      'tr': 'https://mp-carrelage.com?lang=tr',
+    },
+  },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
-    apple: '/images/logo.png',
+    apple: '/favicon.ico',
   },
 };
-
-import Script from "next/script";
 
 export default function RootLayout({
   children,
@@ -94,9 +98,9 @@ export default function RootLayout({
     '@id': 'https://mp-carrelage.com',
     name: 'MP Carrelage - Carreleur Mulhouse',
     description: "Expert en carrelage intérieur et extérieur à Mulhouse. Salles de bain, cuisines, terrasses.",
-    image: 'https://mp-carrelage.com/images/favicon1.ico',
+    image: 'https://mp-carrelage.com/og-image.jpg',
     telephone: '+33-6-52-18-84-07',
-    email: 'mpcarrelage68@gmail.com',
+    email: 'contact@mpcarrelage.fr',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Mulhouse',
@@ -128,44 +132,44 @@ export default function RootLayout({
     ]
   };
 
-  const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'MP Carrelage',
-    alternateName: ['MPCarrelage', 'MP Carrelage Mulhouse'],
-    url: 'https://mp-carrelage.com'
-  };
-
   return (
     <html lang="fr">
+      <head>
+        {/* Google Tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1PSZR3X97"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-P1PSZR3X97');
+            `,
+          }}
+        />
+        {/* Google Tag Manager */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5PRC6ZJP');`
+          }}
+        />
+        {/* End Google Tag Manager */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+      </head>
       <body
         className={`${montserrat.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased bg-bg-dark text-white`}
       >
-        {/* Google Tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-P1PSZR3X97"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-P1PSZR3X97');
-          `}
-        </Script>
-
-        {/* Google Tag Manager */}
-        <Script id="google-tag-manager" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-5PRC6ZJP');
-          `}
-        </Script>
-
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -176,29 +180,9 @@ export default function RootLayout({
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-
-        <Suspense fallback={null}>
-          <LanguageProvider>
-            {children}
-          </LanguageProvider>
-        </Suspense>
-
-        {/* Structured Data */}
-        <Script
-          id="organization-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <Script
-          id="local-business-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-        />
-        <Script
-          id="website-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
