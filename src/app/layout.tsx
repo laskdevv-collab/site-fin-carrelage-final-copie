@@ -63,11 +63,24 @@ export const metadata: Metadata = {
       'tr': 'https://mp-carrelage.com?lang=tr',
     },
   },
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
-  },
+  icons: [
+    {
+      rel: 'icon',
+      url: '/favicon.ico',
+      sizes: 'any',
+    },
+    {
+      rel: 'icon',
+      url: '/images/logo.png',
+      type: 'image/png',
+      sizes: '32x32',
+    },
+    {
+      rel: 'apple-touch-icon',
+      url: '/images/logo.png',
+      sizes: '180x180',
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -82,7 +95,7 @@ export default function RootLayout({
     name: 'MP Carrelage',
     description: "Expert en pose de carrelage à Mulhouse et dans toute l'Alsace. 20 ans d'expérience.",
     url: 'https://mp-carrelage.com',
-    logo: 'https://mp-carrelage.com/images/favicon1.ico',
+    logo: 'https://mp-carrelage.com/favicon.ico',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+33-6-52-18-84-07',
@@ -135,6 +148,11 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
+        {/* Favicon - MP Carrelage Logo */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/images/logo.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/images/logo.png" sizes="180x180" />
+        <meta name="theme-color" content="#1a1a1a" />
         {/* Google Tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1PSZR3X97"></script>
         <script
