@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://mp-carrelage.com'),
   title: "MP Carrelage | Artisan Carreleur Mulhouse & Alsace",
-  description: "Carrelage d'exception, pose millimétrée et finitions premium. Votre expert carreleur à Mulhouse et dans toute l'Alsace. Devis gratuit.",
+  description: "L'excellence technique pour vos projets de Carrelage.Nous garantissons une pose de carrelage d'une précision absolue (grand format, faïence, extérieur)et des finitions premium qui respectent l'intégrité esthétique et la durabilité de votre investissement. Votre expert carreleur reconnu à Mulhouse, intervenant dans toute l'alsace et dans toute la France pour gros projet .",
   keywords: "carrelage Mulhouse, carreleur Alsace, pose carrelage, salle de bain, terrasse, carrelage intérieur, carrelage extérieur, mosaïque, pierre naturelle, rénovation carrelage",
   authors: [{ name: "MP Carrelage" }],
   robots: {
@@ -111,9 +111,9 @@ export default function RootLayout({
     '@id': 'https://mp-carrelage.com',
     name: 'MP Carrelage - Carreleur Mulhouse',
     description: "Expert en carrelage intérieur et extérieur à Mulhouse. Salles de bain, cuisines, terrasses.",
-    image: 'https://mp-carrelage.com/og-image.jpg',
+    image: 'https://mp-carrelage.com/favicon.ico',
     telephone: '+33-6-52-18-84-07',
-    email: 'contact@mpcarrelage.fr',
+    email: 'mpcarrelage68@gmail.com',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Mulhouse',
