@@ -66,11 +66,6 @@ export const metadata: Metadata = {
   icons: [
     {
       rel: 'icon',
-      url: '/favicon.ico',
-      sizes: 'any',
-    },
-    {
-      rel: 'icon',
       url: '/images/logo.png',
       type: 'image/png',
       sizes: '32x32',
@@ -95,7 +90,7 @@ export default function RootLayout({
     name: 'MP Carrelage',
     description: "Expert en pose de carrelage à Mulhouse et dans toute l'Alsace. 20 ans d'expérience.",
     url: 'https://mp-carrelage.com',
-    logo: 'https://mp-carrelage.com/favicon.ico',
+    logo: 'https://mp-carrelage.com/images/logo.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+33-6-52-18-84-07',
@@ -111,7 +106,7 @@ export default function RootLayout({
     '@id': 'https://mp-carrelage.com',
     name: 'MP Carrelage - Carreleur Mulhouse',
     description: "Expert en carrelage intérieur et extérieur à Mulhouse. Salles de bain, cuisines, terrasses.",
-    image: 'https://mp-carrelage.com/favicon.ico',
+    image: 'https://mp-carrelage.com/images/logo.png',
     telephone: '+33-6-52-18-84-07',
     email: 'mpcarrelage68@gmail.com',
     address: {
@@ -149,7 +144,6 @@ export default function RootLayout({
     <html lang="fr">
       <head>
         {/* Favicon - MP Carrelage Logo */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/images/logo.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/images/logo.png" sizes="180x180" />
         <meta name="theme-color" content="#1a1a1a" />
