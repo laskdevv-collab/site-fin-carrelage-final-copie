@@ -34,8 +34,36 @@ export function ContactForm() {
         message: '',
     });
 
+    const canProceed = (currentStep: number) => {
+        if (currentStep === 1) {
+            return !!(formData.projectType && formData.surface);
+        }
+        if (currentStep === 2) {
+            return !!(formData.name && formData.email && formData.phone);
+        }
+        return !!formData.message;
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Si l'utilisateur appuie sur Entrée aux étapes 1 ou 2, on avance seulement si les champs requis sont remplis
+        if (step < 3) {
+            if (!canProceed(step)) {
+                setError(t.contact.form.required_fields);
+                return;
+            }
+
+            setError(null);
+            setStep((prev) => Math.min(3, prev + 1));
+            return;
+        }
+
+        if (!canProceed(3)) {
+            setError(t.contact.form.required_fields);
+            return;
+        }
+
         setIsSubmitting(true);
         setError(null);
 
@@ -226,6 +254,7 @@ ${formData.message}`;
                                             placeholder={t.contact.form.message_placeholder}
                                             value={formData.message}
                                             onChange={(e) => updateField('message', e.target.value)}
+                                            required
                                         />
                                     </div>
                                 </motion.div>
