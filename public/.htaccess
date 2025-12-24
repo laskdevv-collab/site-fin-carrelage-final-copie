@@ -2,21 +2,37 @@
 # Configuration SEO - Force HTTPS
 # ========================================
 
-# Active le moteur de réécriture
 RewriteEngine On
 
-# Force la redirection HTTPS (301 permanent)
-# Améliore le SEO et la sécurité
+# Force la redirection HTTPS
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # ========================================
+# Gestion du Favicon (icon.ico)
+# ========================================
+
+# Redirection interne pour s'assurer que /favicon.ico pointe vers votre nouveau /images/icon.ico
+# Cela aide les vieux robots à trouver votre icône sans erreur 404
+## Rediriger le favicon vers le fichier `icon.ico`
+## Assurez-vous d'avoir uploadé `icon.ico` dans /images
+RewriteRule ^favicon\.ico$ /images/icon.ico [L,R=301]
+
+## Définir des en-têtes pour forcer la revalidation du favicon (mod_headers requis)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ico)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+  </FilesMatch>
+</IfModule>
+
+# ========================================
 # Optimisations SEO supplémentaires
 # ========================================
 
-# Supprime le slash final pour éviter le contenu dupliqué
-# (sauf pour la page d'accueil)
+# Supprime le slash final
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^(.+)/$ /$1 [R=301,L]
@@ -25,10 +41,8 @@ RewriteRule ^(.+)/$ /$1 [R=301,L]
 # Sécurité
 # ========================================
 
-# Désactive l'affichage du listing des répertoires
 Options -Indexes
 
-# Protection contre les injections de fichiers
 <FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql)$">
   Order Allow,Deny
   Deny from all
@@ -38,21 +52,23 @@ Options -Indexes
 # Performance et Cache
 # ========================================
 
-# Active la compression GZIP
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
 </IfModule>
 
-# Configuration du cache navigateur
 <IfModule mod_expires.c>
   ExpiresActive On
   
-  # Images
+  # Images (Général)
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # FAVICON : On réduit à 1 heure temporairement pour forcer la mise à jour partout
+  # Pour forcer une revalidation rapide du favicon côté client
+  ExpiresByType image/x-icon "access plus 0 seconds"
+  ExpiresByType image/vnd.microsoft.icon "access plus 0 seconds"
   
   # CSS et JavaScript
   ExpiresByType text/css "access plus 1 month"

@@ -66,6 +66,11 @@ export const metadata: Metadata = {
   icons: [
     {
       rel: 'icon',
+      url: '/images/icon.ico',
+      type: 'image/x-icon',
+    },
+    {
+      rel: 'icon',
       url: '/images/logo.png',
       type: 'image/png',
       sizes: '32x32',
@@ -143,7 +148,8 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        {/* Favicon - MP Carrelage Logo */}
+        {/* Favicon - MP Carrelage Icon */}
+        <link rel="icon" href="/images/icon.ico" type="image/x-icon" />
         <link rel="icon" href="/images/logo.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/images/logo.png" sizes="180x180" />
         <meta name="theme-color" content="#1a1a1a" />
