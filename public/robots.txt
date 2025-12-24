@@ -1,10 +1,14 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
+
+# Autoriser Google à voir les fichiers techniques nécessaires au rendu
+Allow: /_next/static/
+Allow: /_next/image
+
+# Autoriser tout le reste du site
 Allow: /
 
-# Disallow crawling of internal Next.js directories
-Disallow: /_next/
+# Garder le blocage de l'API si vous ne voulez pas qu'elle soit indexée
 Disallow: /api/
 
-# Sitemap location
+# Sitemap location (Vérifiez bien que l'URL est correcte)
 Sitemap: https://mp-carrelage.com/sitemap.xml
