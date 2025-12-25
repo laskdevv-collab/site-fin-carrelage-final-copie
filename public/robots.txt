@@ -1,0 +1,17 @@
+User-agent: *
+
+# Autoriser Google à voir les fichiers techniques nécessaires au rendu
+Allow: /_next/static/
+Allow: /_next/image
+Allow: /icon.ico
+Allow: /apple-icon.png
+Allow: /images/
+
+# Garder le blocage de l'API si vous ne voulez pas qu'elle soit indexée
+Disallow: /api/
+
+# Autoriser tout le reste du site
+Allow: /
+
+# Sitemap location
+Sitemap: https://mp-carrelage.com/sitemap.xml
