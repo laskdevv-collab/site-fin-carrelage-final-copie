@@ -12,18 +12,18 @@ export const translations = {
       contact: 'Contact'
     },
     hero: {
-      title_1: "Carrelage d'exception",
-      title_2: "Pose millimétrée.",
-      description: "Votre expert carreleur à Mulhouse et dans toute l'Alsace. Précision artisanale et finitions premium pour vos projets de rénovation et neuf.",
+      title_1: "MP Carrelage",
+      title_2: "Carreleur Mulhouse.",
+      description: "Artisan carreleur expert à Mulhouse et en Alsace. Précision millimétrée, pose grand format et finitions d'exception pour vos projets de rénovation.",
       cta_quote: "Demander un devis gratuit",
       cta_projects: "Voir nos réalisations"
     },
     about: {
-      subtitle: "À propos de MP Carrelage",
-      title: "L'art du carreau au service de l'excellence",
-      p1: "Initialement à Mulhouse, je réalise tous types de travaux de carrelage avec précision et passion. Artisan indépendant, je mets mon expertise au service de vos projets et ce depuis 20 ans.",
-      p2: "Toute cette expérience dans le domaine m'a permis de maîtriser l'ensemble des techniques et types de poses. Que ce soit pour une salle de bain, une cuisine, une terrasse ou tout autre espace, j'apporte un soin particulier aux finitions et au respect de vos attentes.",
-      p3: "Mon engagement : des prestations de qualité, des délais respectés et un accompagnement personnalisé tout au long de votre projet.",
+      subtitle: "Expertise MP Carrelage",
+      title: "Votre Carreleur à Mulhouse depuis 20 ans",
+      p1: "Basé à Mulhouse, MP Carrelage réalise tous types de travaux avec précision et passion. Artisan carreleur indépendant, je mets mon expertise au service de vos projets en Alsace.",
+      p2: "20 ans d'expérience m'ont permis de maîtriser l'ensemble des techniques de pose. Que ce soit pour une salle de bain, une cuisine ou une terrasse, j'apporte un soin particulier aux finitions.",
+      p3: "Mon engagement : des prestations de haute qualité, des délais respectés et un accompagnement local à Mulhouse et ses environs.",
       stats: {
         exp: { value: "+20 ans", label: "d'expérience" },
         clients: { value: "200+", label: "clients satisfaits" },
@@ -145,7 +145,7 @@ export const translations = {
       services_title: "Prestations",
       services_list: ["Carrelage intérieur", "Terrasse & Extérieur", "Salle de bain & Douche", "Mosaïque & Pierre"],
       contact_title: "Contact",
-      location: "Alsace et\ntoute la France pour gros projets",
+      location: "Mulhouse, Alsace\net toute la France pour gros projets",
       rights: "© 2025 MP Carrelage. Tous droits réservés.",
       legal: "Mentions légales",
       privacy: "Politique de confidentialité"

@@ -68,7 +68,7 @@ export function About() {
                     <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
                         <Image
                             src="/images/photo-1471880504582-cf7e63045303.jpg"
-                            alt="Artisan carreleur au travail"
+                            alt="MP Carrelage - Artisan carreleur à Mulhouse en plein travail de pose"
                             fill
                             className="object-cover"
                         />

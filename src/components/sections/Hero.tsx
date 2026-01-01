@@ -15,7 +15,7 @@ export function Hero() {
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/images/hero-bg.png"
-                    alt="Carrelage d'exception"
+                    alt="MP Carrelage - Carreleur Mulhouse expert en pose de carrelage grand format"
                     fill
                     className="object-cover"
                     priority
