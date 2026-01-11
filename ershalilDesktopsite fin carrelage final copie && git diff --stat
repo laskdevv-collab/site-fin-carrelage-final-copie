@@ -1,0 +1,121 @@
+[1mdiff --git a/src/components/sections/ContactForm.tsx b/src/components/sections/ContactForm.tsx[m
+[1mindex fa42fef..964c6fc 100644[m
+[1m--- a/src/components/sections/ContactForm.tsx[m
+[1m+++ b/src/components/sections/ContactForm.tsx[m
+[36m@@ -34,8 +34,36 @@[m [mexport function ContactForm() {[m
+         message: '',[m
+     });[m
+ [m
+[32m+[m[32m    const canProceed = (currentStep: number) => {[m
+[32m+[m[32m        if (currentStep === 1) {[m
+[32m+[m[32m            return !!(formData.projectType && formData.surface);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if (currentStep === 2) {[m
+[32m+[m[32m            return !!(formData.name && formData.email && formData.phone);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return !!formData.message;[m
+[32m+[m[32m    };[m
+[32m+[m
+     const handleSubmit = async (e: React.FormEvent) => {[m
+         e.preventDefault();[m
+[32m+[m
+[32m+[m[32m        // Si l'utilisateur appuie sur Entrée aux étapes 1 ou 2, on avance seulement si les champs requis sont remplis[m
+[32m+[m[32m        if (step < 3) {[m
+[32m+[m[32m            if (!canProceed(step)) {[m
+[32m+[m[32m                setError(t.contact.form.required_fields);[m
+[32m+[m[32m                return;[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            setError(null);[m
+[32m+[m[32m            setStep((prev) => Math.min(3, prev + 1));[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        if (!canProceed(3)) {[m
+[32m+[m[32m            setError(t.contact.form.required_fields);[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m
+         setIsSubmitting(true);[m
+         setError(null);[m
+ [m
+[36m@@ -226,6 +254,7 @@[m [m${formData.message}`;[m
+                                             placeholder={t.contact.form.message_placeholder}[m
+                                             value={formData.message}[m
+                                             onChange={(e) => updateField('message', e.target.value)}[m
+[32m+[m[32m                                            required[m
+                                         />[m
+                                     </div>[m
+                                 </motion.div>[m
+[1mdiff --git a/src/lib/i18n/translations.ts b/src/lib/i18n/translations.ts[m
+[1mindex 16af446..e8f2960 100644[m
+[1m--- a/src/lib/i18n/translations.ts[m
+[1m+++ b/src/lib/i18n/translations.ts[m
+[36m@@ -131,6 +131,7 @@[m [mexport const translations = {[m
+         phone: "Téléphone",[m
+         message_label: "Décrivez votre projet",[m
+         message_placeholder: "Détails du projet, matériaux souhaités, délais...",[m
+[32m+[m[32m        required_fields: "Merci de compléter les champs requis avant de continuer.",[m
+         prev: "Précédent",[m
+         next: "Suivant",[m
+         submit: "Envoyer la demande",[m
+[36m@@ -144,7 +145,7 @@[m [mexport const translations = {[m
+       services_title: "Prestations",[m
+       services_list: ["Carrelage intérieur", "Terrasse & Extérieur", "Salle de bain & Douche", "Mosaïque & Pierre"],[m
+       contact_title: "Contact",[m
+[31m-      location: "Mulhouse & Alsace\nIntervention rayon 50km",[m
+[32m+[m[32m      location: "Alsace et\ntoute la France pour gros projets",[m
+       rights: "© 2025 MP Carrelage. Tous droits réservés.",[m
+       legal: "Mentions légales",[m
+       privacy: "Politique de confidentialité"[m
+[36m@@ -280,6 +281,7 @@[m [mexport const translations = {[m
+         phone: "Phone",[m
+         message_label: "Describe your project",[m
+         message_placeholder: "Project details, desired materials, deadlines...",[m
+[32m+[m[32m        required_fields: "Please fill in the required fields before continuing.",[m
+         prev: "Previous",[m
+         next: "Next",[m
+         submit: "Send Request",[m
+[36m@@ -293,7 +295,7 @@[m [mexport const translations = {[m
+       services_title: "Services",[m
+       services_list: ["Interior Tiling", "Terrace & Exterior", "Bathroom & Shower", "Mosaic & Stone"],[m
+       contact_title: "Contact",[m
+[31m-      location: "Mulhouse & Alsace\nIntervention radius 50km",[m
+[32m+[m[32m      location: "Alsace and\nall of France for large projects",[m
+       rights: "© 2025 MP Carrelage. All rights reserved.",[m
+       legal: "Legal Notice",[m
+       privacy: "Privacy Policy"[m
+[36m@@ -429,6 +431,7 @@[m [mexport const translations = {[m
+         phone: "Telefon",[m
+         message_label: "Beschreiben Sie Ihr Projekt",[m
+         message_placeholder: "Projektdetails, gewünschte Materialien, Fristen...",[m
+[32m+[m[32m        required_fields: "Bitte füllen Sie die Pflichtfelder aus, bevor Sie fortfahren.",[m
+         prev: "Zurück",[m
+         next: "Weiter",[m
+         submit: "Anfrage senden",[m
+[36m@@ -442,7 +445,7 @@[m [mexport const translations = {[m
+       services_title: "Dienstleistungen",[m
+       services_list: ["Innenfliesen", "Terrasse & Außenbereich", "Bad & Dusche", "Mosaik & Stein"],[m
+       contact_title: "Kontakt",[m
+[31m-      location: "Mulhouse & Elsass\nEinsatzradius 50km",[m
+[32m+[m[32m      location: "Elsass und\nEinsätze in ganz Frankreich für Großprojekte",[m
+       rights: "© 2025 MP Carrelage. Alle Rechte vorbehalten.",[m
+       legal: "Impressum",[m
+       privacy: "Datenschutzrichtlinie"[m
+[36m@@ -578,6 +581,7 @@[m [mexport const translations = {[m
+         phone: "Telefon",[m
+         message_label: "Projenizi tanımlayın",[m
+         message_placeholder: "Proje detayları, istenen malzemeler, süreler...",[m
+[32m+[m[32m        required_fields: "Devam etmeden önce gerekli alanları doldurun lütfen.",[m
+         prev: "Önceki",[m
+         next: "Sonraki",[m
+         submit: "İsteği Gönder",[m
+[36m@@ -591,7 +595,7 @@[m [mexport const translations = {[m
+       services_title: "Hizmetler",[m
+       services_list: ["İç Mekan Fayans", "Teras & Dış Mekan", "Banyo & Duş", "Mozaik & Taş"],[m
+       contact_title: "İletişim",[m
+[31m-      location: "Mulhouse & Alsace\n50km müdahale yarıçapı",[m
+[32m+[m[32m      location: "Alsace ve\nBüyük projeler için Fransa genelinde hizmet",[m
+       rights: "© 2025 MP Carrelage. Tüm hakları saklıdır.",[m
+       legal: "Yasal Uyarı",[m
+       privacy: "Gizlilik Politikası"[m
