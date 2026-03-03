@@ -149,6 +149,50 @@ export const translations = {
       rights: "© 2025 MP Carrelage. Tous droits réservés.",
       legal: "Mentions légales",
       privacy: "Politique de confidentialité"
+    },
+    legalPage: {
+      title: "Mentions Légales",
+      sections: [
+        {
+          title: "Éditeur du site",
+          content: "MP Carrelage - PEKCAN MUSA\nEntrepreneur individuel (Micro-entreprise)\nSIREN : 515 160 596\nSIRET : 515 160 596 00034\nNuméro de TVA : FR06515160596\nCode APE : 43.33Z (Carrelage)\nInscrit au RNE / RCS Mulhouse : 515 160 596\nSiège social : Mulhouse, Alsace, France\nEmail : mpcarrelage68@gmail.com\nTéléphone : 06 67 67 40 60"
+        },
+        {
+          title: "Hébergement",
+          content: "Le site est hébergé par Vercel Inc., situé au 340 S Lemon Ave #4133 Walnut, CA 91789, USA."
+        },
+        {
+          title: "Propriété intellectuelle",
+          content: "L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques."
+        }
+      ]
+    },
+    privacyPage: {
+      title: "Politique de Confidentialité",
+      sections: [
+        {
+          title: "Collecte des données",
+          content: "Nous collectons les données que vous nous transmettez via le formulaire de contact (nom, email, téléphone, détails du projet). Ces informations sont nécessaires pour répondre à vos demandes de devis."
+        },
+        {
+          title: "Utilisation des données",
+          content: "Vos données sont uniquement utilisées pour vous recontacter dans le cadre de votre projet de carrelage. Elles ne sont jamais cédées ou vendues à des tiers."
+        },
+        {
+          title: "Vos droits",
+          content: "Conformément à la loi 'Informatique et Libertés' et au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant. Vous pouvez exercer ce droit en nous contactant par email."
+        },
+        {
+          title: "Cookies",
+          content: "Nous utilisons des cookies pour améliorer votre expérience sur notre site et analyser notre trafic via Google Analytics. Vous pouvez configurer votre navigateur pour refuser les cookies."
+        }
+      ]
+    },
+    cookieConsent: {
+      message: "Nous utilisons des cookies pour améliorer votre expérience et analyser notre trafic.",
+      accept: "Tout Accepter",
+      decline: "Continuer sans accepter",
+      privacy: "En savoir plus"
     }
   },
   en: {
@@ -299,6 +343,50 @@ export const translations = {
       rights: "© 2025 MP Carrelage. All rights reserved.",
       legal: "Legal Notice",
       privacy: "Privacy Policy"
+    },
+    legalPage: {
+      title: "Legal Notice",
+      sections: [
+        {
+          title: "Site Publisher",
+          content: "MP Carrelage - PEKCAN MUSA\nIndividual Entrepreneur (Micro-business)\nSIREN: 515 160 596\nSIRET: 515 160 596 00034\nVAT Number: FR06515160596\nAPE Code: 43.33Z (Tiling)\nRegistered at RNE / RCS Mulhouse: 515 160 596\nHeadquarters: Mulhouse, Alsace, France\nEmail: mpcarrelage68@gmail.com\nPhone: +33 6 67 67 40 60"
+        },
+        {
+          title: "Hosting",
+          content: "The site is hosted by Vercel Inc., located at 340 S Lemon Ave #4133 Walnut, CA 91789, USA."
+        },
+        {
+          title: "Intellectual Property",
+          content: "The entire site is subject to French and international legislation on copyright and intellectual property. All reproduction rights are reserved, including for downloadable documents and iconographic and photographic representations."
+        }
+      ]
+    },
+    privacyPage: {
+      title: "Privacy Policy",
+      sections: [
+        {
+          title: "Data Collection",
+          content: "We collect the data you provide via the contact form (name, email, phone, project details). This information is necessary to respond to your quote requests."
+        },
+        {
+          title: "Data Use",
+          content: "Your data is only used to contact you regarding your tiling project. It is never shared or sold to third parties."
+        },
+        {
+          title: "Your Rights",
+          content: "In accordance with the General Data Protection Regulation (GDPR), you have the right to access, rectify, and delete your personal data. You can exercise this right by contacting us by email."
+        },
+        {
+          title: "Cookies",
+          content: "We use cookies to improve your experience on our site and analyze our traffic via Google Analytics. You can configure your browser to refuse cookies."
+        }
+      ]
+    },
+    cookieConsent: {
+      message: "We use cookies to improve your experience and analyze our traffic.",
+      accept: "Accept All",
+      decline: "Continue without accepting",
+      privacy: "Learn more"
     }
   },
   de: {
@@ -449,6 +537,50 @@ export const translations = {
       rights: "© 2025 MP Carrelage. Alle Rechte vorbehalten.",
       legal: "Impressum",
       privacy: "Datenschutzrichtlinie"
+    },
+    legalPage: {
+      title: "Impressum",
+      sections: [
+        {
+          title: "Webseitenbetreiber",
+          content: "MP Carrelage - PEKCAN MUSA\nEinzelunternehmen (Kleingewerbe)\nSIREN: 515 160 596\nSIRET: 515 160 596 00034\nUSt-IdNr.: FR06515160596\nAPE-Code: 43.33Z (Fliesenlegen)\nEingetragen im RNE / RCS Mulhouse: 515 160 596\nHauptsitz: Mulhouse, Elsass, Frankreich\nE-Mail: mpcarrelage68@gmail.com\nTelefon: +33 6 67 67 40 60"
+        },
+        {
+          title: "Hosting",
+          content: "Die Website wird von Vercel Inc. gehostet, ansässig in 340 S Lemon Ave #4133 Walnut, CA 91789, USA."
+        },
+        {
+          title: "Urheberrecht",
+          content: "Die gesamte Website unterliegt der französischen und internationalen Gesetzgebung zum Urheberrecht und zum geistigen Eigentum. Alle Vervielfältigungsrechte sind vorbehalten, auch für herunterladbare Dokumente sowie bildliche und fotografische Darstellungen."
+        }
+      ]
+    },
+    privacyPage: {
+      title: "Datenschutzrichtlinie",
+      sections: [
+        {
+          title: "Datenerhebung",
+          content: "Wir erheben die Daten, die Sie uns über das Kontaktformular übermitteln (Name, E-Mail, Telefon, Projektdetails). Diese Informationen sind notwendig, um auf Ihre Angebotsanfragen zu antworten."
+        },
+        {
+          title: "Datennutzung",
+          content: "Ihre Daten werden ausschließlich dazu verwendet, Sie im Rahmen Ihres Fliesenprojekts zu kontaktieren. Sie werden niemals an Dritte weitergegeben oder verkauft."
+        },
+        {
+          title: "Ihre Rechte",
+          content: "Gemäß der Datenschutz-Grundverordnung (DSGVO) haben Sie ein Recht auf Auskunft, Berichtigung und Löschung der Sie betreffenden Daten. Sie können dieses Recht ausüben, indem Sie uns per E-Mail kontaktieren."
+        },
+        {
+          title: "Cookies",
+          content: "Wir verwenden Cookies, um Ihre Erfahrung auf einer Website zu verbessern und unseren Datenverkehr über Google Analytics zu analysieren. Sie können Ihren Browser so konfigurieren, dass er Cookies ablehnt."
+        }
+      ]
+    },
+    cookieConsent: {
+      message: "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und unseren Datenverkehr zu analysieren.",
+      accept: "Alle akzeptieren",
+      decline: "Ohne Akzeptieren fortfahren",
+      privacy: "Mehr erfahren"
     }
   },
   tr: {
@@ -599,6 +731,50 @@ export const translations = {
       rights: "© 2025 MP Carrelage. Tüm hakları saklıdır.",
       legal: "Yasal Uyarı",
       privacy: "Gizlilik Politikası"
+    },
+    legalPage: {
+      title: "Yasal Uyarı",
+      sections: [
+        {
+          title: "Site Sahibi",
+          content: "MP Carrelage - PEKCAN MUSA\nBireysel Girişimci (Mikro-işletme)\nSIREN: 515 160 596\nSIRET: 515 160 596 00034\nKDV Numarası: FR06515160596\nAPE Kodu: 43.33Z (Fayans Döşeme)\nRNE / RCS Mulhouse Kayıt: 515 160 596\nMerkez: Mulhouse, Alsace, Fransa\nE-posta: mpcarrelage68@gmail.com\nTelefon: +33 6 67 67 40 60"
+        },
+        {
+          title: "Barındırma (Hosting)",
+          content: "Site, 340 S Lemon Ave #4133 Walnut, CA 91789, ABD adresinde bulunan Vercel Inc. tarafından barındırılmaktadır."
+        },
+        {
+          title: "Fikri Mülkiyet",
+          content: "Bu sitenin tamamı Fransız ve uluslararası telif hakkı ve fikri mülkiyet mevzuatına tabidir. İndirilebilir belgeler ve ikonografik ve fotografik temsiller de dahil olmak üzere tüm çoğaltma hakları saklıdır."
+        }
+      ]
+    },
+    privacyPage: {
+      title: "Gizlilik Politikası",
+      sections: [
+        {
+          title: "Veri Toplama",
+          content: "İletişim formu aracılığıyla bize ilettiğiniz verileri (ad, e-posta, telefon, proje detayları) topluyoruz. Bu bilgiler, teklif taleplerinize yanıt vermek için gereklidir."
+        },
+        {
+          title: "Veri Kullanımı",
+          content: "Verileriniz yalnızca fayans projeniz kapsamında sizinle iletişime geçmek için kullanılır. Asla üçüncü şahıslara verilmez veya satılmaz."
+        },
+        {
+          title: "Haklarınız",
+          content: "Genel Veri Koruma Yönetmeliği (GDPR) uyarınca, hakkınızdaki verilere erişme, bunları düzeltme ve silme hakkına sahipsiniz. Bu hakkınızı bize e-posta yoluyla ulaşarak kullanabilirsiniz."
+        },
+        {
+          title: "Çerezler (Cookies)",
+          content: "Sitemizdeki deneyiminizi geliştirmek ve trafiğimizi Google Analytics aracılığıyla analiz etmek için çerezler kullanıyoruz. Tarayıcınızı çerezleri reddedecek şekilde yapılandırabilirsiniz."
+        }
+      ]
+    },
+    cookieConsent: {
+      message: "Deneyiminizi geliştirmek ve trafiğimizi analiz etmek için çerezler kullanıyoruz.",
+      accept: "Hepsini Kabul Et",
+      decline: "Kabul etmeden devam et",
+      privacy: "Daha fazla bilgi"
     }
   }
 };

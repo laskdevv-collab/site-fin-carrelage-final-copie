@@ -4,6 +4,7 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import { CookieConsent } from "@/components/ui/CookieConsent";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -174,6 +175,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </Script>
         <LanguageProvider>
           {children}
+          <CookieConsent />
         </LanguageProvider>
       </body>
     </html>

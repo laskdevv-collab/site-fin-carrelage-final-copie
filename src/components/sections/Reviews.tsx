@@ -36,13 +36,18 @@ export function Reviews() {
 
                 setReviews(data || []);
             } catch (err: any) {
-                console.error('Error fetching reviews:', err);
                 // Ne pas afficher d'erreur si Supabase n'est pas configuré
-                if (err?.message?.includes('placeholder') || err?.code === 'PGRST116') {
+                const isConfigError = err?.message?.includes('placeholder') ||
+                    err?.code === 'PGRST116' ||
+                    (typeof err === 'object' && Object.keys(err).length === 0);
+
+                if (!isConfigError) {
+                    console.error('Error fetching reviews:', err);
+                    setError(t.reviews.loading);
+                } else {
+                    console.warn('Supabase not configured, using empty reviews list');
                     setReviews([]);
                     setError(null);
-                } else {
-                    setError(t.reviews.loading);
                 }
             } finally {
                 setLoading(false);

@@ -90,8 +90,8 @@ export function Footer() {
                 <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-white/40 text-xs">{t.footer.rights}</p>
                     <div className="flex gap-6">
-                        <Link href="/mentions-legales" className="text-white/40 hover:text-white text-xs">{t.footer.legal}</Link>
-                        <Link href="/confidentialite" className="text-white/40 hover:text-white text-xs">{t.footer.privacy}</Link>
+                        <Link href="/mentions-legales" className="text-white/40 hover:text-white text-xs whitespace-nowrap">{t.footer.legal}</Link>
+                        <Link href="/confidentialite" className="text-white/40 hover:text-white text-xs whitespace-nowrap">{t.footer.privacy}</Link>
                     </div>
                 </div>
             </div>
