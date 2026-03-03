@@ -146,7 +146,7 @@ export const translations = {
       services_list: ["Carrelage intérieur", "Terrasse & Extérieur", "Salle de bain & Douche", "Mosaïque & Pierre"],
       contact_title: "Contact",
       location: "Mulhouse, Alsace\net toute la France pour gros projets",
-      rights: "© 2025 MP Carrelage. Tous droits réservés.",
+      rights: "© 2026 MP Carrelage. Tous droits réservés.",
       legal: "Mentions légales",
       privacy: "Politique de confidentialité"
     },
@@ -340,7 +340,7 @@ export const translations = {
       services_list: ["Interior Tiling", "Terrace & Exterior", "Bathroom & Shower", "Mosaic & Stone"],
       contact_title: "Contact",
       location: "Alsace and\nall of France for large projects",
-      rights: "© 2025 MP Carrelage. All rights reserved.",
+      rights: "© 2026 MP Carrelage. All rights reserved.",
       legal: "Legal Notice",
       privacy: "Privacy Policy"
     },
@@ -534,7 +534,7 @@ export const translations = {
       services_list: ["Innenfliesen", "Terrasse & Außenbereich", "Bad & Dusche", "Mosaik & Stein"],
       contact_title: "Kontakt",
       location: "Elsass und\nEinsätze in ganz Frankreich für Großprojekte",
-      rights: "© 2025 MP Carrelage. Alle Rechte vorbehalten.",
+      rights: "© 2026 MP Carrelage. Alle Rechte vorbehalten.",
       legal: "Impressum",
       privacy: "Datenschutzrichtlinie"
     },
@@ -728,7 +728,7 @@ export const translations = {
       services_list: ["İç Mekan Fayans", "Teras & Dış Mekan", "Banyo & Duş", "Mozaik & Taş"],
       contact_title: "İletişim",
       location: "Alsace ve\nBüyük projeler için Fransa genelinde hizmet",
-      rights: "© 2025 MP Carrelage. Tüm hakları saklıdır.",
+      rights: "© 2026 MP Carrelage. Tüm hakları saklıdır.",
       legal: "Yasal Uyarı",
       privacy: "Gizlilik Politikası"
     },
