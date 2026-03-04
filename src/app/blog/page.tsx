@@ -1,48 +1,69 @@
-'use client';
-
+import { blogData } from '@/data/blog-data';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
-import { BlogCard } from '@/components/ui/BlogCard';
-import { blogData } from '@/data/blog-data';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { BlogIndexClient } from '@/components/blog/BlogIndexClient';
+import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/translations';
 
-export default function BlogIndex() {
-    const { t, language } = useLanguage();
-    const posts = blogData[language] || blogData.fr;
+interface Props {
+    searchParams: { lang?: string };
+}
 
-    // Localized headers
-    const headers: Record<string, { title: string, span: string, desc: string }> = {
-        fr: { title: "Notre", span: "Blog", desc: "Conseils techniques, tendances déco et guides pratiques pour vos projets de carrelage en Alsace. Découvrez l'avis d'un expert pour réussir vos travaux à Mulhouse et ses environs." },
-        en: { title: "Our", span: "Blog", desc: "Technical advice, decor trends, and practical guides for your tiling projects in Alsace. Discover expert insights to succeed in your work in Mulhouse and surroundings." },
-        de: { title: "Unser", span: "Blog", desc: "Technische Beratung, Dekortrends und praktische Leitfäden für Ihre Fliesenprojekte im Elsass. Entdecken Sie Expertenwissen für Ihre Arbeiten in Mulhouse und Umgebung." },
-        tr: { title: "Bizim", span: "Blogumuz", desc: "Alsace'daki fayans projeleriniz için teknik tavsiyeler, dekor trendleri ve pratik rehberler. Mulhouse ve çevresindeki çalışmalarınızda başarı için uzman görüşlerini keşfedin." }
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+    const lang = (searchParams.lang || 'fr') as Language;
+
+    const meta: Record<string, { title: string, desc: string }> = {
+        fr: {
+            title: "Blog Carrelage Mulhouse | Conseils & Tendances Artisan Carreleur",
+            desc: "Découvrez notre blog dédié au carrelage en Alsace. Conseils techniques (norme R11, étanchéité), tendances déco XXL et guides de rénovation salle de bain à Mulhouse."
+        },
+        en: {
+            title: "Tiling Blog Mulhouse | Expert Advice & Trends Artisan Tiler",
+            desc: "Discover our blog dedicated to tiling in Alsace. Technical advice (R11 standard, waterproofing), XXL decor trends and bathroom renovation guides in Mulhouse."
+        },
+        de: {
+            title: "Fliesen Blog Mulhouse | Expertenrat & Trends Fliesenleger",
+            desc: "Entdecken Sie unseren Blog rund um das Fliesenlegen im Elsass. Technische Beratung (R11-Norm, Abdichtung), XXL-Dekortrends und Badrenovierungsratgeber in Mulhouse."
+        },
+        tr: {
+            title: "Fayans Blogu Mulhouse | Uzman Tavsiyeleri ve Trendler Fayans Ustası",
+            desc: "Alsace'da fayans döşemeye adanmış blogumuzu keşfedin. Teknik tavsiyeler (R11 standardı, su yalıtımı), XXL dekor trendleri ve Mulhouse banyo yenileme rehberleri."
+        }
     };
 
-    const header = headers[language] || headers.fr;
+    const currentMeta = meta[lang] || meta.fr;
+    const baseUrl = 'https://mp-carrelage.com';
+
+    return {
+        title: currentMeta.title,
+        description: currentMeta.desc,
+        alternates: {
+            canonical: `${baseUrl}/blog${lang === 'fr' ? '' : `?lang=${lang}`}`,
+            languages: {
+                'fr': `${baseUrl}/blog`,
+                'en': `${baseUrl}/blog?lang=en`,
+                'de': `${baseUrl}/blog?lang=de`,
+                'tr': `${baseUrl}/blog?lang=tr`,
+                'x-default': `${baseUrl}/blog`,
+            }
+        },
+        openGraph: {
+            title: currentMeta.title,
+            description: currentMeta.desc,
+            url: `${baseUrl}/blog${lang === 'fr' ? '' : `?lang=${lang}`}`,
+            type: 'website',
+        }
+    };
+}
+
+export default function BlogIndex({ searchParams }: Props) {
+    const lang = (searchParams.lang || 'fr') as Language;
+    const posts = blogData[lang] || blogData.fr;
 
     return (
         <div className="min-h-screen bg-bg-dark flex flex-col">
             <Navbar />
-
-            <main className="flex-grow pt-32 pb-20">
-                <div className="container mx-auto px-4 md:px-6">
-                    <div className="max-w-3xl mb-16">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
-                            {header.title} <span className="text-accent-stone">{header.span}</span> Expertise
-                        </h1>
-                        <p className="text-white/60 text-lg leading-relaxed">
-                            {header.desc}
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {posts.map((post) => (
-                            <BlogCard key={post.slug} post={post} />
-                        ))}
-                    </div>
-                </div>
-            </main>
-
+            <BlogIndexClient posts={posts} />
             <Footer />
         </div>
     );
