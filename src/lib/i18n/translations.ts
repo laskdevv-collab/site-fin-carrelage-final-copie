@@ -9,7 +9,8 @@ export const translations = {
       process: 'Process',
       reviews: 'Avis',
       quote: 'Demander un devis',
-      contact: 'Contact'
+      contact: 'Contact',
+      blog: 'Blog'
     },
     hero: {
       title_1: "MP Carrelage",
@@ -148,7 +149,8 @@ export const translations = {
       location: "Mulhouse, Alsace\net toute la France pour gros projets",
       rights: "© 2026 MP Carrelage. Tous droits réservés.",
       legal: "Mentions légales",
-      privacy: "Politique de confidentialité"
+      privacy: "Politique de confidentialité",
+      blog: "Blog"
     },
     legalPage: {
       title: "Mentions Légales",
@@ -203,7 +205,8 @@ export const translations = {
       process: 'Process',
       reviews: 'Reviews',
       quote: 'Get a Quote',
-      contact: 'Contact'
+      contact: 'Contact',
+      blog: 'Blog'
     },
     hero: {
       title_1: "Exceptional Tiling",
@@ -342,7 +345,8 @@ export const translations = {
       location: "Alsace and\nall of France for large projects",
       rights: "© 2026 MP Carrelage. All rights reserved.",
       legal: "Legal Notice",
-      privacy: "Privacy Policy"
+      privacy: "Privacy Policy",
+      blog: "Blog"
     },
     legalPage: {
       title: "Legal Notice",
@@ -397,7 +401,8 @@ export const translations = {
       process: 'Prozess',
       reviews: 'Bewertungen',
       quote: 'Angebot anfordern',
-      contact: 'Kontakt'
+      contact: 'Kontakt',
+      blog: 'Blog'
     },
     hero: {
       title_1: "Außergewöhnliche Fliesen",
@@ -536,7 +541,8 @@ export const translations = {
       location: "Elsass und\nEinsätze in ganz Frankreich für Großprojekte",
       rights: "© 2026 MP Carrelage. Alle Rechte vorbehalten.",
       legal: "Impressum",
-      privacy: "Datenschutzrichtlinie"
+      privacy: "Datenschutzrichtlinie",
+      blog: "Blog"
     },
     legalPage: {
       title: "Impressum",
@@ -591,7 +597,8 @@ export const translations = {
       process: 'Süreç',
       reviews: 'Yorumlar',
       quote: 'Teklif Al',
-      contact: 'İletişim'
+      contact: 'İletişim',
+      blog: 'Blog'
     },
     hero: {
       title_1: "Olağanüstü Fayans",
@@ -730,7 +737,8 @@ export const translations = {
       location: "Alsace ve\nBüyük projeler için Fransa genelinde hizmet",
       rights: "© 2026 MP Carrelage. Tüm hakları saklıdır.",
       legal: "Yasal Uyarı",
-      privacy: "Gizlilik Politikası"
+      privacy: "Gizlilik Politikası",
+      blog: "Blog"
     },
     legalPage: {
       title: "Yasal Uyarı",

@@ -47,6 +47,7 @@ export function Footer() {
                             <li><Link href="#expertises" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.expertises}</Link></li>
                             <li><Link href="#projets" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.projects}</Link></li>
                             <li><Link href="#avis" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.reviews}</Link></li>
+                            <li><Link href="/blog" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.blog}</Link></li>
                         </ul>
                     </div>
 
