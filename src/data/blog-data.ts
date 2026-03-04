@@ -204,7 +204,6 @@ Qu'est-ce qui plaît en ce moment dans le Haut-Rhin (68) ?
 La salle de bain est la pièce la plus technique de la maison. Une erreur de pente, une étanchéité négligée ou une coupe mal faite peuvent ruiner votre investissement. En choisissant un artisan local comme moi, vous bénéficiez :
 - D'une pose avec de la colle flexible premium.
 - D'un respect scrupuleux des normes en vigueur.
-- D'une garantie sur les travaux (assurance décennale).
 - D'un chantier propre et respectueux de votre intérieur.
 
 ## Conclusion
@@ -249,7 +248,6 @@ Si vous avez une question six mois après la fin du chantier, je suis toujours l
 ## 4. Expertise technique : Plus qu'une simple pose
 
 Faire appel à un professionnel à Illzach, c'est aussi s'offrir une expertise technique de pointe. 
-- Je connais et respecte la norme R11 pour l'adhérence pour vos zones humides.
 - Je maîtrise les nouveaux formats XXL qui demandent un équipement spécifique.
 - Je travaille avec les meilleurs fournisseurs du Haut-Rhin, ce qui me permet de vous proposer des matériaux de qualité professionnelle, souvent introuvables en grande distribution.
 
@@ -379,7 +377,6 @@ Réaliser une terrasse demande une précision chirurgicale sur les pentes et les
 Nous intervenons de Colmar à Altkirch, avec une connaissance précise des matériaux distribués dans le 68. En faisant appel à mes services, vous bénéficiez de:
 - Un respect strict de la norme R11.
 - Une pose avec des matériaux de qualité professionnelle (colle flexible haute performance).
-- Une garantie décennale sur les travaux.
 - Un accompagnement de la conception à la finition.
 
 ## 6. Budget : Combien coûte une terrasse carrelée ?

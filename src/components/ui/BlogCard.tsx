@@ -23,7 +23,7 @@ export function BlogCard({ post }: BlogCardProps) {
 
     return (
         <Link
-            href={`/blog/${post.slug}`}
+            href={`/blog/${post.slug}${language === 'fr' ? '' : `?lang=${language}`}`}
             className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-accent-stone/50 transition-all duration-300 flex flex-col h-full"
         >
             <div className="relative h-48 w-full overflow-hidden">

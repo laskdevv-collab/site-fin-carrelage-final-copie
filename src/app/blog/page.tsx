@@ -6,11 +6,12 @@ import { Metadata } from 'next';
 import { Language } from '@/lib/i18n/translations';
 
 interface Props {
-    searchParams: { lang?: string };
+    searchParams: Promise<{ lang?: string }>;
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-    const lang = (searchParams.lang || 'fr') as Language;
+    const { lang: langParam } = await searchParams;
+    const lang = (langParam || 'fr') as Language;
 
     const meta: Record<string, { title: string, desc: string }> = {
         fr: {
@@ -56,8 +57,9 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     };
 }
 
-export default function BlogIndex({ searchParams }: Props) {
-    const lang = (searchParams.lang || 'fr') as Language;
+export default async function BlogIndex({ searchParams }: Props) {
+    const { lang: langParam } = await searchParams;
+    const lang = (langParam || 'fr') as Language;
     const posts = blogData[lang] || blogData.fr;
 
     return (

@@ -8,15 +8,17 @@ import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 
 interface Props {
-    params: { slug: string };
-    searchParams: { lang?: string };
+    params: Promise<{ slug: string }>;
+    searchParams: Promise<{ lang?: string }>;
 }
 
 // generateMetadata for dynamic SEO
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-    const lang = (searchParams.lang || 'fr') as Language;
+    const { slug } = await params;
+    const { lang: langParam } = await searchParams;
+    const lang = (langParam || 'fr') as Language;
     const posts = blogData[lang] || blogData.fr;
-    const post = posts.find((p) => p.slug === params.slug);
+    const post = posts.find((p) => p.slug === slug);
 
     if (!post) {
         return {
@@ -25,7 +27,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     }
 
     const baseUrl = 'https://mp-carrelage.com';
-    const canonical = `${baseUrl}/blog/${params.slug}${lang === 'fr' ? '' : `?lang=${lang}`}`;
+    const canonical = `${baseUrl}/blog/${slug}${lang === 'fr' ? '' : `?lang=${lang}`}`;
 
     return {
         title: `${post.title} | MP Carrelage`,
@@ -34,11 +36,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
         alternates: {
             canonical: canonical,
             languages: {
-                'fr': `${baseUrl}/blog/${params.slug}`,
-                'en': `${baseUrl}/blog/${params.slug}?lang=en`,
-                'de': `${baseUrl}/blog/${params.slug}?lang=de`,
-                'tr': `${baseUrl}/blog/${params.slug}?lang=tr`,
-                'x-default': `${baseUrl}/blog/${params.slug}`,
+                'fr': `${baseUrl}/blog/${slug}`,
+                'en': `${baseUrl}/blog/${slug}?lang=en`,
+                'de': `${baseUrl}/blog/${slug}?lang=de`,
+                'tr': `${baseUrl}/blog/${slug}?lang=tr`,
+                'x-default': `${baseUrl}/blog/${slug}`,
             }
         },
         openGraph: {
@@ -58,10 +60,12 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     };
 }
 
-export default function BlogPostPage({ params, searchParams }: Props) {
-    const lang = (searchParams.lang || 'fr') as Language;
+export default async function BlogPostPage({ params, searchParams }: Props) {
+    const { slug } = await params;
+    const { lang: langParam } = await searchParams;
+    const lang = (langParam || 'fr') as Language;
     const posts = blogData[lang] || blogData.fr;
-    const post = posts.find((p) => p.slug === params.slug);
+    const post = posts.find((p) => p.slug === slug);
 
     if (!post) {
         return (
