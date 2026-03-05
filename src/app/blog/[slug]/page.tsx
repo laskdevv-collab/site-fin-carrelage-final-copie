@@ -60,6 +60,9 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     };
 }
 
+import { LanguageProvider } from '@/lib/i18n/LanguageContext';
+import { CookieConsent } from '@/components/ui/CookieConsent';
+
 export default async function BlogPostPage({ params, searchParams }: Props) {
     const { slug } = await params;
     const { lang: langParam } = await searchParams;
@@ -69,15 +72,17 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
 
     if (!post) {
         return (
-            <div className="min-h-screen bg-bg-dark flex flex-col items-center justify-center p-4">
-                <h1 className="text-3xl font-bold text-white mb-4">Article non trouvé</h1>
-                <Link
-                    href="/blog"
-                    className="text-accent-stone hover:underline flex items-center gap-2"
-                >
-                    <ChevronLeft className="h-4 w-4" /> Retour au blog
-                </Link>
-            </div>
+            <LanguageProvider initialLanguage={lang}>
+                <div className="min-h-screen bg-bg-dark flex flex-col items-center justify-center p-4">
+                    <h1 className="text-3xl font-bold text-white mb-4">Article non trouvé</h1>
+                    <Link
+                        href="/blog"
+                        className="text-accent-stone hover:underline flex items-center gap-2"
+                    >
+                        <ChevronLeft className="h-4 w-4" /> Retour au blog
+                    </Link>
+                </div>
+            </LanguageProvider>
         );
     }
 
@@ -111,18 +116,21 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
     };
 
     return (
-        <div className="min-h-screen bg-bg-dark flex flex-col">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-            <Navbar />
-            <main className="flex-grow pt-32 pb-20">
-                <div className="container mx-auto px-4 md:px-6">
-                    <BlogContentClient post={post} posts={posts} />
-                </div>
-            </main>
-            <Footer />
-        </div>
+        <LanguageProvider initialLanguage={lang}>
+            <div className="min-h-screen bg-bg-dark flex flex-col">
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
+                <Navbar />
+                <main className="flex-grow pt-32 pb-20">
+                    <div className="container mx-auto px-4 md:px-6">
+                        <BlogContentClient post={post} posts={posts} />
+                    </div>
+                </main>
+                <Footer />
+                <CookieConsent />
+            </div>
+        </LanguageProvider>
     );
 }

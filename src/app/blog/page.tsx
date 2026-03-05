@@ -4,6 +4,8 @@ import { Footer } from '@/components/layout/Footer';
 import { BlogIndexClient } from '@/components/blog/BlogIndexClient';
 import { Metadata } from 'next';
 import { Language } from '@/lib/i18n/translations';
+import { LanguageProvider } from '@/lib/i18n/LanguageContext';
+import { CookieConsent } from '@/components/ui/CookieConsent';
 
 interface Props {
     searchParams: Promise<{ lang?: string }>;
@@ -63,10 +65,13 @@ export default async function BlogIndex({ searchParams }: Props) {
     const posts = blogData[lang] || blogData.fr;
 
     return (
-        <div className="min-h-screen bg-bg-dark flex flex-col">
-            <Navbar />
-            <BlogIndexClient posts={posts} />
-            <Footer />
-        </div>
+        <LanguageProvider initialLanguage={lang}>
+            <div className="min-h-screen bg-bg-dark flex flex-col">
+                <Navbar />
+                <BlogIndexClient posts={posts} />
+                <Footer />
+                <CookieConsent />
+            </div>
+        </LanguageProvider>
     );
 }

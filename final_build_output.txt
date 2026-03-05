@@ -1,0 +1,45 @@
+
+> mp-carrelage@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ÔÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\halil\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\package-lock.json
+
+   Ôû▓ Next.js 16.0.7 (Turbopack)
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ Ô£ô Compiled successfully in 1932.0ms
+   Running TypeScript ...
+   Collecting page data using 11 workers ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages using 11 workers (0/9) ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ Ô¿» useSearchParams() should be wrapped in a suspense boundary at page "/404". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at S (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\.next\server\chunks\ssr\Desktop_mp-carrelage_site-fin-carrelage-final-copie-master_705a7157._.js:12:2111)
+    at p (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\.next\server\chunks\ssr\Desktop_mp-carrelage_site-fin-carrelage-final-copie-master_705a7157._.js:14:4844)
+    at s (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\.next\server\chunks\ssr\Desktop_mp-carrelage_site-fin-carrelage-final-copie-master_705a7157._.js:14:6836)
+    at ar (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:84366)
+    at aa (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:86185)
+    at as (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:107952)
+    at ao (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:105374)
+    at ah (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:112881)
+    at al (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:109984)
+    at as (C:\Users\halil\Desktop\mp-carrelage\site-fin-carrelage-final-copie-master\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:108230)
+Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+Export encountered an error on /_not-found/page: /_not-found, exiting the build.
+ Ô¿» Next.js build worker exited with code: 1 and signal: null

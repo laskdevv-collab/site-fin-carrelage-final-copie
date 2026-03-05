@@ -1,11 +1,33 @@
-'use client';
-
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Section } from '@/components/ui/Section';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useLanguage, LanguageProvider } from '@/lib/i18n/LanguageContext';
+import { CookieConsent } from '@/components/ui/CookieConsent';
+import { Language } from '@/lib/i18n/translations';
+import { Metadata } from 'next';
 
-export default function MentionsLegales() {
+interface Props {
+    searchParams: Promise<{ lang?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+    const { lang: langParam } = await searchParams;
+    const lang = (langParam || 'fr') as Language;
+
+    const titles: Record<string, string> = {
+        fr: "Mentions Légales | MP Carrelage",
+        en: "Legal Mentions | MP Carrelage",
+        de: "Impressum | MP Carrelage",
+        tr: "Yasal Uyarı | MP Carrelage"
+    };
+
+    return {
+        title: titles[lang] || titles.fr,
+        robots: { index: false }
+    };
+}
+
+function MentionsLegalesClient() {
     const { t } = useLanguage();
     const { legalPage } = t;
 
@@ -31,6 +53,18 @@ export default function MentionsLegales() {
                 </div>
             </Section>
             <Footer />
+            <CookieConsent />
         </main>
+    );
+}
+
+export default async function MentionsLegales({ searchParams }: Props) {
+    const { lang: langParam } = await searchParams;
+    const lang = (langParam || 'fr') as Language;
+
+    return (
+        <LanguageProvider initialLanguage={lang}>
+            <MentionsLegalesClient />
+        </LanguageProvider>
     );
 }

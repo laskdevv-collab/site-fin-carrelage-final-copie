@@ -3,7 +3,7 @@ import { Montserrat, Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import "./globals.css";
-import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+
 import { CookieConsent } from "@/components/ui/CookieConsent";
 
 const montserrat = Montserrat({
@@ -66,8 +66,10 @@ export const metadata: Metadata = {
       'tr': 'https://mp-carrelage.com?lang=tr',
     },
   },
+};
+
+export const viewport = {
   themeColor: '#1a1a1a',
-  // Les icônes sont gérées automatiquement par Next.js via src/app/icon.ico et src/app/apple-icon.png
 };
 
 export default function RootLayout({
@@ -173,10 +175,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             gtag('config', 'G-P1PSZR3X97');
           `}
         </Script>
-        <LanguageProvider>
-          {children}
-          <CookieConsent />
-        </LanguageProvider>
+        {children}
       </body>
     </html>
   );
