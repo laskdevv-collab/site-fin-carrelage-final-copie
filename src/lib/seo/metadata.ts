@@ -2,7 +2,7 @@ import { Language } from '../i18n/translations';
 
 export const siteConfig = {
     name: 'MP Carrelage',
-    url: 'https://mp-carrelage.com',
+    url: 'https://www.mp-carrelage.com',
     ogImage: '/og-image.jpg',
     description: {
         fr: "Carrelage d'exception, pose millimétrée et finitions premium. Votre expert carreleur à Mulhouse et dans toute l'Alsace. Devis gratuit.",

@@ -35,7 +35,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     };
 
     const currentMeta = meta[lang] || meta.fr;
-    const baseUrl = 'https://mp-carrelage.com';
+    const baseUrl = 'https://www.mp-carrelage.com';
 
     return {
         title: currentMeta.title,

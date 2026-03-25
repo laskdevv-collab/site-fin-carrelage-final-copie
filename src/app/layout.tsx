@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mp-carrelage.com'),
+  metadataBase: new URL('https://www.mp-carrelage.com'),
   title: "Carreleur Mulhouse | MP Carrelage - Artisan Expert en Alsace",
   description: "MP Carrelage, votre carreleur à Mulhouse (68). Expert en pose de carrelage grand format, salle de bain et terrasse en Alsace. Précision artisanale et finitions premium.",
   keywords: "carreleur mulhouse, mp carrelage, carrelage mulhouse, artisan carreleur alsace, pose carrelage 68, salle de bain mulhouse, terrasse alsace, carrelage grand format",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     alternateLocale: ['en_US', 'de_DE', 'tr_TR'],
-    url: 'https://mp-carrelage.com',
+    url: 'https://www.mp-carrelage.com',
     title: "Carreleur Mulhouse | MP Carrelage - Artisan Expert",
     description: "MP Carrelage : Artisan carreleur expert à Mulhouse. Pose millimétrée, grand format et finitions d'exception pour vos projets en Alsace.",
     siteName: 'MP Carrelage',
@@ -57,19 +57,12 @@ export const metadata: Metadata = {
       },
     ],
   },
-  alternates: {
-    canonical: 'https://mp-carrelage.com',
-    languages: {
-      'fr': 'https://mp-carrelage.com',
-      'en': 'https://mp-carrelage.com?lang=en',
-      'de': 'https://mp-carrelage.com?lang=de',
-      'tr': 'https://mp-carrelage.com?lang=tr',
-    },
-  },
 };
 
 export const viewport = {
   themeColor: '#1a1a1a',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -83,8 +76,8 @@ export default function RootLayout({
     '@type': 'Organization',
     name: 'MP Carrelage',
     description: "Expert en pose de carrelage à Mulhouse et dans toute l'Alsace. 20 ans d'expérience.",
-    url: 'https://mp-carrelage.com',
-    logo: 'https://mp-carrelage.com/images/logo.png',
+    url: 'https://www.mp-carrelage.com',
+    logo: 'https://www.mp-carrelage.com/images/logo.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+33-6-52-18-84-07',
@@ -97,10 +90,10 @@ export default function RootLayout({
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': 'https://mp-carrelage.com',
+    '@id': 'https://www.mp-carrelage.com',
     name: 'MP Carrelage - Carreleur Mulhouse',
     description: "Artisan carreleur expert à Mulhouse (68). Spécialiste carrelage intérieur/extérieur, salle de bain et terrasse.",
-    image: 'https://mp-carrelage.com/logo.png',
+    image: 'https://www.mp-carrelage.com/logo.png',
     telephone: '+33-6-52-18-84-07',
     email: 'mpcarrelage68@gmail.com',
     address: {

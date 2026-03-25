@@ -26,7 +26,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
         };
     }
 
-    const baseUrl = 'https://mp-carrelage.com';
+    const baseUrl = 'https://www.mp-carrelage.com';
     const canonical = `${baseUrl}/blog/${slug}${lang === 'fr' ? '' : `?lang=${lang}`}`;
 
     return {
@@ -92,26 +92,26 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
         '@type': 'BlogPosting',
         headline: post.title,
         description: post.metaDescription,
-        image: `https://mp-carrelage.com${post.image}`,
+        image: `https://www.mp-carrelage.com${post.image}`,
         datePublished: post.date,
         dateModified: new Date().toISOString().split('T')[0], // Use current date as modified
         author: {
             '@type': 'Organization',
             name: 'MP Carrelage',
-            url: 'https://mp-carrelage.com',
-            logo: 'https://mp-carrelage.com/images/logo.png'
+            url: 'https://www.mp-carrelage.com',
+            logo: 'https://www.mp-carrelage.com/images/logo.png'
         },
         publisher: {
             '@type': 'Organization',
             name: 'MP Carrelage',
             logo: {
                 '@type': 'ImageObject',
-                url: 'https://mp-carrelage.com/images/logo.png'
+                url: 'https://www.mp-carrelage.com/images/logo.png'
             }
         },
         mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': `https://mp-carrelage.com/blog/${post.slug}${lang === 'fr' ? '' : `?lang=${lang}`}`
+            '@id': `https://www.mp-carrelage.com/blog/${post.slug}${lang === 'fr' ? '' : `?lang=${lang}`}`
         }
     };
 

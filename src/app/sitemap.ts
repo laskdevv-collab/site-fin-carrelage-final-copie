@@ -2,18 +2,18 @@ import { MetadataRoute } from 'next';
 import { blogData } from '@/data/blog-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://mp-carrelage.com';
+    const baseUrl = 'https://www.mp-carrelage.com';
     const languages = ['fr', 'en', 'de', 'tr'];
 
-    // Homepage and Blog Index routes
-    const baseRoutes = ['', '/blog'].flatMap((route) =>
+    // Homepage, Blog Index, and Legal routes
+    const baseRoutes = ['', '/blog', '/mentions-legales', '/confidentialite'].flatMap((route) =>
         languages.map((lang) => {
             const url = `${baseUrl}${route}${lang === 'fr' ? '' : `?lang=${lang}`}`;
             return {
                 url,
                 lastModified: new Date(),
-                changeFrequency: 'weekly' as const,
-                priority: route === '' ? 1.0 : 0.8,
+                changeFrequency: (route === '' || route === '/blog') ? 'weekly' as const : 'monthly' as const,
+                priority: route === '' ? 1.0 : (route === '/blog' ? 0.8 : 0.5),
             };
         })
     );

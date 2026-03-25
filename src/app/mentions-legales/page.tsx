@@ -21,9 +21,22 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         tr: "Yasal Uyarı | MP Carrelage"
     };
 
+    const baseUrl = 'https://www.mp-carrelage.com';
+    const path = '/mentions-legales';
+
     return {
         title: titles[lang] || titles.fr,
-        robots: { index: false }
+        robots: { index: false },
+        alternates: {
+            canonical: `${baseUrl}${path}${lang === 'fr' ? '' : `?lang=${lang}`}`,
+            languages: {
+                'fr': `${baseUrl}${path}`,
+                'en': `${baseUrl}${path}?lang=en`,
+                'de': `${baseUrl}${path}?lang=de`,
+                'tr': `${baseUrl}${path}?lang=tr`,
+                'x-default': `${baseUrl}${path}`,
+            },
+        },
     };
 }
 

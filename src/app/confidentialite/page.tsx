@@ -21,9 +21,22 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         tr: "Gizlilik Politikası | MP Carrelage"
     };
 
+    const baseUrl = 'https://www.mp-carrelage.com';
+    const path = '/confidentialite';
+
     return {
         title: titles[lang] || titles.fr,
-        robots: { index: false } // Privacy pages don't necessarily need to be indexed heavily
+        robots: { index: false }, // Privacy pages don't necessarily need to be indexed heavily
+        alternates: {
+            canonical: `${baseUrl}${path}${lang === 'fr' ? '' : `?lang=${lang}`}`,
+            languages: {
+                'fr': `${baseUrl}${path}`,
+                'en': `${baseUrl}${path}?lang=en`,
+                'de': `${baseUrl}${path}?lang=de`,
+                'tr': `${baseUrl}${path}?lang=tr`,
+                'x-default': `${baseUrl}${path}`,
+            },
+        },
     };
 }
 

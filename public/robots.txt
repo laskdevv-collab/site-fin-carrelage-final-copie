@@ -14,4 +14,4 @@ Disallow: /api/
 Allow: /
 
 # Sitemap location
-Sitemap: https://mp-carrelage.com/sitemap.xml
+Sitemap: https://www.mp-carrelage.com/sitemap.xml
