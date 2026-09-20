@@ -111,7 +111,7 @@ export function ContactForm() {
     }
 
     return (
-        <Section id="contact" className="bg-bg-dark border-t border-white/5">
+        <Section id="contact" className="bg-bg-dark border-t border-white/5 pb-24 md:pb-24">
             <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
                     <p className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
@@ -148,6 +148,7 @@ export function ContactForm() {
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
+                                    transition={{ duration: 0.2 }}
                                     className="space-y-6"
                                 >
                                     <div>
@@ -189,6 +190,7 @@ export function ContactForm() {
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
+                                    transition={{ duration: 0.2 }}
                                     className="space-y-6"
                                 >
                                     <div>
@@ -229,6 +231,7 @@ export function ContactForm() {
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
+                                    transition={{ duration: 0.2 }}
                                     className="space-y-6"
                                 >
                                     <div>
@@ -239,10 +242,12 @@ export function ContactForm() {
                                             id="message"
                                             name="message"
                                             rows={5}
-                                            className="block w-full min-h-[140px] rounded-md border border-white/20 bg-white/5 p-4 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-stone focus:border-accent-stone relative z-10 cursor-text resize-y"
+                                            autoComplete="off"
+                                            className="block w-full min-h-[140px] rounded-md border border-white/20 bg-white/5 p-4 text-base text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-stone focus:border-accent-stone relative z-20 cursor-text resize-y"
                                             placeholder={t.contact.form.message_placeholder}
                                             value={formData.message || ''}
                                             onChange={(e) => updateField('message', e.target.value)}
+                                            onKeyDown={(e) => e.stopPropagation()}
                                         />
                                     </div>
                                 </motion.div>
