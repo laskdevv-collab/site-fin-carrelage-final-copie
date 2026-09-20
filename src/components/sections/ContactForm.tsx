@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Section } from '@/components/ui/Section';
 import { Input } from '@/components/ui/Input';
@@ -25,6 +25,7 @@ export function ContactForm() {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [canSubmitStep3, setCanSubmitStep3] = useState(false);
     const [formData, setFormData] = useState<FormData>({
         projectType: '',
         surface: '',
@@ -34,16 +35,34 @@ export function ContactForm() {
         message: '',
     });
 
-    const canProceed = (currentStep: number) => {
-        return true;
-    };
+    useEffect(() => {
+        if (step === 3) {
+            // Guard: disallow submission for 400ms after step 3 mounts to prevent fast/double click bleed-through
+            const timer = setTimeout(() => setCanSubmitStep3(true), 400);
+            return () => clearTimeout(timer);
+        } else {
+            setCanSubmitStep3(false);
+        }
+    }, [step]);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
+    const handleNext = () => {
         if (step < 3) {
             setError(null);
             setStep((prev) => Math.min(3, prev + 1));
+        }
+    };
+
+    const handleSubmit = async (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+
+        // Strictly prevent any submission if not yet on step 3
+        if (step < 3) {
+            handleNext();
+            return;
+        }
+
+        // Strictly prevent premature submission during step 3 entry transition
+        if (!canSubmitStep3 || isSubmitting) {
             return;
         }
 
@@ -140,7 +159,25 @@ export function ContactForm() {
                 </div>
 
                 <Card className="p-8">
-                    <form onSubmit={handleSubmit}>
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            if (step === 3 && canSubmitStep3) {
+                                handleSubmit();
+                            }
+                        }}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                const target = e.target as HTMLElement;
+                                if (target?.tagName === 'INPUT') {
+                                    e.preventDefault();
+                                    if (step < 3) {
+                                        handleNext();
+                                    }
+                                }
+                            }
+                        }}
+                    >
                         <AnimatePresence mode="wait">
                             {step === 1 && (
                                 <motion.div
@@ -280,12 +317,10 @@ export function ContactForm() {
 
                             {step < 3 ? (
                                 <Button
+                                    key="btn-next-step"
                                     type="button"
                                     variant="primary"
-                                    onClick={() => {
-                                        setError(null);
-                                        setStep(step + 1);
-                                    }}
+                                    onClick={handleNext}
                                     className="ml-auto"
                                     disabled={step === 1 && (!formData.projectType || !formData.surface)}
                                 >
@@ -294,10 +329,12 @@ export function ContactForm() {
                                 </Button>
                             ) : (
                                 <Button
-                                    type="submit"
+                                    key="btn-submit-step"
+                                    type="button"
                                     variant="primary"
+                                    onClick={() => handleSubmit()}
                                     className="ml-auto"
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || !canSubmitStep3}
                                 >
                                     {isSubmitting ? t.contact.form.submitting : t.contact.form.submit}
                                     <Send className="ml-2 h-4 w-4" />
