@@ -3,7 +3,10 @@ import { supabase } from '@/lib/supabase';
 import { Resend } from 'resend';
 import nodemailer from 'nodemailer';
 
-const NOTIFICATION_EMAIL = 'halil.pekn@gmail.com';
+const NOTIFICATION_EMAILS = [
+  'halil.pekn@gmail.com',
+  'canan.pekcan@icloud.com',
+];
 
 export async function POST(request: Request) {
   try {
@@ -119,7 +122,7 @@ ${message || 'Aucun message supplémentaire'}`;
       </div>
     </div>
     <div class="footer">
-      Notification automatique envoyée à ${NOTIFICATION_EMAIL} • MP Carrelage Mulhouse
+      Notification automatique envoyée à ${NOTIFICATION_EMAILS.join(' &amp; ')} • MP Carrelage Mulhouse
     </div>
   </div>
 </body>
@@ -131,15 +134,39 @@ ${message || 'Aucun message supplémentaire'}`;
     if (process.env.RESEND_API_KEY) {
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
-        await resend.emails.send({
+        const res = await resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL || 'MP Carrelage <onboarding@resend.dev>',
-          to: NOTIFICATION_EMAIL,
+          to: NOTIFICATION_EMAILS,
           replyTo: email || undefined,
           subject: emailSubject,
           html: emailHtml,
         });
-        emailSent = true;
-        console.log('✅ Email envoyé avec succès via Resend à', NOTIFICATION_EMAIL);
+
+        if (!res.error) {
+          emailSent = true;
+          console.log('✅ Email envoyé avec succès via Resend à', NOTIFICATION_EMAILS.join(', '));
+        } else {
+          console.warn('Tentative Resend groupée:', res.error, '— repli sur envois individuels');
+          let anySent = false;
+          for (const recipient of NOTIFICATION_EMAILS) {
+            try {
+              const singleRes = await resend.emails.send({
+                from: process.env.RESEND_FROM_EMAIL || 'MP Carrelage <onboarding@resend.dev>',
+                to: recipient,
+                replyTo: email || undefined,
+                subject: emailSubject,
+                html: emailHtml,
+              });
+              if (!singleRes.error) {
+                anySent = true;
+                console.log(`✅ Email Resend envoyé à ${recipient}`);
+              }
+            } catch (singleErr) {
+              console.warn(`Erreur Resend pour ${recipient}:`, singleErr);
+            }
+          }
+          if (anySent) emailSent = true;
+        }
       } catch (resendError) {
         console.error('Erreur d’envoi Resend:', resendError);
       }
@@ -160,13 +187,13 @@ ${message || 'Aucun message supplémentaire'}`;
 
         await transporter.sendMail({
           from: `"MP Carrelage" <${process.env.SMTP_USER}>`,
-          to: NOTIFICATION_EMAIL,
+          to: NOTIFICATION_EMAILS.join(', '),
           replyTo: email || undefined,
           subject: emailSubject,
           html: emailHtml,
         });
         emailSent = true;
-        console.log('✅ Email envoyé avec succès via SMTP à', NOTIFICATION_EMAIL);
+        console.log('✅ Email envoyé avec succès via SMTP à', NOTIFICATION_EMAILS.join(', '));
       } catch (smtpError) {
         console.error('Erreur d’envoi SMTP:', smtpError);
       }

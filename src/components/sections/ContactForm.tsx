@@ -232,13 +232,16 @@ export function ContactForm() {
                                     className="space-y-6"
                                 >
                                     <div>
-                                        <label className="block text-white mb-3 font-medium">
+                                        <label htmlFor="message" className="block text-white mb-3 font-medium cursor-pointer">
                                             {t.contact.form.message_label}
                                         </label>
                                         <textarea
-                                            className="flex min-h-[150px] w-full rounded-md border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-stone"
+                                            id="message"
+                                            name="message"
+                                            rows={5}
+                                            className="block w-full min-h-[140px] rounded-md border border-white/20 bg-white/5 p-4 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-stone focus:border-accent-stone relative z-10 cursor-text resize-y"
                                             placeholder={t.contact.form.message_placeholder}
-                                            value={formData.message}
+                                            value={formData.message || ''}
                                             onChange={(e) => updateField('message', e.target.value)}
                                         />
                                     </div>
