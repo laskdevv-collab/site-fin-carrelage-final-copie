@@ -35,32 +35,15 @@ export function ContactForm() {
     });
 
     const canProceed = (currentStep: number) => {
-        if (currentStep === 1) {
-            return !!(formData.projectType && formData.surface);
-        }
-        if (currentStep === 2) {
-            return !!(formData.name && formData.email && formData.phone);
-        }
-        return !!formData.message;
+        return true;
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Si l'utilisateur appuie sur Entrée aux étapes 1 ou 2, on avance seulement si les champs requis sont remplis
         if (step < 3) {
-            if (!canProceed(step)) {
-                setError(t.contact.form.required_fields);
-                return;
-            }
-
             setError(null);
             setStep((prev) => Math.min(3, prev + 1));
-            return;
-        }
-
-        if (!canProceed(3)) {
-            setError(t.contact.form.required_fields);
             return;
         }
 
@@ -68,16 +51,25 @@ export function ContactForm() {
         setError(null);
 
         try {
-            // Prepare full message with project details
-            const fullMessage = `Type de projet: ${formData.projectType}
-Surface: ${formData.surface}m²
+            // Envoi à l'API pour notification email à halil.pekn@gmail.com + enregistrement Supabase
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
 
-${formData.message}`;
+            if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                throw new Error(data.error || 'Erreur serveur');
+            }
 
-            // Insert into Supabase
-            const { error: supabaseError } = await supabase
-                .from('contact_submissions')
-                .insert([
+            setIsSubmitted(true);
+        } catch (err: any) {
+            console.error('Error submitting form:', err);
+            // Fallback d'enregistrement direct Supabase côté client si l'API est indisponible
+            try {
+                const fullMessage = `Type de projet: ${formData.projectType || ''}\nSurface: ${formData.surface || ''}m²\n\n${formData.message || ''}`;
+                await supabase.from('contact_submissions').insert([
                     {
                         name: formData.name,
                         email: formData.email,
@@ -85,23 +77,8 @@ ${formData.message}`;
                         message: fullMessage,
                     }
                 ]);
-
-            if (supabaseError) {
-                // Vérifier si c'est une erreur de configuration Supabase
-                if (supabaseError.message?.includes('placeholder') || supabaseError.code === 'PGRST116') {
-                    console.warn('Supabase n\'est pas configuré. Le formulaire ne peut pas être soumis.');
-                    setError('Supabase n\'est pas configuré. Veuillez configurer les variables d\'environnement.');
-                    return;
-                }
-                throw supabaseError;
-            }
-
-            setIsSubmitted(true);
-        } catch (err: any) {
-            console.error('Error submitting form:', err);
-            if (err?.message?.includes('placeholder') || err?.code === 'PGRST116') {
-                setError('Supabase n\'est pas configuré. Veuillez configurer les variables d\'environnement.');
-            } else {
+                setIsSubmitted(true);
+            } catch {
                 setError(t.contact.error);
             }
         } finally {
@@ -221,7 +198,6 @@ ${formData.message}`;
                                             placeholder="Jean Dupont"
                                             value={formData.name}
                                             onChange={(e) => updateField('name', e.target.value)}
-                                            required
                                         />
                                     </div>
 
@@ -232,7 +208,6 @@ ${formData.message}`;
                                             placeholder="jean.dupont@email.com"
                                             value={formData.email}
                                             onChange={(e) => updateField('email', e.target.value)}
-                                            required
                                         />
                                     </div>
 
@@ -243,7 +218,6 @@ ${formData.message}`;
                                             placeholder="06 12 34 56 78"
                                             value={formData.phone}
                                             onChange={(e) => updateField('phone', e.target.value)}
-                                            required
                                         />
                                     </div>
                                 </motion.div>
@@ -266,7 +240,6 @@ ${formData.message}`;
                                             placeholder={t.contact.form.message_placeholder}
                                             value={formData.message}
                                             onChange={(e) => updateField('message', e.target.value)}
-                                            required
                                         />
                                     </div>
                                 </motion.div>
@@ -301,12 +274,12 @@ ${formData.message}`;
                                 <Button
                                     type="button"
                                     variant="primary"
-                                    onClick={() => setStep(step + 1)}
+                                    onClick={() => {
+                                        setError(null);
+                                        setStep(step + 1);
+                                    }}
                                     className="ml-auto"
-                                    disabled={
-                                        (step === 1 && (!formData.projectType || !formData.surface)) ||
-                                        (step === 2 && (!formData.name || !formData.email || !formData.phone))
-                                    }
+                                    disabled={step === 1 && (!formData.projectType || !formData.surface)}
                                 >
                                     {t.contact.form.next}
                                     <ArrowRight className="ml-2 h-4 w-4" />
