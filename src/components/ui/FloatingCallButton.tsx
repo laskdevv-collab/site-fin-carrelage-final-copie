@@ -13,9 +13,9 @@ export function FloatingCallButton() {
       aria-label="Contact téléphonique direct"
     >
       <a
-        href="tel:0667674160"
+        href="tel:0667674060"
         className="group relative flex items-center gap-3 bg-accent-stone text-bg-dark pl-3.5 pr-5 py-2.5 rounded-full shadow-2xl shadow-black/60 border border-white/20 transition-all duration-300 hover:scale-105 hover:bg-white active:scale-95 backdrop-blur-md"
-        aria-label="Joignez-nous directement au 06 67 67 41 60"
+        aria-label="Joignez-nous directement au 06 67 67 40 60"
       >
         {/* Animated pulse badge */}
         <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-bg-dark text-accent-stone group-hover:text-white transition-colors">
@@ -29,7 +29,7 @@ export function FloatingCallButton() {
             Joignez-nous directement !
           </span>
           <span className="text-sm font-bold tracking-tight font-heading text-bg-dark">
-            06 67 67 41 60
+            06 67 67 40 60
           </span>
         </div>
       </a>
