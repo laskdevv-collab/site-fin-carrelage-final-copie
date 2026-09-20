@@ -17,8 +17,10 @@ export function Footer() {
                             <div className="relative h-12 w-12">
                                 <Image
                                     src="/images/logo.png"
-                                    alt="MP Carrelage"
+                                    alt="MP Carrelage - Carreleur expert Mulhouse"
                                     fill
+                                    sizes="48px"
+                                    loading="lazy"
                                     className="object-contain"
                                 />
                             </div>
@@ -29,14 +31,7 @@ export function Footer() {
                         <p className="text-white/60 text-sm leading-relaxed mb-6">
                             {t.footer.desc}
                         </p>
-                        <div className="flex gap-4">
-                            <a href="#" className="text-white/60 hover:text-accent-stone transition-colors">
-                                <Instagram className="h-5 w-5" />
-                            </a>
-                            <a href="#" className="text-white/60 hover:text-accent-stone transition-colors">
-                                <Facebook className="h-5 w-5" />
-                            </a>
-                        </div>
+                        {/* Les liens sociaux seront ajoutés quand les profils seront créés */}
                     </div>
 
                     {/* Links */}
@@ -55,9 +50,26 @@ export function Footer() {
                     <div>
                         <h3 className="text-white font-semibold mb-6">{t.footer.services_title}</h3>
                         <ul className="space-y-4">
-                            {t.footer.services_list.map((service, index) => (
-                                <li key={index} className="text-white/60 text-sm">{service}</li>
-                            ))}
+                            <li>
+                                <Link href="/carrelage-interieur" className="text-white/60 hover:text-accent-stone transition-colors text-sm">
+                                    {t.footer.services_list[0] || 'Carrelage intérieur'}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/carrelage-exterieur" className="text-white/60 hover:text-accent-stone transition-colors text-sm">
+                                    {t.footer.services_list[1] || 'Terrasse & Extérieur'}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/salle-de-bain" className="text-white/60 hover:text-accent-stone transition-colors text-sm">
+                                    {t.footer.services_list[2] || 'Salle de bain & Douche'}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/carrelage-interieur" className="text-white/60 hover:text-accent-stone transition-colors text-sm">
+                                    {t.footer.services_list[3] || 'Grands Formats & Mosaïque'}
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 

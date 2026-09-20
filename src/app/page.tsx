@@ -20,21 +20,11 @@ interface Props {
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  const { lang: langParam } = await searchParams;
-  const lang = (langParam || 'fr') as Language;
   const baseUrl = 'https://www.mp-carrelage.com';
-  const path = lang === 'fr' ? '' : `?lang=${lang}`;
 
   return {
     alternates: {
-      canonical: `${baseUrl}${path}`,
-      languages: {
-        'fr': `${baseUrl}`,
-        'en': `${baseUrl}?lang=en`,
-        'de': `${baseUrl}?lang=de`,
-        'tr': `${baseUrl}?lang=tr`,
-        'x-default': `${baseUrl}`,
-      },
+      canonical: baseUrl,
     },
   };
 }

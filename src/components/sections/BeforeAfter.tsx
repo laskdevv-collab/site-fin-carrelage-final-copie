@@ -13,12 +13,12 @@ export function BeforeAfter() {
     return (
         <Section className="bg-bg-dark border-t border-white/5">
             <div className="text-center mb-12">
-                <h2 className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
+                <p className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
                     {t.beforeAfter.subtitle}
-                </h2>
-                <h3 className="text-3xl md:text-4xl font-bold font-heading text-white mb-4">
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mb-4">
                     {t.beforeAfter.title}
-                </h3>
+                </h2>
                 <p className="text-white/60 max-w-2xl mx-auto">
                     {t.beforeAfter.description}
                 </p>
@@ -34,14 +34,16 @@ export function BeforeAfter() {
                     <ReactCompareSlider
                         itemOne={
                             <ReactCompareSliderImage
-                                src="/images/avant 1.png"
-                                alt="Avant travaux"
+                                src="/images/avant-1.webp"
+                                alt="Avant travaux de carrelage - sol brut à Mulhouse"
+                                loading="lazy"
                             />
                         }
                         itemTwo={
                             <ReactCompareSliderImage
-                                src="/images/après 1.png"
-                                alt="Après travaux"
+                                src="/images/apres-1.webp"
+                                alt="Après travaux de carrelage - sol fini par MP Carrelage Mulhouse"
+                                loading="lazy"
                             />
                         }
                         style={{

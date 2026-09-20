@@ -2,34 +2,61 @@ import { MetadataRoute } from 'next';
 import { blogData } from '@/data/blog-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://www.mp-carrelage.com';
-    const languages = ['fr', 'en', 'de', 'tr'];
+  const baseUrl = 'https://www.mp-carrelage.com';
 
-    // Homepage, Blog Index, and Legal routes
-    const baseRoutes = ['', '/blog', '/mentions-legales', '/confidentialite'].flatMap((route) =>
-        languages.map((lang) => {
-            const url = `${baseUrl}${route}${lang === 'fr' ? '' : `?lang=${lang}`}`;
-            return {
-                url,
-                lastModified: new Date(),
-                changeFrequency: (route === '' || route === '/blog') ? 'weekly' as const : 'monthly' as const,
-                priority: route === '' ? 1.0 : (route === '/blog' ? 0.8 : 0.5),
-            };
-        })
-    );
+  // Pages principales — uniquement la version FR (canonique)
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/salle-de-bain`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/carrelage-interieur`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/carrelage-exterieur`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/mentions-legales`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/confidentialite`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.3,
+    },
+  ];
 
-    // Dynamic Blog Post routes
-    const blogPosts = languages.flatMap((lang) =>
-        blogData[lang as keyof typeof blogData].map((post) => {
-            const url = `${baseUrl}/blog/${post.slug}${lang === 'fr' ? '' : `?lang=${lang}`}`;
-            return {
-                url,
-                lastModified: new Date(post.date),
-                changeFrequency: 'monthly' as const,
-                priority: 0.7,
-            };
-        })
-    );
+  // Articles de blog — uniquement version FR (canonique)
+  const blogPosts: MetadataRoute.Sitemap = blogData.fr.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
 
-    return [...baseRoutes, ...blogPosts];
+  return [...staticRoutes, ...blogPosts];
 }

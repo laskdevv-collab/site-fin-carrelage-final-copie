@@ -41,14 +41,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         title: currentMeta.title,
         description: currentMeta.desc,
         alternates: {
-            canonical: `${baseUrl}/blog${lang === 'fr' ? '' : `?lang=${lang}`}`,
-            languages: {
-                'fr': `${baseUrl}/blog`,
-                'en': `${baseUrl}/blog?lang=en`,
-                'de': `${baseUrl}/blog?lang=de`,
-                'tr': `${baseUrl}/blog?lang=tr`,
-                'x-default': `${baseUrl}/blog`,
-            }
+            canonical: `${baseUrl}/blog`,
         },
         openGraph: {
             title: currentMeta.title,

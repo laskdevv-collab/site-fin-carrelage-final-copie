@@ -27,7 +27,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     }
 
     const baseUrl = 'https://www.mp-carrelage.com';
-    const canonical = `${baseUrl}/blog/${slug}${lang === 'fr' ? '' : `?lang=${lang}`}`;
+    // Canonical TOUJOURS vers la version FR
+    const canonical = `${baseUrl}/blog/${slug}`;
 
     return {
         title: `${post.title} | MP Carrelage`,
@@ -35,13 +36,6 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
         keywords: post.keywords,
         alternates: {
             canonical: canonical,
-            languages: {
-                'fr': `${baseUrl}/blog/${slug}`,
-                'en': `${baseUrl}/blog/${slug}?lang=en`,
-                'de': `${baseUrl}/blog/${slug}?lang=de`,
-                'tr': `${baseUrl}/blog/${slug}?lang=tr`,
-                'x-default': `${baseUrl}/blog/${slug}`,
-            }
         },
         openGraph: {
             title: post.title,
@@ -111,7 +105,7 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
         },
         mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': `https://www.mp-carrelage.com/blog/${post.slug}${lang === 'fr' ? '' : `?lang=${lang}`}`
+            '@id': `https://www.mp-carrelage.com/blog/${post.slug}`
         }
     };
 

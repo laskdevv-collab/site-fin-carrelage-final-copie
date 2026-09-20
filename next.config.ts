@@ -17,6 +17,31 @@ const nextConfig: NextConfig = {
     ],
     // Qualités d'images supportées
     qualities: [75, 90],
+    // Formats modernes en priorité
+    formats: ['image/avif', 'image/webp'],
+  },
+  // Headers de cache pour les assets statiques
+  async headers() {
+    return [
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/favicon.svg',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=604800',
+          },
+        ],
+      },
+    ];
   },
 };
 

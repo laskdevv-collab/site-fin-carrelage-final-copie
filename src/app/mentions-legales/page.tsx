@@ -28,14 +28,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         title: titles[lang] || titles.fr,
         robots: { index: false },
         alternates: {
-            canonical: `${baseUrl}${path}${lang === 'fr' ? '' : `?lang=${lang}`}`,
-            languages: {
-                'fr': `${baseUrl}${path}`,
-                'en': `${baseUrl}${path}?lang=en`,
-                'de': `${baseUrl}${path}?lang=de`,
-                'tr': `${baseUrl}${path}?lang=tr`,
-                'x-default': `${baseUrl}${path}`,
-            },
+            canonical: `${baseUrl}${path}`,
         },
     };
 }

@@ -66,12 +66,12 @@ export function Process() {
     return (
         <Section id="process" className="bg-gradient-to-b from-bg-dark to-bg-dark/95 border-t border-white/5">
             <div className="text-center mb-16">
-                <h2 className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
+                <p className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
                     {t.process.subtitle}
-                </h2>
-                <h3 className="text-3xl md:text-4xl font-bold font-heading text-white mb-4">
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mb-4">
                     {t.process.title}
-                </h3>
+                </h2>
                 <p className="text-white/60 max-w-2xl mx-auto">
                     {t.process.description}
                 </p>
