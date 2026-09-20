@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -50,8 +50,9 @@ export function Navbar() {
                         <div className="relative h-10 w-10 md:h-12 md:w-12">
                             <Image
                                 src="/images/logo.png"
-                                alt="MP Carrelage"
+                                alt="MP Carrelage - Carreleur expert Mulhouse"
                                 fill
+                                sizes="48px"
                                 className="object-contain"
                                 priority
                             />
@@ -72,7 +73,9 @@ export function Navbar() {
                                 {link.name}
                             </Link>
                         ))}
-                        <LanguageSwitcher />
+                        <Suspense fallback={<div className="w-24 h-9" />}>
+                            <LanguageSwitcher />
+                        </Suspense>
                         <Button variant="primary" size="sm" asChild>
                             <Link href="#contact">{t.nav.quote}</Link>
                         </Button>
@@ -109,7 +112,9 @@ export function Navbar() {
                                 </Link>
                             ))}
                             <div className="flex justify-center">
-                                <LanguageSwitcher />
+                                <Suspense fallback={<div className="w-24 h-9" />}>
+                                    <LanguageSwitcher />
+                                </Suspense>
                             </div>
                             <Button variant="primary" size="lg" className="w-full" asChild>
                                 <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>

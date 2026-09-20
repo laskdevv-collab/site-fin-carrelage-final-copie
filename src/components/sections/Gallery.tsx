@@ -96,12 +96,12 @@ export function Gallery() {
     return (
         <Section id="projets" className="bg-bg-dark border-t border-white/5">
             <div className="text-center mb-12">
-                <h2 className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
+                <p className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
                     {t.gallery.subtitle}
-                </h2>
-                <h3 className="text-3xl md:text-4xl font-bold font-heading text-white mb-8">
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mb-8">
                     {t.gallery.title}
-                </h3>
+                </h2>
 
                 {/* Filters */}
                 <div className="flex flex-wrap justify-center gap-2 md:gap-4">
@@ -161,6 +161,8 @@ export function Gallery() {
                                     src={project.image_url}
                                     alt={project.title}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                    loading="lazy"
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

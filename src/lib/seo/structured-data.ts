@@ -13,8 +13,8 @@ export function generateOrganizationSchema(lang: Language = 'fr') {
         '@type': 'Organization',
         name: 'MP Carrelage',
         description: descriptions[lang],
-        url: 'https://mp-carrelage.com',
-        logo: 'https://mp-carrelage.com/images/logo.png',
+        url: 'https://www.mp-carrelage.com',
+        logo: 'https://www.mp-carrelage.com/images/logo.png',
         contactPoint: {
             '@type': 'ContactPoint',
             telephone: '+33-6-52-18-84-07',
@@ -48,10 +48,10 @@ export function generateLocalBusinessSchema(lang: Language = 'fr') {
     return {
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
-        '@id': 'https://mp-carrelage.com',
+        '@id': 'https://www.mp-carrelage.com',
         name: names[lang],
         description: descriptions[lang],
-        image: 'https://mp-carrelage.com/og-image.jpg',
+        image: 'https://www.mp-carrelage.com/og-image.jpg',
         telephone: '+33-6-52-18-84-07',
         email: 'contact@mpcarrelage.fr',
         address: {
@@ -203,7 +203,7 @@ export function generateBreadcrumbSchema() {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Accueil',
-                item: 'https://mpcarrelage.fr'
+                item: 'https://www.mp-carrelage.com'
             }
         ]
     };

@@ -20,7 +20,7 @@ export function About() {
         <Section className="bg-bg-dark relative overflow-hidden">
             {/* Background Texture */}
             <div className="absolute inset-0 opacity-5 pointer-events-none">
-                <div className="absolute inset-0 bg-[url('/images/concrete-texture.png')] bg-cover bg-center mix-blend-overlay" />
+                <div className="absolute inset-0 bg-[url('/images/concrete-texture.webp')] bg-cover bg-center mix-blend-overlay" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
@@ -31,12 +31,12 @@ export function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
+                    <p className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
                         {t.about.subtitle}
-                    </h2>
-                    <h3 className="text-3xl md:text-4xl font-bold font-heading text-white mb-6">
+                    </p>
+                    <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mb-6">
                         {t.about.title}
-                    </h3>
+                    </h2>
                     <div className="space-y-6 text-white/80 leading-relaxed">
                         <p>{t.about.p1}</p>
                         <p>{t.about.p2}</p>
@@ -70,6 +70,8 @@ export function About() {
                             src="/images/photo-1471880504582-cf7e63045303.jpg"
                             alt="MP Carrelage - Artisan carreleur à Mulhouse en plein travail de pose"
                             fill
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            loading="lazy"
                             className="object-cover"
                         />
                         {/* Overlay Gradient */}

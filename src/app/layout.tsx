@@ -1,30 +1,28 @@
 import type { Metadata } from "next";
-import { Montserrat, Inter, JetBrains_Mono } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import "./globals.css";
-import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+
 import { CookieConsent } from "@/components/ui/CookieConsent";
+import { FloatingCallButton } from "@/components/ui/FloatingCallButton";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700"],
+  display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mp-carrelage.com'),
+  metadataBase: new URL('https://www.mp-carrelage.com'),
   title: "Carreleur Mulhouse | MP Carrelage - Artisan Expert en Alsace",
   description: "MP Carrelage, votre carreleur à Mulhouse (68). Expert en pose de carrelage grand format, salle de bain et terrasse en Alsace. Précision artisanale et finitions premium.",
   keywords: "carreleur mulhouse, mp carrelage, carrelage mulhouse, artisan carreleur alsace, pose carrelage 68, salle de bain mulhouse, terrasse alsace, carrelage grand format",
@@ -43,8 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    alternateLocale: ['en_US', 'de_DE', 'tr_TR'],
-    url: 'https://mp-carrelage.com',
+    url: 'https://www.mp-carrelage.com',
     title: "Carreleur Mulhouse | MP Carrelage - Artisan Expert",
     description: "MP Carrelage : Artisan carreleur expert à Mulhouse. Pose millimétrée, grand format et finitions d'exception pour vos projets en Alsace.",
     siteName: 'MP Carrelage',
@@ -57,17 +54,12 @@ export const metadata: Metadata = {
       },
     ],
   },
-  alternates: {
-    canonical: 'https://mp-carrelage.com',
-    languages: {
-      'fr': 'https://mp-carrelage.com',
-      'en': 'https://mp-carrelage.com?lang=en',
-      'de': 'https://mp-carrelage.com?lang=de',
-      'tr': 'https://mp-carrelage.com?lang=tr',
-    },
-  },
+};
+
+export const viewport = {
   themeColor: '#1a1a1a',
-  // Les icônes sont gérées automatiquement par Next.js via src/app/icon.ico et src/app/apple-icon.png
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -81,30 +73,34 @@ export default function RootLayout({
     '@type': 'Organization',
     name: 'MP Carrelage',
     description: "Expert en pose de carrelage à Mulhouse et dans toute l'Alsace. 20 ans d'expérience.",
-    url: 'https://mp-carrelage.com',
-    logo: 'https://mp-carrelage.com/images/logo.png',
+    url: 'https://www.mp-carrelage.com',
+    logo: 'https://www.mp-carrelage.com/images/logo.png',
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+33-6-52-18-84-07',
+      telephone: '+33667674060',
       contactType: 'customer service',
       areaServed: 'FR',
-      availableLanguage: ['French', 'English', 'German', 'Turkish']
+      availableLanguage: ['French', 'German', 'Turkish']
     }
   };
 
   const localBusinessSchema = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': 'https://mp-carrelage.com',
-    name: 'MP Carrelage - Carreleur Mulhouse',
-    description: "Artisan carreleur expert à Mulhouse (68). Spécialiste carrelage intérieur/extérieur, salle de bain et terrasse.",
-    image: 'https://mp-carrelage.com/logo.png',
-    telephone: '+33-6-52-18-84-07',
+    '@type': 'HomeAndConstructionBusiness',
+    '@id': 'https://www.mp-carrelage.com/#business',
+    name: 'MP Carrelage',
+    alternateName: 'MP Carrelage Mulhouse',
+    description: "Artisan carreleur expert à Mulhouse (68). Spécialiste pose de carrelage intérieur, extérieur, salle de bain, terrasse et mosaïque en Alsace depuis 20 ans.",
+    url: 'https://www.mp-carrelage.com',
+    image: 'https://www.mp-carrelage.com/images/logo.png',
+    logo: 'https://www.mp-carrelage.com/images/logo.png',
+    telephone: '+33667674060',
     email: 'mpcarrelage68@gmail.com',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Mulhouse',
-      addressRegion: 'Alsace',
+      postalCode: '68100',
+      addressRegion: 'Grand Est',
       addressCountry: 'FR'
     },
     geo: {
@@ -112,16 +108,46 @@ export default function RootLayout({
       latitude: 47.750839,
       longitude: 7.335888
     },
-    areaServed: {
-      '@type': 'GeoCircle',
-      geoMidpoint: {
-        '@type': 'GeoCoordinates',
-        latitude: 47.750839,
-        longitude: 7.335888
+    areaServed: [
+      {
+        '@type': 'City',
+        name: 'Mulhouse',
+        sameAs: 'https://fr.wikipedia.org/wiki/Mulhouse'
       },
-      geoRadius: '50000'
-    },
+      {
+        '@type': 'City',
+        name: 'Riedisheim'
+      },
+      {
+        '@type': 'City',
+        name: 'Kingersheim'
+      },
+      {
+        '@type': 'City',
+        name: 'Illzach'
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Haut-Rhin (68)'
+      },
+      {
+        '@type': 'State',
+        name: 'Alsace'
+      }
+    ],
+    knowsAbout: [
+      'Pose de carrelage',
+      'Carrelage grand format',
+      'Salle de bain',
+      'Douche italienne',
+      'Terrasse carrelée',
+      'Mosaïque',
+      'Étanchéité carrelage',
+      'Résine époxy'
+    ],
     priceRange: '$$',
+    currenciesAccepted: 'EUR',
+    paymentAccepted: 'Cash, Check, Bank Transfer',
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -129,13 +155,51 @@ export default function RootLayout({
         opens: '08:00',
         closes: '18:00'
       }
-    ]
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Services de carrelage',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Carrelage intérieur',
+            description: 'Pose de carrelage pour sols et murs, tous formats dont XXL'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Salle de bain complète',
+            description: 'Douche italienne, mosaïque, étanchéité, niches encastrées'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Carrelage extérieur',
+            description: 'Terrasses, piscines, cuisines extérieures'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Techniques spéciales',
+            description: 'Résine époxy, poses décoratives, habillage cheminée, chauffage au sol'
+          }
+        }
+      ]
+    }
   };
 
   return (
     <html lang="fr">
       <body
-        className={`${montserrat.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased bg-bg-dark text-white`}
+        className={`${montserrat.variable} ${inter.variable} antialiased bg-bg-dark text-white`}
       >
         {/* Structured Data - JSON-LD for SEO */}
         <script
@@ -163,20 +227,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        {/* Google Analytics */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-P1PSZR3X97" strategy="afterInteractive" />
-        <Script id="ga" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-P1PSZR3X97');
-          `}
-        </Script>
-        <LanguageProvider>
-          {children}
-          <CookieConsent />
-        </LanguageProvider>
+        {/* GA4 (G-P1PSZR3X97) est chargé via GTM — ne pas charger en double */}
+        {children}
+        <FloatingCallButton />
       </body>
     </html>
   );

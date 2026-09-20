@@ -14,12 +14,13 @@ export function Hero() {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/images/hero-bg.png"
+                    src="/images/hero-bg.webp"
                     alt="MP Carrelage - Carreleur Mulhouse expert en pose de carrelage grand format"
                     fill
+                    sizes="100vw"
                     className="object-cover"
                     priority
-                    quality={90}
+                    quality={75}
                 />
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-b from-bg-dark/60 via-bg-dark/40 to-bg-dark/80" />

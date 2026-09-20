@@ -137,12 +137,12 @@ ${formData.message}`;
         <Section id="contact" className="bg-bg-dark border-t border-white/5">
             <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
-                    <h2 className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
+                    <p className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm">
                         {t.contact.subtitle}
-                    </h2>
-                    <h3 className="text-3xl md:text-4xl font-bold font-heading text-white mb-4">
+                    </p>
+                    <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mb-4">
                         {t.contact.title}
-                    </h3>
+                    </h2>
                     <p className="text-white/60">
                         {t.contact.description}
                     </p>

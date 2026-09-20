@@ -1,9 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
-import { Home, Droplets, Sun, Layers, Check } from 'lucide-react';
+import { Home, Droplets, Sun, Layers, Check, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const services = [
@@ -66,15 +67,15 @@ export function Services() {
     return (
         <Section id="expertises" className="bg-bg-dark">
             <div className="text-center mb-16">
-                <motion.h2
+                <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="text-accent-stone font-medium mb-4 tracking-wide uppercase text-sm"
                 >
                     {t.services.subtitle}
-                </motion.h2>
-                <motion.h3
+                </motion.p>
+                <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -82,7 +83,7 @@ export function Services() {
                     className="text-3xl md:text-4xl font-bold font-heading text-white"
                 >
                     {t.services.title}
-                </motion.h3>
+                </motion.h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -102,7 +103,7 @@ export function Services() {
                             <p className="text-white/60 text-sm mb-6 leading-relaxed">
                                 {service.description}
                             </p>
-                            <ul className="space-y-2">
+                            <ul className="space-y-2 mb-6">
                                 {service.items.map((item, i) => (
                                     <li key={i} className="flex items-start gap-2 text-sm text-white/80">
                                         <Check className="h-4 w-4 text-accent-stone mt-0.5 shrink-0" />
@@ -110,6 +111,16 @@ export function Services() {
                                     </li>
                                 ))}
                             </ul>
+
+                            <div className="pt-4 border-t border-white/5 mt-auto">
+                                <Link
+                                    href={['/carrelage-interieur', '/salle-de-bain', '/carrelage-exterieur', '/carrelage-interieur'][index]}
+                                    className="inline-flex items-center text-xs font-semibold text-accent-stone hover:text-white transition-colors group-hover:translate-x-1 transition-transform"
+                                >
+                                    En savoir plus
+                                    <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                                </Link>
+                            </div>
                         </Card>
                     </motion.div>
                 ))}

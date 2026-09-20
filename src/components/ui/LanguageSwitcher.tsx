@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, Check } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { Language } from '@/lib/i18n/translations';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 const languages: { code: Language; label: string; flag: string }[] = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
@@ -17,6 +18,9 @@ export function LanguageSwitcher() {
     const { language, setLanguage } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -28,6 +32,23 @@ export function LanguageSwitcher() {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
+
+    const handleLanguageChange = (code: Language) => {
+        setLanguage(code);
+        setIsOpen(false);
+
+        // Update URL with new language param
+        const params = new URLSearchParams(searchParams.toString());
+        if (code === 'fr') {
+            params.delete('lang');
+        } else {
+            params.set('lang', code);
+        }
+
+        const query = params.toString();
+        const url = `${pathname}${query ? `?${query}` : ''}`;
+        router.push(url, { scroll: false });
+    };
 
     const currentLanguage = languages.find(l => l.code === language);
 
@@ -54,10 +75,7 @@ export function LanguageSwitcher() {
                         {languages.map((lang) => (
                             <button
                                 key={lang.code}
-                                onClick={() => {
-                                    setLanguage(lang.code);
-                                    setIsOpen(false);
-                                }}
+                                onClick={() => handleLanguageChange(lang.code)}
                                 className="w-full flex items-center justify-between px-4 py-2 text-sm text-left hover:bg-white/10 transition-colors text-white/90 hover:text-white"
                             >
                                 <span className="flex items-center gap-3">

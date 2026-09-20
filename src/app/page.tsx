@@ -8,20 +8,46 @@ import { BeforeAfter } from '@/components/sections/BeforeAfter';
 import { Process } from '@/components/sections/Process';
 import { Reviews } from '@/components/sections/Reviews';
 import { ContactForm } from '@/components/sections/ContactForm';
+import { LanguageProvider } from '@/lib/i18n/LanguageContext';
+import { Language } from '@/lib/i18n/translations';
 
-export default function Home() {
+import { CookieConsent } from '@/components/ui/CookieConsent';
+
+import { Metadata } from 'next';
+
+interface Props {
+  searchParams: Promise<{ lang?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const baseUrl = 'https://www.mp-carrelage.com';
+
+  return {
+    alternates: {
+      canonical: baseUrl,
+    },
+  };
+}
+
+export default async function Home({ searchParams }: Props) {
+  const { lang: langParam } = await searchParams;
+  const lang = (langParam || 'fr') as Language;
+
   return (
-    <main className="min-h-screen bg-bg-dark text-white selection:bg-accent-stone selection:text-bg-dark">
-      <Navbar />
-      <Hero />
-      <About />
-      <Services />
-      <Gallery />
-      <BeforeAfter />
-      <Process />
-      <Reviews />
-      <ContactForm />
-      <Footer />
-    </main>
+    <LanguageProvider initialLanguage={lang}>
+      <main className="min-h-screen bg-bg-dark text-white selection:bg-accent-stone selection:text-bg-dark">
+        <Navbar />
+        <Hero />
+        <About />
+        <Services />
+        <Gallery />
+        <BeforeAfter />
+        <Process />
+        <Reviews />
+        <ContactForm />
+        <Footer />
+        <CookieConsent />
+      </main>
+    </LanguageProvider>
   );
 }
