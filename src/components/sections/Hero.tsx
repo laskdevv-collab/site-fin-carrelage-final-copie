@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, ShieldCheck, Clock, MapPin, Star } from 'lucide-react';
+import { ArrowRight, ChevronDown, Clock, MapPin, Star } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
@@ -56,14 +56,7 @@ export function Hero() {
                     </div>
 
                     {/* Trust Badges */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mt-8 pt-6 border-t border-white/10 max-w-3xl mx-auto text-left">
-                        <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
-                            <ShieldCheck className="h-4 w-4 text-accent-stone shrink-0" />
-                            <div className="text-xs">
-                                <p className="font-semibold text-white leading-tight">Garantie Décennale</p>
-                                <p className="text-[10px] text-white/60">Assurance pro certifiée</p>
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mt-8 pt-6 border-t border-white/10 max-w-2xl mx-auto text-left">
                         <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
                             <Clock className="h-4 w-4 text-accent-stone shrink-0" />
                             <div className="text-xs">
@@ -79,7 +72,7 @@ export function Hero() {
                             </div>
                         </div>
                         <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
-                            <Star className="h-4 w-4 text-amber-400 fill-amber-400 shrink-0" />
+                            <Star className="h-4 w-4 text-accent-stone fill-accent-stone shrink-0" />
                             <div className="text-xs">
                                 <p className="font-semibold text-white leading-tight">5.0 / 5 Étoiles</p>
                                 <p className="text-[10px] text-white/60">Avis clients vérifiés</p>
