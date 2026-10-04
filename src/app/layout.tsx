@@ -6,6 +6,8 @@ import "./globals.css";
 
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { FloatingCallButton } from "@/components/ui/FloatingCallButton";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -230,6 +232,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* GA4 (G-P1PSZR3X97) est chargé via GTM — ne pas charger en double */}
         {children}
         <FloatingCallButton />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
