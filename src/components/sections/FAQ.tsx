@@ -15,7 +15,6 @@ export function FAQ() {
     { key: 'prix', label: 'Tarifs & Devis' },
     { key: 'secteur', label: 'Zone d’intervention' },
     { key: 'technique', label: 'Technique & Formats' },
-    { key: 'garantie', label: 'Garanties & Assurances' },
   ];
 
   const filteredFaqs =

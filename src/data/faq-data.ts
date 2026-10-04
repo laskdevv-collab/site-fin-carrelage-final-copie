@@ -28,13 +28,6 @@ export const faqList: FAQItem[] = [
       'Oui, nous travaillons exclusivement avec des marques professionnelles de haute qualité pour garantir la durabilité : colles flexibles déformables (C2S1/C2S2 certifiées CSTB), nattes de désolidarisation et d’étanchéité sous carrelage (système SPEC), ainsi que joints hydrofuges fins ou joints époxy anti-taches. Vous pouvez fournir vos carreaux ou profiter de nos remises professionnelles négociées chez nos partenaires négociants en Alsace.',
   },
   {
-    id: 'faq-4',
-    category: 'garantie',
-    question: 'Quelle garantie s’applique sur les travaux réalisés par MP Carrelage ?',
-    answer:
-      'Tous nos chantiers de pose de carrelage (intérieur, salle de bain, terrasse, rénovation) sont couverts par une assurance responsabilité civile professionnelle et une garantie décennale artisanale. Chaque réalisation est exécutée dans le strict respect des normes françaises DTU 52.2 (Règles de l’Art de la pose de carrelage).',
-  },
-  {
     id: 'faq-5',
     category: 'technique',
     question: 'Combien de temps dure un chantier de rénovation de salle de bain ou de sol ?',
