@@ -191,6 +191,7 @@ export function Gallery() {
                         <button
                             className="absolute top-4 right-4 text-white/60 hover:text-white p-2"
                             onClick={() => setSelectedImage(null)}
+                            aria-label="Fermer la vue agrandie"
                         >
                             <X className="h-8 w-8" />
                         </button>

@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 *build_output*.txt
 lighthouse-report*.json
+/screens/
 
 # local env files
 .env*.local

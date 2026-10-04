@@ -43,6 +43,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Redirection canonique 301 automatique du domaine nu (non-www) vers www
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'mp-carrelage.com',
+          },
+        ],
+        destination: 'https://www.mp-carrelage.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
