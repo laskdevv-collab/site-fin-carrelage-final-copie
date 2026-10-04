@@ -60,22 +60,22 @@ export function Hero() {
                         <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
                             <Clock className="h-4 w-4 text-accent-stone shrink-0" />
                             <div className="text-xs">
-                                <p className="font-semibold text-white leading-tight">Devis Gratuit</p>
-                                <p className="text-[10px] text-white/60">Réponse sous 24/48h</p>
+                                <p className="font-semibold text-white leading-tight">{t.hero.badges.quote_title}</p>
+                                <p className="text-[10px] text-white/60">{t.hero.badges.quote_desc}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
                             <MapPin className="h-4 w-4 text-accent-stone shrink-0" />
                             <div className="text-xs">
-                                <p className="font-semibold text-white leading-tight">Mulhouse & 68</p>
-                                <p className="text-[10px] text-white/60">Tout le Haut-Rhin</p>
+                                <p className="font-semibold text-white leading-tight">{t.hero.badges.location_title}</p>
+                                <p className="text-[10px] text-white/60">{t.hero.badges.location_desc}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
                             <Star className="h-4 w-4 text-accent-stone fill-accent-stone shrink-0" />
                             <div className="text-xs">
-                                <p className="font-semibold text-white leading-tight">5.0 / 5 Étoiles</p>
-                                <p className="text-[10px] text-white/60">Avis clients vérifiés</p>
+                                <p className="font-semibold text-white leading-tight">{t.hero.badges.reviews_title}</p>
+                                <p className="text-[10px] text-white/60">{t.hero.badges.reviews_desc}</p>
                             </div>
                         </div>
                     </div>

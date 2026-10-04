@@ -2,19 +2,23 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle, Phone, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { ChevronDown, HelpCircle, Phone, ArrowRight, Sparkles } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
-import { faqList, FAQItem } from '@/data/faq-data';
+import { getFaqList } from '@/data/faq-data';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function FAQ() {
+  const { t, language } = useLanguage();
+  const faqList = getFaqList(language);
+
   const [openId, setOpenId] = useState<string | null>('faq-1');
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   const categories = [
-    { key: 'all', label: 'Toutes les questions' },
-    { key: 'prix', label: 'Tarifs & Devis' },
-    { key: 'secteur', label: 'Zone d’intervention' },
-    { key: 'technique', label: 'Technique & Formats' },
+    { key: 'all', label: t.faq.categories.all },
+    { key: 'prix', label: t.faq.categories.prix },
+    { key: 'secteur', label: t.faq.categories.secteur },
+    { key: 'technique', label: t.faq.categories.technique },
   ];
 
   const filteredFaqs =
@@ -60,7 +64,7 @@ export function FAQ() {
           className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-stone/10 border border-accent-stone/20 text-accent-stone text-xs md:text-sm font-medium mb-4"
         >
           <HelpCircle className="w-4 h-4" />
-          <span>Foire Aux Questions</span>
+          <span>{t.faq.badge}</span>
         </motion.div>
 
         <motion.h2
@@ -70,7 +74,7 @@ export function FAQ() {
           transition={{ delay: 0.1 }}
           className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-white mb-4 tracking-tight"
         >
-          Vos questions sur la pose de carrelage en Alsace
+          {t.faq.title}
         </motion.h2>
 
         <motion.p
@@ -80,7 +84,7 @@ export function FAQ() {
           transition={{ delay: 0.2 }}
           className="text-white/70 max-w-2xl mx-auto text-base md:text-lg"
         >
-          Prix, délais, garanties et secteurs : tout ce que vous devez savoir avant de lancer votre projet avec MP Carrelage.
+          {t.faq.description}
         </motion.p>
       </div>
 
@@ -174,10 +178,10 @@ export function FAQ() {
           <div className="text-center md:text-left">
             <h3 className="text-xl md:text-2xl font-bold font-heading text-white mb-2 flex items-center justify-center md:justify-start gap-2">
               <Sparkles className="w-5 h-5 text-accent-stone" />
-              Une question spécifique pour votre chantier ?
+              {t.faq.cta_title}
             </h3>
             <p className="text-white/70 text-sm md:text-base">
-              Obtenez un devis gratuit et personnalisé sous 24h ouvrées, sans engagement.
+              {t.faq.cta_desc}
             </p>
           </div>
 
@@ -186,7 +190,7 @@ export function FAQ() {
               href="#contact"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-accent-stone text-bg-dark font-semibold text-sm hover:bg-white transition-all shadow-md active:scale-95"
             >
-              Demander mon devis
+              {t.faq.cta_button}
               <ArrowRight className="w-4 h-4" />
             </a>
             <a

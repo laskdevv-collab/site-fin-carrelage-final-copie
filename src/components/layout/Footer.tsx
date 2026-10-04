@@ -42,7 +42,7 @@ export function Footer() {
                             <li><Link href="#expertises" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.expertises}</Link></li>
                             <li><Link href="#projets" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.projects}</Link></li>
                             <li><Link href="#avis" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.reviews}</Link></li>
-                            <li><Link href="#faq" className="text-white/60 hover:text-accent-stone text-sm">FAQ & Tarifs</Link></li>
+                            <li><Link href="#faq" className="text-white/60 hover:text-accent-stone text-sm">{t.footer.faq}</Link></li>
                             <li><Link href="/blog" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.blog}</Link></li>
                         </ul>
                     </div>
@@ -81,11 +81,6 @@ export function Footer() {
                             <li>
                                 <a href="tel:0667674060" className="flex items-center gap-3 text-white/60 hover:text-accent-stone text-sm">
                                     <Phone className="h-4 w-4" /> 06 67 67 40 60
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:0749277212" className="flex items-center gap-3 text-white/60 hover:text-accent-stone text-sm">
-                                    <Phone className="h-4 w-4" /> 07 49 27 72 12
                                 </a>
                             </li>
                             <li>

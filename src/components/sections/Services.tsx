@@ -117,7 +117,7 @@ export function Services() {
                                     href={['/carrelage-interieur', '/salle-de-bain', '/carrelage-exterieur', '/carrelage-interieur'][index]}
                                     className="inline-flex items-center text-xs font-semibold text-accent-stone hover:text-white transition-colors group-hover:translate-x-1 transition-transform"
                                 >
-                                    En savoir plus
+                                    {t.services.learn_more}
                                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                                 </Link>
                             </div>

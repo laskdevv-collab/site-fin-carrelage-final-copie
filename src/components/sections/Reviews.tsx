@@ -139,7 +139,7 @@ export function Reviews() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-[11px] text-white/40 hover:text-accent-stone transition-colors shrink-0"
-                      title="Consulter l'avis certifié sur Google Maps"
+                      title={t.reviews.view_on_google}
                     >
                       <span>Google</span>
                       <ExternalLink className="w-3 h-3" />
@@ -173,7 +173,7 @@ export function Reviews() {
             </span>
             <span className="text-white/40">·</span>
             <span className="text-white/70 text-sm">
-              {reviewsStats.totalReviews} avis clients vérifiés sur Google Maps
+              {reviewsStats.totalReviews} {t.reviews.verified_badge}
             </span>
             <span className="text-white/40 hidden sm:inline">·</span>
             <a
@@ -183,7 +183,7 @@ export function Reviews() {
               className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-stone hover:text-white transition-colors underline-offset-4 hover:underline"
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              Laisser un avis sur Google
+              {t.reviews.leave_review}
             </a>
           </div>
         </motion.div>

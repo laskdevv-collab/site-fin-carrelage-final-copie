@@ -10,14 +10,23 @@ export const translations = {
       reviews: 'Avis',
       quote: 'Demander un devis',
       contact: 'Contact',
-      blog: 'Blog'
+      blog: 'Blog',
+      faq: 'FAQ'
     },
     hero: {
       title_1: "MP Carrelage",
       title_2: "Carreleur Mulhouse.",
       description: "Artisan carreleur expert à Mulhouse et en Alsace. Précision millimétrée, pose grand format et finitions d'exception pour vos projets de rénovation.",
       cta_quote: "Demander un devis gratuit",
-      cta_projects: "Voir nos réalisations"
+      cta_projects: "Voir nos réalisations",
+      badges: {
+        quote_title: "Devis Gratuit",
+        quote_desc: "Réponse sous 24/48h",
+        location_title: "Mulhouse & 68",
+        location_desc: "Tout le Haut-Rhin",
+        reviews_title: "5.0 / 5 Étoiles",
+        reviews_desc: "Avis clients vérifiés"
+      }
     },
     about: {
       subtitle: "Expertise MP Carrelage",
@@ -38,6 +47,7 @@ export const translations = {
     services: {
       subtitle: "Nos Expertises",
       title: "Des prestations sur-mesure",
+      learn_more: "En savoir plus",
       items: [
         {
           title: 'Poses Intérieures',
@@ -90,7 +100,10 @@ export const translations = {
       description: "Découvrez ce que nos clients disent de nos services de carrelage",
       loading: "Impossible de charger les avis",
       empty: "Aucun avis pour le moment",
-      count_suffix: "avis clients"
+      count_suffix: "avis clients",
+      verified_badge: "avis clients vérifiés sur Google Maps",
+      leave_review: "Laisser un avis sur Google",
+      view_on_google: "Consulter l'avis certifié sur Google Maps"
     },
     gallery: {
       subtitle: "Nos Réalisations",
@@ -112,6 +125,20 @@ export const translations = {
       after_label: "Après",
       before_desc: "En cours de pose",
       after_desc: "Sol fini"
+    },
+    faq: {
+      badge: "Foire Aux Questions",
+      title: "Vos questions sur la pose de carrelage en Alsace",
+      description: "Prix, délais et spécificités : tout ce que vous devez savoir avant de lancer votre projet avec MP Carrelage.",
+      categories: {
+        all: "Toutes les questions",
+        prix: "Tarifs & Devis",
+        secteur: "Zone d’intervention",
+        technique: "Technique & Formats"
+      },
+      cta_title: "Une question spécifique pour votre chantier ?",
+      cta_desc: "Obtenez un devis gratuit et personnalisé sous 24h ouvrées, sans engagement.",
+      cta_button: "Demander mon devis"
     },
     contact: {
       subtitle: "Demande de devis",
@@ -150,7 +177,8 @@ export const translations = {
       rights: "© 2026 MP Carrelage. Tous droits réservés.",
       legal: "Mentions légales",
       privacy: "Politique de confidentialité",
-      blog: "Blog"
+      blog: "Blog",
+      faq: "FAQ & Tarifs"
     },
     legalPage: {
       title: "Mentions Légales",
@@ -206,14 +234,23 @@ export const translations = {
       reviews: 'Reviews',
       quote: 'Get a Quote',
       contact: 'Contact',
-      blog: 'Blog'
+      blog: 'Blog',
+      faq: 'FAQ'
     },
     hero: {
       title_1: "Exceptional Tiling",
       title_2: "Millimeter Precision.",
       description: "Your expert tiler in Mulhouse and throughout Alsace. Artisanal precision and premium finishes for your renovation and new projects.",
       cta_quote: "Get a Free Quote",
-      cta_projects: "View Our Projects"
+      cta_projects: "View Our Projects",
+      badges: {
+        quote_title: "Free Quote",
+        quote_desc: "Response in 24/48h",
+        location_title: "Mulhouse & 68",
+        location_desc: "All Haut-Rhin & Alsace",
+        reviews_title: "5.0 / 5 Stars",
+        reviews_desc: "Verified client reviews"
+      }
     },
     about: {
       subtitle: "About MP Carrelage",
@@ -234,6 +271,7 @@ export const translations = {
     services: {
       subtitle: "Our Expertise",
       title: "Tailor-made Services",
+      learn_more: "Learn more",
       items: [
         {
           title: 'Interior Tiling',
@@ -286,7 +324,10 @@ export const translations = {
       description: "Discover what our clients say about our tiling services",
       loading: "Unable to load reviews",
       empty: "No reviews yet",
-      count_suffix: "client reviews"
+      count_suffix: "client reviews",
+      verified_badge: "verified client reviews on Google Maps",
+      leave_review: "Leave a review on Google",
+      view_on_google: "View verified review on Google Maps"
     },
     gallery: {
       subtitle: "Our Projects",
@@ -308,6 +349,20 @@ export const translations = {
       after_label: "After",
       before_desc: "Work in progress",
       after_desc: "Finished floor"
+    },
+    faq: {
+      badge: "Frequently Asked Questions",
+      title: "Your questions about tiling in Alsace",
+      description: "Pricing, timelines and techniques: everything you need to know before starting your project with MP Carrelage.",
+      categories: {
+        all: "All questions",
+        prix: "Prices & Quotes",
+        secteur: "Service Area",
+        technique: "Technique & Formats"
+      },
+      cta_title: "A specific question for your renovation?",
+      cta_desc: "Get a free, personalized quote within 24–48 business hours, no commitment.",
+      cta_button: "Request my quote"
     },
     contact: {
       subtitle: "Quote Request",
@@ -346,7 +401,8 @@ export const translations = {
       rights: "© 2026 MP Carrelage. All rights reserved.",
       legal: "Legal Notice",
       privacy: "Privacy Policy",
-      blog: "Blog"
+      blog: "Blog",
+      faq: "FAQ & Pricing"
     },
     legalPage: {
       title: "Legal Notice",
@@ -402,14 +458,23 @@ export const translations = {
       reviews: 'Bewertungen',
       quote: 'Angebot anfordern',
       contact: 'Kontakt',
-      blog: 'Blog'
+      blog: 'Blog',
+      faq: 'FAQ'
     },
     hero: {
       title_1: "Außergewöhnliche Fliesen",
       title_2: "Millimetergenaue Verlegung.",
       description: "Ihr Experten-Fliesenleger in Mulhouse und im ganzen Elsass. Handwerkliche Präzision und erstklassige Oberflächen für Ihre Renovierungs- und Neubauprojekte.",
       cta_quote: "Kostenloses Angebot anfordern",
-      cta_projects: "Unsere Projekte ansehen"
+      cta_projects: "Unsere Projekte ansehen",
+      badges: {
+        quote_title: "Kostenloses Angebot",
+        quote_desc: "Rückmeldung in 24/48 Std.",
+        location_title: "Mulhouse & 68",
+        location_desc: "Gesamtes Haut-Rhin & Elsass",
+        reviews_title: "5.0 / 5 Sterne",
+        reviews_desc: "Verifizierte Kundenbewertungen"
+      }
     },
     about: {
       subtitle: "Über MP Carrelage",
@@ -430,6 +495,7 @@ export const translations = {
     services: {
       subtitle: "Unsere Expertise",
       title: "Maßgeschneiderte Dienstleistungen",
+      learn_more: "Mehr erfahren",
       items: [
         {
           title: 'Innenverlegung',
@@ -482,7 +548,10 @@ export const translations = {
       description: "Entdecken Sie, was unsere Kunden über unsere Fliesenlegerdienste sagen",
       loading: "Bewertungen können nicht geladen werden",
       empty: "Noch keine Bewertungen",
-      count_suffix: "Kundenbewertungen"
+      count_suffix: "Kundenbewertungen",
+      verified_badge: "verifizierte Kundenbewertungen auf Google Maps",
+      leave_review: "Eine Bewertung auf Google hinterlassen",
+      view_on_google: "Verifizierte Bewertung auf Google Maps ansehen"
     },
     gallery: {
       subtitle: "Unsere Projekte",
@@ -504,6 +573,20 @@ export const translations = {
       after_label: "Nachher",
       before_desc: "In Arbeit",
       after_desc: "Fertiger Boden"
+    },
+    faq: {
+      badge: "Häufig Gestellte Fragen",
+      title: "Ihre Fragen zur Fliesenverlegung im Elsass",
+      description: "Preise, Fristen und Verlegetechniken: Alles, was Sie vor dem Start Ihres Projekts mit MP Carrelage wissen müssen.",
+      categories: {
+        all: "Alle Fragen",
+        prix: "Preise & Angebote",
+        secteur: "Einsatzgebiet",
+        technique: "Technik & Formate"
+      },
+      cta_title: "Eine spezifische Frage zu Ihrem Vorhaben?",
+      cta_desc: "Erhalten Sie innerhalb von 24–48 Geschäftsstunden ein kostenloses, maßgeschneidertes Angebot.",
+      cta_button: "Angebot anfordern"
     },
     contact: {
       subtitle: "Angebotsanfrage",
@@ -542,7 +625,8 @@ export const translations = {
       rights: "© 2026 MP Carrelage. Alle Rechte vorbehalten.",
       legal: "Impressum",
       privacy: "Datenschutzrichtlinie",
-      blog: "Blog"
+      blog: "Blog",
+      faq: "FAQ & Preise"
     },
     legalPage: {
       title: "Impressum",
@@ -598,14 +682,23 @@ export const translations = {
       reviews: 'Yorumlar',
       quote: 'Teklif Al',
       contact: 'İletişim',
-      blog: 'Blog'
+      blog: 'Blog',
+      faq: 'SSS'
     },
     hero: {
       title_1: "Olağanüstü Fayans",
       title_2: "Milimetrik Döşeme.",
       description: "Mulhouse ve tüm Alsace bölgesindeki uzman fayansçınız. Yenileme ve yeni projeleriniz için zanaatkar hassasiyeti ve birinci sınıf işçilik.",
       cta_quote: "Ücretsiz Teklif Alın",
-      cta_projects: "Projelerimizi Görün"
+      cta_projects: "Projelerimizi Görün",
+      badges: {
+        quote_title: "Ücretsiz Teklif",
+        quote_desc: "24/48 saat içinde yanıt",
+        location_title: "Mulhouse & 68",
+        location_desc: "Tüm Haut-Rhin & Alsace",
+        reviews_title: "5.0 / 5 Yıldız",
+        reviews_desc: "Doğrulanmış müşteri yorumları"
+      }
     },
     about: {
       subtitle: "MP Carrelage Hakkında",
@@ -626,6 +719,7 @@ export const translations = {
     services: {
       subtitle: "Uzmanlıklarımız",
       title: "Özel Hizmetler",
+      learn_more: "Daha fazla bilgi",
       items: [
         {
           title: 'İç Mekan Döşeme',
@@ -678,7 +772,10 @@ export const translations = {
       description: "Müşterilerimizin fayans hizmetlerimiz hakkında ne dediğini keşfedin",
       loading: "Yorumlar yüklenemiyor",
       empty: "Henüz yorum yok",
-      count_suffix: "müşteri yorumu"
+      count_suffix: "müşteri yorumu",
+      verified_badge: "Google Haritalar'da doğrulanmış müşteri yorumu",
+      leave_review: "Google'da yorum bırakın",
+      view_on_google: "Google Haritalar'da doğrulanmış yorumu görüntüleyin"
     },
     gallery: {
       subtitle: "Projelerimiz",
@@ -700,6 +797,20 @@ export const translations = {
       after_label: "Sonra",
       before_desc: "Devam eden çalışma",
       after_desc: "Bitmiş zemin"
+    },
+    faq: {
+      badge: "Sıkça Sorulan Sorular",
+      title: "Alsace bölgesinde fayans döşeme hakkında sorularınız",
+      description: "Fiyatlar, teslim süreleri ve teknik detaylar: MP Carrelage ile projenize başlamadan önce bilmeniz gerekenler.",
+      categories: {
+        all: "Tüm sorular",
+        prix: "Fiyatlar & Teklif",
+        secteur: "Hizmet Bölgesi",
+        technique: "Teknik & Formatlar"
+      },
+      cta_title: "Projeniz için özel bir sorunuz mu var?",
+      cta_desc: "24-48 iş saati içinde hiçbir taahhüt olmadan ücretsiz ve size özel teklif alın.",
+      cta_button: "Teklif isteyin"
     },
     contact: {
       subtitle: "Teklif İsteği",
@@ -738,7 +849,8 @@ export const translations = {
       rights: "© 2026 MP Carrelage. Tüm hakları saklıdır.",
       legal: "Yasal Uyarı",
       privacy: "Gizlilik Politikası",
-      blog: "Blog"
+      blog: "Blog",
+      faq: "SSS & Fiyatlar"
     },
     legalPage: {
       title: "Yasal Uyarı",
