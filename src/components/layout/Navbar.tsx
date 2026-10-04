@@ -23,6 +23,7 @@ export function Navbar() {
         { name: t.nav.projects, href: '#projets' },
         { name: t.nav.process, href: '#process' },
         { name: t.nav.reviews, href: '#avis' },
+        { name: 'FAQ', href: '#faq' },
     ];
 
     useEffect(() => {

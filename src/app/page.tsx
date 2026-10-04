@@ -7,6 +7,7 @@ import { Gallery } from '@/components/sections/Gallery';
 import { BeforeAfter } from '@/components/sections/BeforeAfter';
 import { Process } from '@/components/sections/Process';
 import { Reviews } from '@/components/sections/Reviews';
+import { FAQ } from '@/components/sections/FAQ';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 import { Language } from '@/lib/i18n/translations';
@@ -44,6 +45,7 @@ export default async function Home({ searchParams }: Props) {
         <BeforeAfter />
         <Process />
         <Reviews />
+        <FAQ />
         <ContactForm />
         <Footer />
         <CookieConsent />
