@@ -19,7 +19,7 @@ Périmètre retenu : référencement français uniquement ; traductions accessib
 
 - `npm run lint` : réussi, sans erreur ni avertissement.
 - `npm run typecheck` : réussi.
-- `npm test` : cinq tests réussis couvrant langues invalides, toutes les relations de traduction, changements de langue, validation des demandes et échappement HTML.
+- `npm test` : neuf tests réussis couvrant langues invalides, toutes les relations de traduction, changements de langue, validation des demandes, échappement HTML, succès et échecs de réception en base, Resend et repli SMTP (services simulés, sans envoi réel).
 - `npm run build` : compilation de production réussie.
 - `python tests/check_site.py` : 13 pages indexables, 15 destinations internes, sept scénarios de redirection, vraies 404, exclusions noindex, sitemap et robots.txt conformes. Les cas de refus et d’échec du formulaire sont testés uniquement sur le serveur local sans identifiants.
 - `npm audit` et `npm audit --omit=dev` : aucune vulnérabilité signalée au moment des vérifications.
@@ -29,7 +29,11 @@ Aucun e-mail de test réel n’a été envoyé et aucune demande fictive n’a �
 
 ## Search Console et limites
 
-Après publication, contrôler le sitemap canonique, les URL françaises prioritaires et l’exploration des anciennes variantes. Une redirection ou une page volontairement `noindex` doit rester exclue ; il ne faut pas chercher à indexer toutes les URL connues.
+La version de production a été publiée sur `https://www.mp-carrelage.com` et le même contrôle HTTP a réussi sur les 13 pages, les 15 destinations internes et les sept redirections. La galerie publique Supabase répond HTTP 200 et contient des réalisations publiées. Les résolutions DNS ont également réussi via les résolveurs Google et Cloudflare.
+
+Le sitemap canonique a été renvoyé à Search Console le 10 novembre : statut « Opération effectuée », 13 URL découvertes. Google a récupéré le nouveau robots.txt www le 10 novembre à 19:09. La validation des anciens blocages robots.txt a été lancée ; les demandes de nouvelle lecture des trois anciennes variantes de robots.txt ont été acceptées.
+
+Les URL françaises prioritaires font l’objet de demandes d’exploration manuelles complémentaires au sitemap. Une redirection ou une page volontairement `noindex` doit rester exclue ; il ne faut pas chercher à indexer toutes les URL connues.
 
 Les statuts historiques de Search Console évoluent après les prochaines explorations de Google. Aucune intervention ne garantit une indexation immédiate ou une position. Le rapport Core Web Vitals ne dispose pas encore d’un volume suffisant de données terrain pour attribuer un résultat au site.
 
