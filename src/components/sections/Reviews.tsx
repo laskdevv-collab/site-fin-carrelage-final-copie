@@ -6,7 +6,7 @@ import { Star, ExternalLink, MessageSquare } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import { reviewsList, reviewsStats, ReviewItem } from '@/data/reviews-data';
+import { reviewsList, reviewsStats } from '@/data/reviews-data';
 
 function ClientAvatar({ name, src }: { name: string; src?: string }) {
   const [hasError, setHasError] = useState(false);

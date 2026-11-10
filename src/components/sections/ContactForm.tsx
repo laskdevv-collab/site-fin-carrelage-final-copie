@@ -7,10 +7,11 @@ import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { ArrowRight, ArrowLeft, Send, CheckCircle2, AlertCircle } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { validateContact } from '@/lib/contact-validation';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 type FormData = {
+    website: string;
     projectType: string;
     surface: string;
     name: string;
@@ -20,13 +21,20 @@ type FormData = {
 };
 
 export function ContactForm() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
+    const validationMessage = {
+        fr: 'Vérifiez la surface (supérieure à zéro), votre nom et une adresse e-mail valide.',
+        en: 'Check the surface area (greater than zero), your name and a valid email address.',
+        de: 'Bitte prüfen Sie die Fläche (größer als null), Ihren Namen und eine gültige E-Mail-Adresse.',
+        tr: 'Alanı (sıfırdan büyük), adınızı ve geçerli bir e-posta adresini kontrol edin.',
+    }[language];
     const [step, setStep] = useState(1);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [canSubmitStep3, setCanSubmitStep3] = useState(false);
     const [formData, setFormData] = useState<FormData>({
+        website: '',
         projectType: '',
         surface: '',
         name: '',
@@ -40,12 +48,19 @@ export function ContactForm() {
             // Guard: disallow submission for 400ms after step 3 mounts to prevent fast/double click bleed-through
             const timer = setTimeout(() => setCanSubmitStep3(true), 400);
             return () => clearTimeout(timer);
-        } else {
-            setCanSubmitStep3(false);
         }
     }, [step]);
 
     const handleNext = () => {
+        setCanSubmitStep3(false);
+        if (step === 1 && (!formData.projectType || !formData.surface || Number(formData.surface) <= 0 || Number(formData.surface) > 1000000)) {
+            setError(validationMessage);
+            return;
+        }
+        if (step === 2 && !validateContact(formData)) {
+            setError(validationMessage);
+            return;
+        }
         if (step < 3) {
             setError(null);
             setStep((prev) => Math.min(3, prev + 1));
@@ -66,6 +81,7 @@ export function ContactForm() {
             return;
         }
 
+        if (!validateContact(formData)) { setError(validationMessage); return; }
         setIsSubmitting(true);
         setError(null);
 
@@ -77,29 +93,13 @@ export function ContactForm() {
                 body: JSON.stringify(formData),
             });
 
-            if (!res.ok) {
-                const data = await res.json().catch(() => ({}));
-                throw new Error(data.error || 'Erreur serveur');
+            const result = await res.json();
+            if (!res.ok || !result.success || (!result.savedToDb && !result.emailSent)) {
+                throw new Error('Delivery failed');
             }
-
             setIsSubmitted(true);
-        } catch (err: any) {
-            console.error('Error submitting form:', err);
-            // Fallback d'enregistrement direct Supabase côté client si l'API est indisponible
-            try {
-                const fullMessage = `Type de projet: ${formData.projectType || ''}\nSurface: ${formData.surface || ''}m²\n\n${formData.message || ''}`;
-                await supabase.from('contact_submissions').insert([
-                    {
-                        name: formData.name,
-                        email: formData.email,
-                        phone: formData.phone,
-                        message: fullMessage,
-                    }
-                ]);
-                setIsSubmitted(true);
-            } catch {
-                setError(t.contact.error);
-            }
+        } catch {
+            setError(t.contact.error);
         } finally {
             setIsSubmitting(false);
         }
@@ -178,6 +178,10 @@ export function ContactForm() {
                             }
                         }}
                     >
+                        <div className="hidden" aria-hidden="true">
+                            <label htmlFor="website">Site web</label>
+                            <input id="website" name="website" tabIndex={-1} autoComplete="off" value={formData.website} onChange={event => updateField('website', event.target.value)} />
+                        </div>
                         <AnimatePresence mode="wait">
                             {step === 1 && (
                                 <motion.div
@@ -208,12 +212,17 @@ export function ContactForm() {
                                     </div>
 
                                     <div>
-                                        <label className="block text-white mb-3 font-medium">
+                                        <label htmlFor="contact-surface" className="block text-white mb-3 font-medium">
                                             {t.contact.form.surface}
                                         </label>
                                         <Input
                                             type="number"
+                                            min="0.1" step="any" max="1000000"
                                             placeholder="Ex: 25"
+                                            id="contact-surface"
+                                            name="surface"
+                                            autoComplete="off"
+                                            maxLength={10}
                                             value={formData.surface}
                                             onChange={(e) => updateField('surface', e.target.value)}
                                         />
@@ -231,30 +240,42 @@ export function ContactForm() {
                                     className="space-y-6"
                                 >
                                     <div>
-                                        <label className="block text-white mb-3 font-medium">{t.contact.form.name}</label>
+                                        <label htmlFor="contact-name" className="block text-white mb-3 font-medium">{t.contact.form.name}</label>
                                         <Input
                                             type="text"
                                             placeholder="Jean Dupont"
+                                            id="contact-name"
+                                            name="name"
+                                            autoComplete="name"
+                                            maxLength={120}
                                             value={formData.name}
                                             onChange={(e) => updateField('name', e.target.value)}
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-white mb-3 font-medium">{t.contact.form.email}</label>
+                                        <label htmlFor="contact-email" className="block text-white mb-3 font-medium">{t.contact.form.email}</label>
                                         <Input
                                             type="email"
                                             placeholder="jean.dupont@email.com"
+                                            id="contact-email"
+                                            name="email"
+                                            autoComplete="email"
+                                            maxLength={254}
                                             value={formData.email}
                                             onChange={(e) => updateField('email', e.target.value)}
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-white mb-3 font-medium">{t.contact.form.phone}</label>
+                                        <label htmlFor="contact-phone" className="block text-white mb-3 font-medium">{t.contact.form.phone}</label>
                                         <Input
                                             type="tel"
                                             placeholder="06 12 34 56 78"
+                                            id="contact-phone"
+                                            name="phone"
+                                            autoComplete="tel"
+                                            maxLength={30}
                                             value={formData.phone}
                                             onChange={(e) => updateField('phone', e.target.value)}
                                         />
@@ -278,6 +299,7 @@ export function ContactForm() {
                                         <textarea
                                             id="message"
                                             name="message"
+                                            maxLength={5000}
                                             rows={5}
                                             autoComplete="off"
                                             className="block w-full min-h-[140px] rounded-md border border-white/20 bg-white/5 p-4 text-base text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-stone focus:border-accent-stone relative z-20 cursor-text resize-y"
@@ -295,6 +317,7 @@ export function ContactForm() {
                             <motion.div
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
+                                role="alert"
                                 className="mt-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center gap-3"
                             >
                                 <AlertCircle className="h-5 w-5 text-red-500 shrink-0" />
@@ -307,7 +330,7 @@ export function ContactForm() {
                                 <Button
                                     type="button"
                                     variant="ghost"
-                                    onClick={() => setStep(step - 1)}
+                                    onClick={() => { setCanSubmitStep3(false); setStep(step - 1); }}
                                     disabled={isSubmitting}
                                 >
                                     <ArrowLeft className="mr-2 h-4 w-4" />

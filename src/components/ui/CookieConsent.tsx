@@ -12,22 +12,27 @@ export function CookieConsent() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const consent = localStorage.getItem('cookie-consent');
-        if (!consent) {
-            const timer = setTimeout(() => setIsVisible(true), 2000);
-            return () => clearTimeout(timer);
-        }
+        let consent: string | null = null;
+        try { consent = localStorage.getItem('cookie-consent'); } catch { /* Keep analytics disabled without storage. */ }
+        const timer = !consent ? setTimeout(() => setIsVisible(true), 1500) : undefined;
+        const reopen = () => setIsVisible(true);
+        window.addEventListener('cookie-preferences', reopen);
+        return () => { clearTimeout(timer); window.removeEventListener('cookie-preferences', reopen); };
     }, []);
 
-    const handleAccept = () => {
-        localStorage.setItem('cookie-consent', 'accepted');
+    const saveConsent = (choice: 'accepted' | 'declined') => {
+        let previouslyAccepted = false;
+        try {
+            previouslyAccepted = localStorage.getItem('cookie-consent') === 'accepted';
+            localStorage.setItem('cookie-consent', choice);
+        } catch { /* Without storage, do not enable optional analytics. */ }
+        window.dispatchEvent(new Event('cookie-consent-change'));
         setIsVisible(false);
+        // Unload previously authorized tracking when consent is withdrawn.
+        if (previouslyAccepted && choice === 'declined') window.location.reload();
     };
-
-    const handleDecline = () => {
-        localStorage.setItem('cookie-consent', 'declined');
-        setIsVisible(false);
-    };
+    const handleAccept = () => saveConsent('accepted');
+    const handleDecline = () => saveConsent('declined');
 
     return (
         <AnimatePresence>

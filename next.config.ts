@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Resolve metadata (including notFound) before sending the HTTP status.
+  htmlLimitedBots: /.*/,
   images: {
     // Configuration pour supporter les images locales et Supabase Storage
     remotePatterns: [

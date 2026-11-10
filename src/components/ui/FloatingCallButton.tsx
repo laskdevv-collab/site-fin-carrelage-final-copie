@@ -14,7 +14,7 @@ export function FloatingCallButton() {
     >
       <a
         href="tel:0667674060"
-        className="group relative flex items-center gap-3 bg-accent-stone text-bg-dark pl-3.5 pr-5 py-2.5 rounded-full shadow-2xl shadow-black/60 border border-white/20 transition-all duration-300 hover:scale-105 hover:bg-white active:scale-95 backdrop-blur-md"
+        className="group relative flex items-center gap-3 bg-accent-stone text-bg-dark p-2.5 sm:pl-3.5 sm:pr-5 sm:py-2.5 rounded-full shadow-2xl shadow-black/60 border border-white/20 transition-all duration-300 hover:scale-105 hover:bg-white active:scale-95 backdrop-blur-md"
         aria-label="Joignez-nous directement au 06 67 67 40 60"
       >
         {/* Animated pulse badge */}
@@ -24,7 +24,7 @@ export function FloatingCallButton() {
         </span>
 
         {/* Text information */}
-        <div className="flex flex-col text-left leading-tight">
+        <div className="hidden sm:flex flex-col text-left leading-tight">
           <span className="text-[11px] font-semibold uppercase tracking-wider text-bg-dark/70 group-hover:text-bg-dark/90">
             Joignez-nous directement !
           </span>

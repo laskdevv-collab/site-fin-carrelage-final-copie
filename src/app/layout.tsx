@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
-import Script from "next/script";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-import { CookieConsent } from "@/components/ui/CookieConsent";
+import { AnalyticsConsent } from "@/components/ui/AnalyticsConsent";
 import { FloatingCallButton } from "@/components/ui/FloatingCallButton";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -212,28 +209,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-        {/* Google Tag Manager */}
-        <Script id="gtm" strategy="afterInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5PRC6ZJP');`}
-        </Script>
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-5PRC6ZJP"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-        {/* GA4 (G-P1PSZR3X97) est chargé via GTM — ne pas charger en double */}
         {children}
         <FloatingCallButton />
-        <Analytics />
-        <SpeedInsights />
+        <AnalyticsConsent />
       </body>
     </html>
   );

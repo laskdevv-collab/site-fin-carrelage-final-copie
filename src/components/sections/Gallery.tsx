@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Section } from '@/components/ui/Section';
@@ -37,6 +37,20 @@ export function Gallery() {
 
     const [activeCategory, setActiveCategory] = useState<CategoryKey>('all');
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+    useEffect(() => {
+        if (!selectedImage) return;
+        const previousFocus = document.activeElement as HTMLElement | null;
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        closeButtonRef.current?.focus();
+        const handleKey = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') setSelectedImage(null);
+            if (event.key === 'Tab') { event.preventDefault(); closeButtonRef.current?.focus(); }
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => { document.body.style.overflow = previousOverflow; window.removeEventListener('keydown', handleKey); previousFocus?.focus(); };
+    }, [selectedImage]);
     const [projects, setProjects] = useState<GalleryProject[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -76,7 +90,7 @@ export function Gallery() {
                 } else {
                     setProjects(data);
                 }
-            } catch (err: any) {
+            } catch (err: unknown) {
                 console.error('Error fetching gallery projects:', err);
                 // Utiliser les données locales en cas d'erreur
                 setProjects(localGalleryProjects);
@@ -147,7 +161,9 @@ export function Gallery() {
                 >
                     <AnimatePresence mode="popLayout">
                         {filteredProjects.map((project) => (
-                            <motion.div
+                            <motion.button
+                                type="button"
+                                aria-label={`Agrandir : ${project.title}`}
                                 key={project.id}
                                 layout
                                 initial={{ opacity: 0, scale: 0.9 }}
@@ -172,7 +188,7 @@ export function Gallery() {
                                         <p className="text-accent-stone text-sm">{project.category}</p>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </motion.button>
                         ))}
                     </AnimatePresence>
                 </motion.div>
@@ -185,10 +201,15 @@ export function Gallery() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Photographie du projet"
                         className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
                         onClick={() => setSelectedImage(null)}
                     >
                         <button
+                            ref={closeButtonRef}
+                            type="button"
                             className="absolute top-4 right-4 text-white/60 hover:text-white p-2"
                             onClick={() => setSelectedImage(null)}
                             aria-label="Fermer la vue agrandie"
@@ -204,7 +225,8 @@ export function Gallery() {
                         >
                             <Image
                                 src={selectedImage}
-                                alt="Projet agrandi"
+                                alt={projects.find(project => project.image_url === selectedImage)?.title ?? 'Projet MP Carrelage'}
+                                sizes="100vw"
                                 fill
                                 className="object-contain"
                             />

@@ -1,5 +1,7 @@
 'use client';
 
+import { articleHref } from '@/lib/i18n/routing';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, ArrowRight } from 'lucide-react';
@@ -23,7 +25,7 @@ export function BlogCard({ post }: BlogCardProps) {
 
     return (
         <Link
-            href={`/blog/${post.slug}${language === 'fr' ? '' : `?lang=${language}`}`}
+            href={articleHref(post.slug, language)}
             className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-accent-stone/50 transition-all duration-300 flex flex-col h-full"
         >
             <div className="relative h-48 w-full overflow-hidden">
@@ -31,6 +33,7 @@ export function BlogCard({ post }: BlogCardProps) {
                     src={post.image}
                     alt={post.title}
                     fill
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4">

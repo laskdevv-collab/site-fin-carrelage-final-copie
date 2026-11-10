@@ -3,16 +3,17 @@ import { Footer } from '@/components/layout/Footer';
 import { Section } from '@/components/ui/Section';
 import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 import { CookieConsent } from '@/components/ui/CookieConsent';
-import { Language, translations } from '@/lib/i18n/translations';
+import { translations } from '@/lib/i18n/translations';
+import { getLanguage } from '@/lib/i18n/routing';
 import { Metadata } from 'next';
 
 interface Props {
-    searchParams: Promise<{ lang?: string }>;
+    searchParams: Promise<{ lang?: string | string[] }>;
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
     const { lang: langParam } = await searchParams;
-    const lang = (langParam || 'fr') as Language;
+    const lang = getLanguage(langParam);
 
     const titles: Record<string, string> = {
         fr: "Mentions Légales | MP Carrelage",
@@ -35,7 +36,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 export default async function MentionsLegales({ searchParams }: Props) {
     const { lang: langParam } = await searchParams;
-    const lang = (langParam || 'fr') as Language;
+    const lang = getLanguage(langParam);
     const t = translations[lang] || translations.fr;
     const { legalPage } = t;
 

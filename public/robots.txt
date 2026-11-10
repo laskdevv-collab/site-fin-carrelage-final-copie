@@ -6,6 +6,6 @@ Allow: /images/
 Allow: /
 
 Disallow: /api/
-Disallow: /*?lang=*
+# Translations must remain crawlable so Google can read their noindex directive.
 
 Sitemap: https://www.mp-carrelage.com/sitemap.xml

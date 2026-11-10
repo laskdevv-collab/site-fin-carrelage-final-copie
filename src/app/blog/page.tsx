@@ -1,19 +1,20 @@
+import { frenchOnlySeo } from '@/lib/seo/pages';
 import { blogData } from '@/data/blog-data';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { BlogIndexClient } from '@/components/blog/BlogIndexClient';
 import { Metadata } from 'next';
-import { Language } from '@/lib/i18n/translations';
+import { getLanguage } from '@/lib/i18n/routing';
 import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 import { CookieConsent } from '@/components/ui/CookieConsent';
 
 interface Props {
-    searchParams: Promise<{ lang?: string }>;
+    searchParams: Promise<{ lang?: string | string[] }>;
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
     const { lang: langParam } = await searchParams;
-    const lang = (langParam || 'fr') as Language;
+    const lang = getLanguage(langParam);
 
     const meta: Record<string, { title: string, desc: string }> = {
         fr: {
@@ -38,23 +39,22 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     const baseUrl = 'https://www.mp-carrelage.com';
 
     return {
+        ...frenchOnlySeo('/blog', lang),
         title: currentMeta.title,
         description: currentMeta.desc,
-        alternates: {
-            canonical: `${baseUrl}/blog`,
-        },
         openGraph: {
             title: currentMeta.title,
             description: currentMeta.desc,
             url: `${baseUrl}/blog${lang === 'fr' ? '' : `?lang=${lang}`}`,
             type: 'website',
+            images: ['/og-image.jpg'],
         }
     };
 }
 
 export default async function BlogIndex({ searchParams }: Props) {
     const { lang: langParam } = await searchParams;
-    const lang = (langParam || 'fr') as Language;
+    const lang = getLanguage(langParam);
     const posts = blogData[lang] || blogData.fr;
 
     return (

@@ -1,4 +1,4 @@
-import { Language } from '@/lib/i18n/translations';
+import type { Language } from '@/lib/i18n/translations';
 
 export interface BlogPost {
     title: string;
@@ -6,6 +6,7 @@ export interface BlogPost {
     excerpt: string;
     content: string;
     date: string;
+    updatedAt?: string;
     image: string;
     category: string;
     metaDescription: string;
@@ -17,8 +18,9 @@ export const blogData: Record<Language, BlogPost[]> = {
         {
             title: "Choisir son carrelage à Mulhouse : Le guide complet de l'artisan carreleur",
             slug: "choisir-carrelage-mulhouse-guide-complet",
-            excerpt: "Vous habitez à Mulhouse ou dans le Haut-Rhin ? Découvrez notre guide de 1100 mots sur le choix du carrelage idéal, les normes techniques et les astuces d'un expert local.",
+            excerpt: "Vous habitez à Mulhouse ou dans le Haut-Rhin ? Découvrez notre guide sur le choix du carrelage idéal, les normes techniques et les astuces d'un expert local.",
             date: "2026-03-04",
+            updatedAt: "2026-11-10",
             image: "/images/choix-carrelage-mulhouse-artisan-68.jpg",
             category: "Conseils",
             metaDescription: "Expertise en carrelage à Mulhouse. Guide complet sur les matériaux, la norme R11 et la pose par un artisan intervenant de Colmar à Altkirch.",
@@ -44,7 +46,7 @@ Aujourd'hui, 90% des chantiers que je réalise de Colmar à Altkirch concernent 
 
 ## 3. Comprendre les normes techniques : L'expertise MP Carrelage
 
-Pour que Google et surtout vos pieds soient satisfaits, il faut parler technique. Lors d'un chantier à Saint-Louis ou Mulhouse, j'insiste toujours sur deux points : 
+Pour choisir un revêtement adapté à son usage, il faut examiner ses caractéristiques techniques. Lors d'un chantier à Saint-Louis ou Mulhouse, j'insiste toujours sur deux points :
 
 ### La classification UPEC
 C'est le barème français qui définit la résistance du carreau à l'Usure (U), au Poinçonnement (P), à l'Eau (E) et aux agents Chimiques (C). Pour une pièce de vie à fort passage, je recommande au minimum un U3P3.
@@ -89,6 +91,7 @@ Vous avez un projet de carrelage à Mulhouse, Saint-Louis ou ailleurs dans le 68
             slug: "avantages-carrelage-grand-format-riedisheim",
             excerpt: "Tendance lourde à Riedisheim et Mulhouse : le carrelage XXL. Découvrez comment ces formats géants transforment vos intérieurs alsaciens.",
             date: "2026-03-01",
+            updatedAt: "2026-11-10",
             image: "/images/carrelage-grand-format-riedisheim-mulhouse.jpg",
             category: "Tendances",
             metaDescription: "Le carrelage XXL à Riedisheim. Avantages esthétiques, techniques de pose et expertise par un carreleur local intervenant de Colmar à Altkirch.",
@@ -96,7 +99,7 @@ Vous avez un projet de carrelage à Mulhouse, Saint-Louis ou ailleurs dans le 68
             content: `
 # Carrelage grand format à Riedisheim : Pourquoi le XXL séduit tout le Haut-Rhin
 
-Depuis quelques années, une révolution s'opère dans les intérieurs des maisons de Riedisheim, Mulhouse et partout dans le Haut-Rhin (68) : l'avènement du carrelage XXL. Fini le temps des petits carreaux de 20x20 cm qui quadrillaient vos pièces. Aujourd'hui, on voit grand. Très grand. Dans ce dossier complet de 1100 mots, nous allons explorer pourquoi ce format de carrelage est devenu le choix numéro un des architectes et des propriétaires exigeants en Alsace.
+Depuis quelques années, une révolution s'opère dans les intérieurs des maisons de Riedisheim, Mulhouse et partout dans le Haut-Rhin (68) : l'avènement du carrelage XXL. Fini le temps des petits carreaux de 20x20 cm qui quadrillaient vos pièces. Aujourd'hui, on voit grand. Très grand. Dans ce dossier complet, nous allons explorer pourquoi ce format de carrelage est devenu le choix numéro un des architectes et des propriétaires exigeants en Alsace.
 
 ## 1. Qu'est-ce qu'un carrelage grand format ?
 
@@ -151,8 +154,9 @@ Envie de passer au format XXL dans votre maison du Haut-Rhin ?
         {
             title: "Rénover sa salle de bain à Kingersheim : L'art de la douche à l'italienne",
             slug: "renover-salle-de-bain-kingersheim-guide",
-            excerpt: "Expertise salle de bain à Kingersheim : douche à l'italienne, étanchéité parfaite et carrelage tendance. Le guide de 1100 mots pour votre projet.",
+            excerpt: "Expertise salle de bain à Kingersheim : douche à l'italienne, étanchéité parfaite et carrelage tendance. Le guide pour votre projet.",
             date: "2026-02-25",
+            updatedAt: "2026-11-10",
             image: "/images/pose-carrelage-salle-de-bain-kingersheim.jpg",
             category: "Salle de Bain",
             metaDescription: "Conseils pour votre salle de bain à Kingersheim. Étanchéité, douche à l'italienne et carrelage par un expert local de Colmar à Altkirch.",
@@ -160,7 +164,7 @@ Envie de passer au format XXL dans votre maison du Haut-Rhin ?
             content: `
 # Rénover sa salle de bain à Kingersheim : L'art de la douche à l'italienne
 
-La salle de bain n'est plus seulement une pièce utilitaire. C'est devenu un véritable sanctuaire de relaxation dans nos habitations de Kingersheim, Mulhouse et partout dans le Haut-Rhin (68). Que vous souhaitiez remplacer votre vieille baignoire encombrante par une douche spacieuse ou que vous construisiez à neuf près de Saint-Louis, la rénovation d'une pièce d'eau demande une rigueur technique absolue. Dans ce guide détaillé de 1100 mots, nous allons voir ensemble comment transformer votre salle de bain en un espace de rêve, sans risques d'infiltrations.
+La salle de bain n'est plus seulement une pièce utilitaire. C'est devenu un véritable sanctuaire de relaxation dans nos habitations de Kingersheim, Mulhouse et partout dans le Haut-Rhin (68). Que vous souhaitiez remplacer votre vieille baignoire encombrante par une douche spacieuse ou que vous construisiez à neuf près de Saint-Louis, la rénovation d'une pièce d'eau demande une rigueur technique absolue. Dans ce guide détaillé, nous allons voir ensemble comment transformer votre salle de bain en un espace de rêve, sans risques d'infiltrations.
 
 ## 1. La douche à l'italienne : Pourquoi un tel succès à Kingersheim ?
 
@@ -221,6 +225,7 @@ Votre salle de bain a besoin d'un sérieux coup de neuf à Mulhouse ou Kingershe
             slug: "pourquoi-artisan-carreleur-local-illzach",
             excerpt: "Vous habitez Illzach ou Wittenheim ? Découvrez les 5 avantages majeurs de choisir un artisan local pour vos travaux de carrelage dans le 68.",
             date: "2026-02-15",
+            updatedAt: "2026-11-10",
             image: "/images/carreleur-proximite-illzach-wittenheim.jpg",
             category: "Expertise",
             metaDescription: "Choisir un carreleur à Illzach (68). Réactivité, connaissance du terrain et suivi de chantier personnalisé de Colmar à Altkirch par MP Carrelage.",
@@ -228,7 +233,7 @@ Votre salle de bain a besoin d'un sérieux coup de neuf à Mulhouse ou Kingershe
             content: `
 # Artisan carreleur à Illzach : Pourquoi la proximité est un gage de qualité
 
-Vous avez un projet de carrelage à Illzach, Wittenheim ou Mulhouse ? Le premier réflexe est souvent de chercher le prix le plus bas sur internet ou dans les grandes enseignes nationales. Pourtant, le succès de vos travaux de rénovation ou de construction dans le Haut-Rhin (68) repose en grande partie sur un facteur souvent sous-estimé : la proximité géographique de votre artisan. Dans ce dossier de 1100 mots, nous allons explorer pourquoi choisir MP Carrelage, votre artisan local, est le meilleur investissement pour votre habitat de Saint-Louis à Colmar.
+Vous avez un projet de carrelage à Illzach, Wittenheim ou Mulhouse ? Le premier réflexe est souvent de chercher le prix le plus bas sur internet ou dans les grandes enseignes nationales. Pourtant, le succès de vos travaux de rénovation ou de construction dans le Haut-Rhin (68) repose en grande partie sur un facteur souvent sous-estimé : la proximité géographique de votre artisan. Dans ce dossier, nous allons explorer pourquoi choisir MP Carrelage, votre artisan local, est le meilleur investissement pour votre habitat de Saint-Louis à Colmar.
 
 ## 1. La Réactivité : Un chantier sans stress à Illzach
 
@@ -278,6 +283,7 @@ Besoin d'un carreleur expérimenté et réactif à Illzach ou Mulhouse ?
             slug: "entretien-carrelage-nettoyage-mulhouse",
             excerpt: "Comment garder votre carrelage comme neuf ? Découvrez les astuces de l'expert MP Carrelage pour l'entretien de vos sols dans le Haut-Rhin.",
             date: "2026-02-10",
+            updatedAt: "2026-11-10",
             image: "/images/entretien-carrelage-nettoyage-mulhouse.jpg",
             category: "Conseils",
             metaDescription: "Conseils d'entretien carrelage à Mulhouse. Nettoyage, produits recommandés et expertise par un artisan du Haut-Rhin intervenant de Colmar à Altkirch.",
@@ -285,7 +291,7 @@ Besoin d'un carreleur expérimenté et réactif à Illzach ou Mulhouse ?
             content: `
 # Entretien du carrelage : Le guide pour des sols brillants à Mulhouse
 
-Le carrelage est réputé pour sa facilité d'entretien, c'est d'ailleurs l'une des raisons principales de son hégémonie dans les foyers de Mulhouse, Riedisheim, ou Saint-Louis. Cependant, entre les joints qui s'encrassent, le voile de ciment après la pose ou les taches rebelles sur une terrasse à Altkirch, un entretien inadapté peut ternir l'éclat de votre investissement. En tant qu'artisan carreleur, je vous livre ici un dossier complet de 1100 mots pour chouchouter vos sols dans le Haut-Rhin (68).
+Le carrelage est réputé pour sa facilité d'entretien, c'est d'ailleurs l'une des raisons principales de son hégémonie dans les foyers de Mulhouse, Riedisheim, ou Saint-Louis. Cependant, entre les joints qui s'encrassent, le voile de ciment après la pose ou les taches rebelles sur une terrasse à Altkirch, un entretien inadapté peut ternir l'éclat de votre investissement. En tant qu'artisan carreleur, je vous livre ici un dossier complet pour chouchouter vos sols dans le Haut-Rhin (68).
 
 ## 1. Le premier nettoyage : La fin de chantier
 
@@ -336,6 +342,7 @@ Vous venez de carreler et vous avez besoin de conseils ? Votre sol est terne ?
             slug: "carrelage-exterieur-terrasse-alsace-bien-choisir",
             excerpt: "Aménager sa terrasse à Mulhouse ou Colmar demande une expertise technique particulière. Découvrez comment choisir un carrelage résistant au gel et antidérapant.",
             date: "2026-02-05",
+            updatedAt: "2026-11-10",
             image: "/images/pose-carrelage-terrasse-exterieur-alsace.jpg",
             category: "Extérieurs",
             metaDescription: "Guide carrelage extérieur en Alsace. Norme R11, résistance au gel et pose sur plots ou collée de Colmar à Altkirch. L'expertise MP Carrelage.",
@@ -343,7 +350,7 @@ Vous venez de carreler et vous avez besoin de conseils ? Votre sol est terne ?
             content: `
 # Carrelage extérieur et terrasse en Alsace : Réussir son aménagement
 
-L'aménagement extérieur est une priorité pour de nombreux propriétaires dans le Haut-Rhin (68). De Mulhouse à Colmar, la terrasse devient une véritable pièce de vie supplémentaire dès les premiers rayons de soleil. Mais attention, le climat alsacien est rude pour les revêtements de sol. Gel intense en hiver, canicule en été... votre terrasse doit être prête à tout encaisser. Dans ce guide de 1100 mots, je vous explique comment choisir et faire poser votre carrelage extérieur pour qu'il dure toute une vie.
+L'aménagement extérieur est une priorité pour de nombreux propriétaires dans le Haut-Rhin (68). De Mulhouse à Colmar, la terrasse devient une véritable pièce de vie supplémentaire dès les premiers rayons de soleil. Mais attention, le climat alsacien est rude pour les revêtements de sol. Gel intense en hiver, canicule en été... votre terrasse doit être prête à tout encaisser. Dans ce guide, je vous explique comment choisir et faire poser votre carrelage extérieur pour qu'il dure toute une vie.
 
 ## 1. Les contraintes du climat alsacien
 
@@ -398,6 +405,7 @@ Votre projet de terrasse à Mulhouse ou Colmar prend forme ?
             slug: "mosaique-douche-italienne-mulhouse-expert",
             excerpt: "La mosaïque n'est pas qu'un choix esthétique, c'est une solution technique idéale pour vos douches à l'italienne. Découvrez pourquoi l'expert carreleur du 68 la recommande.",
             date: "2026-02-01",
+            updatedAt: "2026-11-10",
             image: "/images/salle_de_bain_en_mosaique.jpg",
             category: "Expertise",
             metaDescription: "Expertise mosaïque à Mulhouse. Pourquoi choisir la mosaïque pour sa douche italienne ? Étanchéité, antidérapant et style de Colmar à Altkirch.",
@@ -405,7 +413,7 @@ Votre projet de terrasse à Mulhouse ou Colmar prend forme ?
             content: `
 # Mosaïque et douche italienne : L'expertise technique à Mulhouse
 
-Dans l'univers du carrelage à Mulhouse, la mosaïque est souvent perçue comme un élément purement décoratif. Pourtant, pour un carreleur chevronné intervenant de Colmar à Altkirch, c'est surtout une solution technique d'une efficacité redoutable, particulièrement pour la réalisation de douches à l'italienne. Dans ce dossier de 1100 mots, nous allons plonger dans les détails de ce matériau noble et exigeant qui sublime les salles de bains du Haut-Rhin (68).
+Dans l'univers du carrelage à Mulhouse, la mosaïque est souvent perçue comme un élément purement décoratif. Pourtant, pour un carreleur chevronné intervenant de Colmar à Altkirch, c'est surtout une solution technique d'une efficacité redoutable, particulièrement pour la réalisation de douches à l'italienne. Dans ce dossier, nous allons plonger dans les détails de ce matériau noble et exigeant qui sublime les salles de bains du Haut-Rhin (68).
 
 ## 1. La Mosaïque : Le choix de la sécurité et du confort
 
@@ -458,6 +466,7 @@ Envie d'une douche à l'italienne en mosaïque à Mulhouse ou Altkirch ?
             slug: "etancheite-sous-carrelage-multitude-mulhouse",
             excerpt: "L'étanchéité est la partie invisible mais la plus cruciale de votre projet de carrelage. Découvrez les solutions de l'expert à Mulhouse.",
             date: "2026-01-20",
+            updatedAt: "2026-11-10",
             image: "/images/etancheite-sous-carrelage-multitude-mulhouse.png",
             category: "Expertise",
             metaDescription: "L'étanchéité sous carrelage expliquée par MP Carrelage à Mulhouse. Pourquoi c'est vital pour votre salle de bain ou terrasse dans le 68.",
@@ -465,7 +474,7 @@ Envie d'une douche à l'italienne en mosaïque à Mulhouse ou Altkirch ?
             content: `
 # Étanchéité sous carrelage : Protéger votre maison à Mulhouse
 
-On l'oublie souvent car on ne la voit plus une fois le chantier fini, mais l'étanchéité sous carrelage est l'assurance vie de votre projet immobilier. À Mulhouse, Saint-Louis, ou Altkirch, une étanchéité négligée dans une salle de bain ou sur une terrasse peut coûter des dizaines de milliers d'euros en réparations quelques années plus tard. Dans ce dossier technique de 1100 mots, je vous explique pourquoi le carrelage ne suffit pas à étancher et quelles solutions j'applique dans le Haut-Rhin (68).
+On l'oublie souvent car on ne la voit plus une fois le chantier fini, mais l'étanchéité sous carrelage est l'assurance vie de votre projet immobilier. À Mulhouse, Saint-Louis, ou Altkirch, une étanchéité négligée dans une salle de bain ou sur une terrasse peut coûter des dizaines de milliers d'euros en réparations quelques années plus tard. Dans ce dossier technique, je vous explique pourquoi le carrelage ne suffit pas à étancher et quelles solutions j'applique dans le Haut-Rhin (68).
 
 ## 1. Le carrelage n'est pas étanche !
 
@@ -658,7 +667,7 @@ Un doute sur l'étanchéité de votre future salle de bain à Mulhouse ou Saint-
             content: `
 # Fliesenpflege: Der Leitfaden für glänzende Böden in Mülhausen
 
-Fliesen sind für ihre Pflegeleichtigkeit bekannt, was einer der Hauptgründe für ihre Dominanz in Haushalten in Mülhausen, Riedisheim oder Saint-Louis ist. Doch zwischen verschmutzten Fugen, dem Zementschleier nach der Verlegung oder hartnäckigen Flecken auf einer Terrasse in Altkirch kann eine unsachgemäße Pflege den Glanz Ihrer Investition trüben. Als professioneller Fliesenleger liefere ich Ihnen hier ein 1100-Wörter-Dossier, um Ihre Böden im Haut-Rhin (68) zu verwöhnen.
+Fliesen sind für ihre Pflegeleichtigkeit bekannt, was einer der Hauptgründe für ihre Dominanz in Haushalten in Mülhausen, Riedisheim oder Saint-Louis ist. Doch zwischen verschmutzten Fugen, dem Zementschleier nach der Verlegung oder hartnäckigen Flecken auf einer Terrasse in Altkirch kann eine unsachgemäße Pflege den Glanz Ihrer Investition trüben. Als professioneller Fliesenleger liefere ich Ihnen hier ein Dossier, um Ihre Böden im Haut-Rhin (68) zu verwöhnen.
 
 ## 1. Die erste Reinigung: Das Ende der Baustelle
 
@@ -716,7 +725,7 @@ Haben Sie gerade neu gefliest und benötigen Rat? Ist Ihr Boden stumpf?
             content: `
 # Außenfliesen und Terrassen im Elsass: Gelungene Gestaltung
 
-Die Gestaltung des Außenbereichs ist für viele Hausbesitzer im Haut-Rhin (68) eine Priorität. Von Mülhausen bis Colmar wird die Terrasse zum echten zusätzlichen Wohnzimmer, sobald die ersten Sonnenstrahlen erscheinen. Aber Vorsicht: Das elsässische Klima ist hart für Bodenbeläge. Intensiver Frost im Winter, Hitzewellen im Sommer... Ihre Terrasse muss bereit sein, alles einzustecken. In diesem 1100-Wörter-Leitfaden erkläre ich, wie Sie Ihre Außenfliesen wählen und verlegen lassen, damit sie ein Leben lang halten.
+Die Gestaltung des Außenbereichs ist für viele Hausbesitzer im Haut-Rhin (68) eine Priorität. Von Mülhausen bis Colmar wird die Terrasse zum echten zusätzlichen Wohnzimmer, sobald die ersten Sonnenstrahlen erscheinen. Aber Vorsicht: Das elsässische Klima ist hart für Bodenbeläge. Intensiver Frost im Winter, Hitzewellen im Sommer... Ihre Terrasse muss bereit sein, alles einzustecken. In diesem Leitfaden erkläre ich, wie Sie Ihre Außenfliesen wählen und verlegen lassen, damit sie ein Leben lang halten.
 
 ## 1. Die Zwänge des elsässischen Klimas
 
@@ -779,7 +788,7 @@ Nimmt Ihr Terrassenprojekt in Mülhausen oder Colmar Gestalt an?
             content: `
 # Mosaik und begehbare Dusche: Technische Expertise in Mülhausen
 
-In der Welt des Fliesens in Mülhausen wird Mosaik oft als rein dekoratives Element wahrgenommen. Doch für einen erfahrenen Fliesenleger, der von Colmar bis Altkirch tätig ist, ist es vor allem eine technische Lösung von beeindruckender Wirksamkeit, insbesondere für die Gestaltung von begehbaren Duschen (Italienische Duschen). In diesem 1100-Wörter-Text tauchen wir in die Details dieses edlen und anspruchsvollen Materials ein, das die Badezimmer im Haut-Rhin (68) veredelt.
+In der Welt des Fliesens in Mülhausen wird Mosaik oft als rein dekoratives Element wahrgenommen. Doch für einen erfahrenen Fliesenleger, der von Colmar bis Altkirch tätig ist, ist es vor allem eine technische Lösung von beeindruckender Wirksamkeit, insbesondere für die Gestaltung von begehbaren Duschen (Italienische Duschen). In diesem Text tauchen wir in die Details dieses edlen und anspruchsvollen Materials ein, das die Badezimmer im Haut-Rhin (68) veredelt.
 
 ## 1. Mosaik: Die Wahl für Sicherheit und Komfort
 
@@ -839,7 +848,7 @@ Lust auf eine begehbare Dusche in Mosaik in Mülhausen oder Altkirch?
             content: `
 # Abdichtung unter Fliesen: Schützen Sie Ihr Haus in Mülhausen
 
-Man vergisst sie oft, weil man sie nach Abschluss der Baustelle nicht mehr sieht, aber die Abdichtung unter den Fliesen ist die Lebensversicherung für Ihr Immobilienprojekt. In Mülhausen, Saint-Louis oder Altkirch kann eine vernachlässigte Abdichtung im Badezimmer oder auf einer Terrasse ein paar Jahre später Zehntausende von Euro an Reparaturkosten verursachen. In diesem 1100-Wörter-Technikdossier erkläre ich Ihnen, warum Fliesen allein nicht abdichten und welche Lösungen ich im Haut-Rhin (68) anwende.
+Man vergisst sie oft, weil man sie nach Abschluss der Baustelle nicht mehr sieht, aber die Abdichtung unter den Fliesen ist die Lebensversicherung für Ihr Immobilienprojekt. In Mülhausen, Saint-Louis oder Altkirch kann eine vernachlässigte Abdichtung im Badezimmer oder auf einer Terrasse ein paar Jahre später Zehntausende von Euro an Reparaturkosten verursachen. In diesem Technikdossier erkläre ich Ihnen, warum Fliesen allein nicht abdichten und welche Lösungen ich im Haut-Rhin (68) anwende.
 
 ## 1. Fliesen sind nicht wasserdicht!
 

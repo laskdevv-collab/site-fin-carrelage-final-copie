@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
+import { localizedHref } from '@/lib/i18n/routing';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function Footer() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     return (
         <footer className="bg-bg-dark border-t border-white/5 pt-16 pb-8">
             <div className="container mx-auto px-4 md:px-6">
@@ -38,12 +39,12 @@ export function Footer() {
                     <div>
                         <h3 className="text-white font-semibold mb-6">{t.footer.nav_title}</h3>
                         <ul className="space-y-4">
-                            <li><Link href="/" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.home}</Link></li>
-                            <li><Link href="#expertises" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.expertises}</Link></li>
-                            <li><Link href="#projets" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.projects}</Link></li>
-                            <li><Link href="#avis" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.reviews}</Link></li>
-                            <li><Link href="#faq" className="text-white/60 hover:text-accent-stone text-sm">{t.footer.faq}</Link></li>
-                            <li><Link href="/blog" className="text-white/60 hover:text-accent-stone text-sm">{t.nav.blog}</Link></li>
+                            <li><Link href={localizedHref('/', language)} className="text-white/60 hover:text-accent-stone text-sm">{t.nav.home}</Link></li>
+                            <li><Link href={localizedHref('/#expertises', language)} className="text-white/60 hover:text-accent-stone text-sm">{t.nav.expertises}</Link></li>
+                            <li><Link href={localizedHref('/#projets', language)} className="text-white/60 hover:text-accent-stone text-sm">{t.nav.projects}</Link></li>
+                            <li><Link href={localizedHref('/#avis', language)} className="text-white/60 hover:text-accent-stone text-sm">{t.nav.reviews}</Link></li>
+                            <li><Link href={localizedHref('/#faq', language)} className="text-white/60 hover:text-accent-stone text-sm">{t.footer.faq}</Link></li>
+                            <li><Link href={localizedHref('/blog', language)} className="text-white/60 hover:text-accent-stone text-sm">{t.nav.blog}</Link></li>
                         </ul>
                     </div>
 
@@ -99,8 +100,9 @@ export function Footer() {
                 <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-white/40 text-xs">{t.footer.rights}</p>
                     <div className="flex gap-6">
-                        <Link href="/mentions-legales" className="text-white/40 hover:text-white text-xs whitespace-nowrap">{t.footer.legal}</Link>
-                        <Link href="/confidentialite" className="text-white/40 hover:text-white text-xs whitespace-nowrap">{t.footer.privacy}</Link>
+                        <Link href={localizedHref('/mentions-legales', language)} className="text-white/40 hover:text-white text-xs whitespace-nowrap">{t.footer.legal}</Link>
+                        <button type="button" onClick={() => window.dispatchEvent(new Event('cookie-preferences'))} className="text-white/40 hover:text-white text-xs whitespace-nowrap">Gérer les cookies</button>
+                        <Link href={localizedHref('/confidentialite', language)} className="text-white/40 hover:text-white text-xs whitespace-nowrap">{t.footer.privacy}</Link>
                     </div>
                 </div>
             </div>

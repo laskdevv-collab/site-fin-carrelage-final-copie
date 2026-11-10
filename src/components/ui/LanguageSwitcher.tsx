@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useId } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, Check } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { Language } from '@/lib/i18n/translations';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { languageSwitchHref } from '@/lib/i18n/routing';
 
 const languages: { code: Language; label: string; flag: string }[] = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
@@ -15,12 +16,12 @@ const languages: { code: Language; label: string; flag: string }[] = [
 ];
 
 export function LanguageSwitcher() {
-    const { language, setLanguage } = useLanguage();
+    const { language } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
+    const optionsId = useId();
     const containerRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
     const pathname = usePathname();
-    const searchParams = useSearchParams();
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -34,20 +35,9 @@ export function LanguageSwitcher() {
     }, []);
 
     const handleLanguageChange = (code: Language) => {
-        setLanguage(code);
         setIsOpen(false);
-
-        // Update URL with new language param
-        const params = new URLSearchParams(searchParams.toString());
-        if (code === 'fr') {
-            params.delete('lang');
-        } else {
-            params.set('lang', code);
-        }
-
-        const query = params.toString();
-        const url = `${pathname}${query ? `?${query}` : ''}`;
-        router.push(url, { scroll: false });
+        const url = languageSwitchHref(pathname, code);
+        router.push(`${url}${url.includes('#') ? '' : window.location.hash}`, { scroll: false });
     };
 
     const currentLanguage = languages.find(l => l.code === language);
@@ -58,6 +48,9 @@ export function LanguageSwitcher() {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 transition-all duration-300 text-white"
                 aria-label="Select language"
+                aria-expanded={isOpen}
+                aria-controls={optionsId}
+                onKeyDown={event => { if (event.key === 'Escape') setIsOpen(false); }}
             >
                 <Globe className="w-4 h-4" />
                 <span className="text-sm font-medium">{currentLanguage?.label}</span>
@@ -66,6 +59,7 @@ export function LanguageSwitcher() {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
+                        id={optionsId}
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}

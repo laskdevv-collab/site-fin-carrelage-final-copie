@@ -20,7 +20,6 @@ import {
   Maximize2,
   HelpCircle,
   Clock,
-  Award,
   Flame,
   Layers
 } from 'lucide-react';

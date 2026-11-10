@@ -19,7 +19,6 @@ import {
   ArrowRight,
   HelpCircle,
   Clock,
-  Award,
   Umbrella,
   Snowflake,
   Layers

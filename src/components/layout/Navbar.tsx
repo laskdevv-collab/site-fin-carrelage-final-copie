@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,29 +8,53 @@ import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
+import { localizedHref } from '@/lib/i18n/routing';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 // navLinks moved inside component to use translations
 
 export function Navbar() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!isMobileMenuOpen) return;
+        const previousFocus = document.activeElement as HTMLElement | null;
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        const controls = () => mobileMenuRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        controls()?.[0]?.focus();
+        const handleKey = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') setIsMobileMenuOpen(false);
+            if (event.key === 'Tab') {
+                const elements = controls();
+                if (!elements?.length) return;
+                const first = elements[0];
+                const last = elements[elements.length - 1];
+                if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+                else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+            }
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => { document.body.style.overflow = previousOverflow; window.removeEventListener('keydown', handleKey); previousFocus?.focus(); };
+    }, [isMobileMenuOpen]);
 
     const navLinks = [
-        { name: t.nav.home, href: '/' },
-        { name: t.nav.expertises, href: '#expertises' },
-        { name: t.nav.projects, href: '#projets' },
-        { name: t.nav.process, href: '#process' },
-        { name: t.nav.reviews, href: '#avis' },
-        { name: t.nav.faq, href: '#faq' },
+        { name: t.nav.home, href: localizedHref('/', language) },
+        { name: t.nav.expertises, href: localizedHref('/#expertises', language) },
+        { name: t.nav.projects, href: localizedHref('/#projets', language) },
+        { name: t.nav.process, href: localizedHref('/#process', language) },
+        { name: t.nav.reviews, href: localizedHref('/#avis', language) },
+        { name: t.nav.faq, href: localizedHref('/#faq', language) },
     ];
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
-        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -47,7 +71,7 @@ export function Navbar() {
                 )}
             >
                 <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-                    <Link href="/" className="flex items-center gap-3">
+                    <Link href={localizedHref('/', language)} className="flex items-center gap-3">
                         <div className="relative h-10 w-10 md:h-12 md:w-12">
                             <Image
                                 src="/images/logo.png"
@@ -58,13 +82,13 @@ export function Navbar() {
                                 priority
                             />
                         </div>
-                        <span className="font-heading font-bold text-xl md:text-2xl text-white">
+                        <span className="font-heading font-bold text-xl md:text-2xl text-white whitespace-nowrap">
                             MP <span className="text-accent-stone">Carrelage</span>
                         </span>
                     </Link>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-8">
+                    <div className="hidden xl:flex items-center gap-8">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
@@ -78,15 +102,16 @@ export function Navbar() {
                             <LanguageSwitcher />
                         </Suspense>
                         <Button variant="primary" size="sm" asChild>
-                            <Link href="#contact">{t.nav.quote}</Link>
+                            <Link href={localizedHref('/#contact', language)}>{t.nav.quote}</Link>
                         </Button>
                     </div>
 
                     {/* Mobile Toggle */}
                     <button
-                        className="md:hidden text-white p-2"
+                        className="xl:hidden text-white p-2"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Fermer le menu de navigation" : "Ouvrir le menu de navigation"}
+                        aria-controls="mobile-navigation"
                         aria-expanded={isMobileMenuOpen}
                     >
                         {isMobileMenuOpen ? <X /> : <Menu />}
@@ -101,7 +126,12 @@ export function Navbar() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-bg-dark pt-24 px-4 md:hidden"
+                        id="mobile-navigation"
+                        ref={mobileMenuRef}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Navigation"
+                        className="fixed inset-0 z-40 bg-bg-dark pt-24 px-4 pb-10 overflow-y-auto xl:hidden"
                     >
                         <div className="flex flex-col gap-6">
                             {navLinks.map((link) => (
@@ -120,7 +150,7 @@ export function Navbar() {
                                 </Suspense>
                             </div>
                             <Button variant="primary" size="lg" className="w-full" asChild>
-                                <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                                <Link href={localizedHref('/#contact', language)} onClick={() => setIsMobileMenuOpen(false)}>
                                     {t.nav.quote}
                                 </Link>
                             </Button>

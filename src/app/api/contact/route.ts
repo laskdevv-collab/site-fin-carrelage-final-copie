@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
+import { validateContact, escapeHtml } from '@/lib/contact-validation';
 import { Resend } from 'resend';
 import nodemailer from 'nodemailer';
 
@@ -10,8 +11,24 @@ const NOTIFICATION_EMAILS = [
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { name, email, phone, projectType, surface, message } = body;
+    const origin = request.headers.get('origin');
+    // Next's internal URL can use localhost behind the production server.
+    // Compare the browser origin with the actual request host as well.
+    if (origin && origin !== new URL(request.url).origin && new URL(origin).host !== request.headers.get('host')) {
+      return NextResponse.json({ success: false, error: 'Origine de la demande non autorisée.' }, { status: 403 });
+    }
+    const rawBody = await request.text();
+    if (new TextEncoder().encode(rawBody).length > 32768) {
+      return NextResponse.json({ success: false, error: 'Demande trop volumineuse.' }, { status: 413 });
+    }
+    let input: unknown;
+    try { input = JSON.parse(rawBody); }
+    catch { return NextResponse.json({ success: false, error: 'Demande invalide.' }, { status: 400 }); }
+    const data = validateContact(input);
+    if (!data) return NextResponse.json({ success: false, error: 'Vérifiez vos coordonnées, le type de projet et la surface.' }, { status: 400 });
+    if (data.website) return NextResponse.json({ success: false, error: 'Demande non acceptée.' }, { status: 400 });
+    const { name, email, phone, projectType, surface, message } = data;
+    const safe = { name: escapeHtml(name), email: escapeHtml(email), phone: escapeHtml(phone), projectType: escapeHtml(projectType), surface: escapeHtml(surface), message: escapeHtml(message) };
 
     // 1. Préparation du message structuré
     const fullMessage = `Type de projet: ${projectType || 'Non spécifié'}
@@ -23,6 +40,13 @@ ${message || 'Aucun message supplémentaire'}`;
     // 2. Enregistrement dans Supabase (Table contact_submissions)
     let savedToDb = false;
     try {
+      const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      if (!url || !key || url.includes('placeholder') || url.includes('your-')) throw new Error('Database not configured');
+      const supabase = createClient(url, key, {
+        auth: { persistSession: false, autoRefreshToken: false },
+        global: { fetch: (resource, options) => fetch(resource, { ...options, signal: AbortSignal.timeout(7000) }) },
+      });
       const { error: supabaseError } = await supabase
         .from('contact_submissions')
         .insert([
@@ -85,27 +109,27 @@ ${message || 'Aucun message supplémentaire'}`;
       <table class="info-table">
         <tr>
           <td class="label">👤 Nom du client</td>
-          <td class="value"><strong>${name || 'Non spécifié'}</strong></td>
+          <td class="value"><strong>${safe.name || 'Non spécifié'}</strong></td>
         </tr>
         <tr>
           <td class="label">📞 Téléphone</td>
           <td class="value">
-            ${phone ? `<a href="tel:${phone}" style="color: #09090b; font-weight: 700; text-decoration: none;">${phone}</a>` : 'Non renseigné'}
+            ${safe.phone ? `<a href="tel:${safe.phone}" style="color: #09090b; font-weight: 700; text-decoration: none;">${safe.phone}</a>` : 'Non renseigné'}
           </td>
         </tr>
         <tr>
           <td class="label">✉️ Email</td>
           <td class="value">
-            ${email ? `<a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a>` : 'Non renseigné'}
+            ${safe.email ? `<a href="mailto:${safe.email}" style="color: #2563eb; text-decoration: none;">${safe.email}</a>` : 'Non renseigné'}
           </td>
         </tr>
         <tr>
           <td class="label">🛠️ Type de projet</td>
-          <td class="value"><strong>${projectType || 'Général'}</strong></td>
+          <td class="value"><strong>${safe.projectType || 'Général'}</strong></td>
         </tr>
         <tr>
           <td class="label">📐 Surface estimée</td>
-          <td class="value">${surface ? `${surface} m²` : 'Non précisée'}</td>
+          <td class="value">${safe.surface ? `${safe.surface} m²` : 'Non précisée'}</td>
         </tr>
         <tr>
           <td class="label">📅 Date de réception</td>
@@ -114,11 +138,11 @@ ${message || 'Aucun message supplémentaire'}`;
       </table>
 
       <div style="font-weight: 600; margin-bottom: 8px; font-size: 13px; text-transform: uppercase; color: #71717a;">Détail de la demande :</div>
-      <div class="message-box">${message || 'Le client n’a pas laissé de message spécifique.'}</div>
+      <div class="message-box">${safe.message || 'Le client n’a pas laissé de message spécifique.'}</div>
 
       <div class="cta-container">
-        ${phone ? `<a href="tel:${phone}" class="btn-call">📞 Rappeler le client (${phone})</a>` : ''}
-        ${email ? `<a href="mailto:${email}?subject=Votre demande de devis MP Carrelage" class="btn-email">✉️ Répondre par email</a>` : ''}
+        ${safe.phone ? `<a href="tel:${safe.phone}" class="btn-call">📞 Rappeler le client (${safe.phone})</a>` : ''}
+        ${safe.email ? `<a href="mailto:${safe.email}?subject=Votre demande de devis MP Carrelage" class="btn-email">✉️ Répondre par email</a>` : ''}
       </div>
     </div>
     <div class="footer">
@@ -135,7 +159,7 @@ ${message || 'Aucun message supplémentaire'}`;
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
         const res = await resend.emails.send({
-          from: process.env.RESEND_FROM_EMAIL || 'MP Carrelage <onboarding@resend.dev>',
+          from: process.env.RESEND_FROM_EMAIL || 'MP Carrelage <devis@mp-carrelage.com>',
           to: NOTIFICATION_EMAILS,
           replyTo: email || undefined,
           subject: emailSubject,
@@ -151,7 +175,7 @@ ${message || 'Aucun message supplémentaire'}`;
           for (const recipient of NOTIFICATION_EMAILS) {
             try {
               const singleRes = await resend.emails.send({
-                from: process.env.RESEND_FROM_EMAIL || 'MP Carrelage <onboarding@resend.dev>',
+                from: process.env.RESEND_FROM_EMAIL || 'MP Carrelage <devis@mp-carrelage.com>',
                 to: recipient,
                 replyTo: email || undefined,
                 subject: emailSubject,
@@ -178,7 +202,9 @@ ${message || 'Aucun message supplémentaire'}`;
         const transporter = nodemailer.createTransport({
           host: process.env.SMTP_HOST || 'smtp.gmail.com',
           port: Number(process.env.SMTP_PORT) || 465,
-          secure: Boolean(process.env.SMTP_SECURE ?? true),
+          secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : (Number(process.env.SMTP_PORT) || 465) === 465,
+          connectionTimeout: 7000,
+          socketTimeout: 10000,
           auth: {
             user: process.env.SMTP_USER,
             pass: process.env.SMTP_PASS,
@@ -199,15 +225,18 @@ ${message || 'Aucun message supplémentaire'}`;
       }
     }
 
+    if (!savedToDb && !emailSent) {
+      return NextResponse.json({ success: false, error: 'Votre demande n’a pas pu être transmise. Réessayez ou contactez-nous au 06 67 67 40 60.' }, { status: 503 });
+    }
     return NextResponse.json({
       success: true,
       savedToDb,
       emailSent,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Erreur traitement formulaire contact:', err);
     return NextResponse.json(
-      { success: false, error: err.message || 'Erreur serveur' },
+      { success: false, error: 'Une erreur empêche l’envoi. Réessayez ou contactez-nous par téléphone.' },
       { status: 500 }
     );
   }

@@ -1,6 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import Markdown from 'react-markdown';
+import { articleHref, localizedHref } from '@/lib/i18n/routing';
 import Image from 'next/image';
 import { Calendar, ChevronLeft, Quote } from 'lucide-react';
 import Link from 'next/link';
@@ -13,11 +14,10 @@ interface BlogContentClientProps {
 }
 
 export function BlogContentClient({ post, posts }: BlogContentClientProps) {
-    const router = useRouter();
     const { language } = useLanguage();
 
     // Localized UI Labels
-    const labels: Record<string, any> = {
+    const labels = {
         fr: { notFound: "Article non trouvé", back: "Retour au blog", project: "Un projet en tête ?", estimate: "Obtenez une estimation gratuite pour vos travaux à Mulhouse, Riedisheim ou Illzach.", getQuote: "Demander mon devis", recommended: "Articles recommandés", contactUs: "Discuter de votre projet →", mission: "Chaque projet est unique. Notre mission est de transformer votre habitat avec précision et passion, partout dans le Haut-Rhin." },
         en: { notFound: "Article not found", back: "Back to blog", project: "A project in mind?", estimate: "Get a free estimate for your work in Mulhouse, Riedisheim, or Illzach.", getQuote: "Request my quote", recommended: "Recommended articles", contactUs: "Discuss your project →", mission: "Each project is unique. Our mission is to transform your home with precision and passion, throughout the Haut-Rhin." },
         de: { notFound: "Artikel nicht gefunden", back: "Zurück zum Blog", project: "Ein Projekt im Sinn?", estimate: "Erhalten Sie eine kostenlose Schätzung für Ihre Arbeiten in Mulhouse, Riedisheim oder Illzach.", getQuote: "Angebot anfordern", recommended: "Empfohlene Artikel", contactUs: "Ihr Projekt besprechen →", mission: "Jedes Projekt ist einzigartig. Unsere Mission ist es, Ihr Zuhause mit Präzision und Leidenschaft im gesamten Haut-Rhin zu transformieren." },
@@ -26,54 +26,22 @@ export function BlogContentClient({ post, posts }: BlogContentClientProps) {
 
     const l = labels[language] || labels.fr;
 
-    const renderContent = (content: string) => {
-        return content.split('\n').map((line, index) => {
-            if (line.startsWith('### ')) {
-                return <h3 key={index} className="text-xl font-bold text-white mt-8 mb-4">{line.replace('### ', '')}</h3>;
-            }
-            if (line.startsWith('## ')) {
-                return <h2 key={index} className="text-2xl font-bold text-white mt-10 mb-6">{line.replace('## ', '')}</h2>;
-            }
-            if (line.startsWith('# ')) {
-                return null;
-            }
-            if (line.includes('[') && line.includes(']')) {
-                if (line.includes('devis') || line.includes('quote') || line.includes('Angebot') || line.includes('teklif')) {
-                    return (
-                        <div key={index} className="my-8">
-                            <Link
-                                href="/#contact"
-                                className="inline-block bg-accent-stone text-bg-dark px-8 py-4 rounded-full font-bold hover:bg-white transition-colors"
-                            >
-                                {l.getQuote}
-                            </Link>
-                        </div>
-                    );
-                }
-                if (line.includes('réalisations') || line.includes('projects') || line.includes('Projekte')) {
-                    return (
-                        <div key={index} className="my-4">
-                            <Link
-                                href="/#projets"
-                                className="text-accent-stone hover:underline"
-                            >
-                                {language === 'fr' ? 'Voir nos réalisations' : language === 'en' ? 'See our projects' : language === 'de' ? 'Unsere Projekte ansehen' : 'Projelerimizi görün'}
-                            </Link>
-                        </div>
-                    );
-                }
-                return null;
-            }
-            if (line.trim() === '') return null;
-
-            return <p key={index} className="text-white/70 leading-relaxed mb-6 text-lg">{line}</p>;
-        });
-    };
+    const renderContent = (content: string) => (
+        <Markdown components={{
+            h1: () => null,
+            h2: ({ children }) => <h2 className="text-2xl font-bold text-white mt-10 mb-6">{children}</h2>,
+            h3: ({ children }) => <h3 className="text-xl font-bold text-white mt-8 mb-4">{children}</h3>,
+            p: ({ children }) => <p className="text-white/70 leading-relaxed mb-6 text-lg">{children}</p>,
+            ul: ({ children }) => <ul className="list-disc pl-6 text-white/70 space-y-3 mb-6">{children}</ul>,
+            ol: ({ children }) => <ol className="list-decimal pl-6 text-white/70 space-y-3 mb-6">{children}</ol>,
+            a: ({ href, children }) => <Link className="text-accent-stone underline underline-offset-4 hover:text-white" href={href?.startsWith('#') ? localizedHref(`/${href}`, language) : href ?? localizedHref('/blog', language)}>{children}</Link>,
+        }}>{content}</Markdown>
+    );
 
     return (
         <div className="max-w-4xl mx-auto">
             <Link
-                href="/blog"
+                href={localizedHref('/blog', language)}
                 className="inline-flex items-center gap-2 text-white/40 hover:text-accent-stone transition-colors mb-12 group"
             >
                 <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
@@ -102,6 +70,7 @@ export function BlogContentClient({ post, posts }: BlogContentClientProps) {
                     src={post.image}
                     alt={post.title}
                     fill
+                    sizes="(max-width: 1023px) 100vw, 896px"
                     className="object-cover"
                     priority
                 />
@@ -111,6 +80,11 @@ export function BlogContentClient({ post, posts }: BlogContentClientProps) {
                 <article className="lg:col-span-8">
                     <div className="prose prose-invert prose-lg max-w-none">
                         {renderContent(post.content)}
+                        <nav aria-label="Prestations MP Carrelage" className="mt-10 border-t border-white/10 pt-6 flex flex-wrap gap-4 text-accent-stone">
+                            <Link href="/carrelage-interieur">Carrelage intérieur à Mulhouse</Link>
+                            <Link href="/salle-de-bain">Salle de bain et douche à l’italienne</Link>
+                            <Link href="/carrelage-exterieur">Terrasses et carrelage extérieur</Link>
+                        </nav>
                     </div>
 
                     <div className="mt-16 p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-center gap-8">
@@ -119,6 +93,7 @@ export function BlogContentClient({ post, posts }: BlogContentClientProps) {
                                 src="/images/logo.png"
                                 alt="MP Carrelage"
                                 fill
+                    sizes="(max-width: 1023px) 100vw, 896px"
                                 className="object-contain"
                             />
                         </div>
@@ -128,7 +103,7 @@ export function BlogContentClient({ post, posts }: BlogContentClientProps) {
                                 <Quote className="h-4 w-4 text-accent-stone" />
                                 {l.mission}
                             </p>
-                            <Link href="/#contact" className="text-accent-stone font-bold hover:underline">
+                            <Link href={localizedHref('/#contact', language)} className="text-accent-stone font-bold hover:underline">
                                 {l.contactUs}
                             </Link>
                         </div>
@@ -142,7 +117,7 @@ export function BlogContentClient({ post, posts }: BlogContentClientProps) {
                             {l.estimate}
                         </p>
                         <Link
-                            href="/#contact"
+                            href={localizedHref('/#contact', language)}
                             className="block w-full py-4 bg-bg-dark text-white text-center rounded-xl font-bold hover:bg-black transition-colors"
                         >
                             {l.getQuote}
@@ -156,7 +131,7 @@ export function BlogContentClient({ post, posts }: BlogContentClientProps) {
                                 .filter(p => p.slug !== post.slug)
                                 .slice(0, 3)
                                 .map(p => (
-                                    <Link key={p.slug} href={`/blog/${p.slug}`} className="group block">
+                                    <Link key={p.slug} href={articleHref(p.slug, language)} className="group block">
                                         <p className="text-xs text-accent-stone uppercase font-bold mb-1">{p.category}</p>
                                         <h4 className="text-white font-bold group-hover:text-accent-stone transition-colors line-clamp-2">
                                             {p.title}

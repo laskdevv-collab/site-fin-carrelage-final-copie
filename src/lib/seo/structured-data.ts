@@ -17,7 +17,7 @@ export function generateOrganizationSchema(lang: Language = 'fr') {
         logo: 'https://www.mp-carrelage.com/images/logo.png',
         contactPoint: {
             '@type': 'ContactPoint',
-            telephone: '+33-6-52-18-84-07',
+            telephone: '+33667674060',
             contactType: 'customer service',
             areaServed: 'FR',
             availableLanguage: ['French', 'English', 'German', 'Turkish']
@@ -52,8 +52,8 @@ export function generateLocalBusinessSchema(lang: Language = 'fr') {
         name: names[lang],
         description: descriptions[lang],
         image: 'https://www.mp-carrelage.com/og-image.jpg',
-        telephone: '+33-6-52-18-84-07',
-        email: 'contact@mpcarrelage.fr',
+        telephone: '+33667674060',
+        email: 'mpcarrelage68@gmail.com',
         address: {
             '@type': 'PostalAddress',
             addressLocality: 'Mulhouse',
@@ -182,7 +182,7 @@ export function generateServiceSchema(lang: Language = 'fr') {
         hasOfferCatalog: {
             '@type': 'OfferCatalog',
             name: 'Tile Services',
-            itemListElement: services[lang].map((service, index) => ({
+            itemListElement: services[lang].map((service) => ({
                 '@type': 'Offer',
                 itemOffered: {
                     '@type': 'Service',
